@@ -1,21 +1,103 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com');
 
 :root {
-  --background: #ffffff;
+  
+  --background: #391452;
   --foreground: #171717;
+  --btn-bg-red: #800020;
+   --spacing-fh: calc(100dvh / 874);
+  --spacing-fw: calc(100vw / 402);
+}
+
+/* When the phone rotates to Landscape */
+@media (orientation:Landscape) {
+  :root{
+    /* Swap: Now the screen width is the '874' side */
+    --spacing-fh: calc(100dvh / 402);
+    --spacing-fw: calc(100vw / 874);
+  }
 }
 
 @theme inline {
+  --color-web-navbar: #4C1D60;
+  --color-btn-bg-red: var(--btn-bg-red);
+   --spacing-fh: var(--spacing-fh);
+  --spacing-fw: var(--spacing-fw);
+  
+--shadow-f-bottom: 0 calc(4 / 402 * 100vw) calc(6/ 402 * 100vw) rgba(0, 0, 0, 0.8);
+    
+  
+--shadow-nav: 0 calc(4 / 402 * 100vw) calc(4 / 402 * 100vw) rgba(0, 0, 0, 0.25);
+
+  
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
+.font-itim {
+font-family: 'Itim', cursive !important;
+  font-style: normal;
+}
+
+
+.font-aclonica {
+font-family: 'Aclonica', cursive !important;
+  font-style: normal;
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  /*  --background: #0a0a0a;
+    --foreground: #ededed;*/
+  }
+}
+
+@utility border-in-* {
+  box-shadow: inset 0 0 0 calc(--value(integer) * var(--spacing-fw)) var(--tw-shadow-color, currentColor);
+}
+
+@utility fh-* {
+  height: calc(--value(integer) * var(--spacing-fh));
+}
+
+/* Create a dynamic utility for Width/Padding/Text */
+@utility fw-* {
+  width: calc(--value(integer) * var(--spacing-fw));
+}
+
+@utility p-fw-* {
+  padding: calc(--value(integer) * var(--spacing-fw));
+}
+
+@utility pe-fw-* {
+  padding-inline-end: calc(--value(integer) * var(--spacing-fw));
+}
+
+@utility m-fw-* {
+  margin: calc(--value(integer) * var(--spacing-fw));
+}
+
+@utility ms-fw-* {
+  margin-inline-start: calc(--value(integer) * var(--spacing-fw));
+}
+@utility mt-fw-* {
+  margin-top: calc(--value(integer) * var(--spacing-fw));
+}
+
+@utility me-fw-* {
+  margin-inline-end: calc(--value(integer) * var(--spacing-fw));
+}
+
+@utility text-fw-* {
+  font-size: calc(--value(integer) * var(--spacing-fw));
+}
+
+@utility space-fy-* {
+  & > :not(:first-child) {
+    margin-top: calc(--value(integer) * var(--spacing-fh));
   }
 }
 
@@ -24,3 +106,8 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+nav {
+  background:var(--color-web-navbar);
+}
+
