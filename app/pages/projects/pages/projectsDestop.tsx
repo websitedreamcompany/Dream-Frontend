@@ -213,7 +213,7 @@ const ProjectsDesktop = () => {
                     globalDataState &&
                     globalDataState?.data &&
                     globalDataState?.data?.length > 0
-                      ? ` ${globalDataState?.data[7]?.urls?.regular}`
+                      ? ` ${(globalDataState?.data[7] as { urls: { regular: string } })?.urls?.regular}`
                       : "/"
                   }
                   alt="project_menu"
@@ -256,7 +256,7 @@ const ProjectsDesktop = () => {
                       className="relative rounded-2xl h-[calc(130*var(--spacing-fh))]  col-span-1 "
                     >
                       <Image
-                        src={`${item.urls.regular}`}
+                        src={`${(item as { urls: { regular: string } }).urls.regular}`}
                         alt="project_menu"
                         fill
                         sizes="100%"

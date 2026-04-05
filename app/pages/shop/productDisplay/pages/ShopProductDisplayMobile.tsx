@@ -441,7 +441,7 @@ const ShopProductDisplayMobile = () => {
 
           <section className="bg-transparent   p-3   overflow-y-auto  col-span-12 ">
             {moreData.length > 0 &&
-              moreData.map((data, index) => (
+              moreData.map((data:{ urls: { regular: string } }, index) => (
                 <div
                   key={index}
                   className="shadow-f-cardM bg-white fh-450 w-full rounded mb-5 p-6 flex"
@@ -461,8 +461,8 @@ const ShopProductDisplayMobile = () => {
                       </p>
 
                       <p className="text-sm font-extralight">
-                        The renovation work on the "Weitblick" project is
-                        currently in full swing. Since October 1st, 2025
+                        {`The renovation work on the "Weitblick" project is
+                        currently in full swing. Since October 1st, 2025`}
                       </p>
 
                       <p className="mt-5">64 m² · 3 Zi.</p>

@@ -233,24 +233,7 @@ const ShopDesktop = () => {
   const [showMoreindex, setShowMoreIndex] = useState(-1);
   const [activeIndex, setActiveIndex] = useState(-1);
 
-  useEffect(() => {
-    window.history.pushState(null, null, window.location.href);
-
-    const handlePopState = (event: PopStateEvent) => {
-      // 2. FORCE the history to push another state immediately.
-      // This "cancels" the back movement by replacing it with a new forward entry.
-      window.history.pushState(null, null, window.location.href);
-
-      // 3. Your Custom Logic Here
-      setProductItemClicked(false);
-    };
-
-    window.addEventListener("popstate", handlePopState);
-
-    return () => {
-      window.removeEventListener("popstate", handlePopState);
-    };
-  }, []);
+ 
 
   const handleShowMore = useCallback(
     (index: number) => {

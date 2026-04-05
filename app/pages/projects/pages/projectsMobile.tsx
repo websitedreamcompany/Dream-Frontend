@@ -130,7 +130,7 @@ const ProjectsMobile = () => {
               <Image
                 src={
                   projectData?.data && projectData.data.length > 0
-                    ? projectData.data[6].urls.regular
+                    ? (projectData.data[6] as { urls: { regular: string } }).urls.regular
                     : "/project_landscape_image.png"
                 }
                 alt="project_menu"
@@ -142,7 +142,7 @@ const ProjectsMobile = () => {
 
             {projectData?.data && projectData.data.length > 0 && (
               <ImageSlider
-                data={projectData.data}
+                data={projectData.data as []}
                 onItemSelected={(item) => {
                   setSelectedDetails({
                     img: (item as { img: string }).img,
@@ -162,7 +162,7 @@ const ProjectsMobile = () => {
                     className="relative rounded-2xl h-[calc(130*var(--spacing-fh))]  col-span-1 "
                   >
                     <Image
-                      src={item.urls.regular}
+                      src={(item as { urls: { regular: string } }).urls.regular}
                       alt="project_menu"
                       fill
                       sizes="100%"

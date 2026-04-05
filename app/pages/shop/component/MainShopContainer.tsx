@@ -1,7 +1,7 @@
 import { Itim } from "next/font/google";
 import Image from "next/image";
 import { useCallback, useState } from "react";
-import { FaFontAwesome, FaHeart, FaRegHeart } from "react-icons/fa";
+import { FaRegHeart } from "react-icons/fa";
 import DropDownMenuForCategory from "./Category/DropDownMenuForCategory";
 
 const itim = Itim({ subsets: ["latin"], weight: "400" });
@@ -382,7 +382,7 @@ const ForMobile = ({
 }: {
   onItemSelected: (index: number) => void;
 }) => {
-  const [dropDownCat, setDropDownCat] = useState(false);
+  const [dropDownCat, /*setDropDownCat*/] = useState(false);
 
   const category = [
     {
@@ -449,9 +449,10 @@ const ForMobile = ({
     },
   ];
 
+  /*
   const handleCategoryDropDownMenuFired = useCallback(() => {
     setDropDownCat(!dropDownCat);
-  }, [dropDownCat]);
+  }, [dropDownCat]);*/
 
   return (
     <section className={`${itim.className} md:col-span-9  pt-1 `}>
