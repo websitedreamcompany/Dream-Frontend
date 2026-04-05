@@ -1,7 +1,7 @@
-import {Itim} from 'next/font/google';
+import { Itim } from "next/font/google";
 
 export const itim = Itim({
-  subsets: ['latin'],
-  weight:'400',
-  display: 'swap',
+  subsets: ["latin"],
+  weight: "400",
+  display: "swap",
 });
