@@ -252,7 +252,7 @@ const ShopDesktop = () => {
     <div className="h-dvh overflow-hidden">
       {/**Top nav bar */}
       <nav
-        className={`${inter.className} text-fh-8 w-screen  border-b fh-95  shadow-f-bottom flex flex-row place-items-center 
+        className={`${inter.className} text-fh-8 w-screen  border-b fh-110  shadow-f-bottom flex flex-row place-items-center 
                            
                         pe-5  `}
       >
@@ -266,25 +266,25 @@ const ShopDesktop = () => {
         </div>
 
         <div className="w-screen justify-end gap-5    flex">
-          <a href="/*" className="text-white p-1.5">
+          <Link href="/" className="text-white p-1.5">
             Home
-          </a>
+          </Link>
 
           <Link href="/pages/applications" className="text-white p-1.5">
             Applications
           </Link>
 
-          <a href="/pages/projects" className="text-white p-1.5">
+          <Link href="/pages/projects" className="text-white p-1.5">
             Projects
-          </a>
+          </Link>
 
-          <a href="/pages/shop" className="text-white  p-1.5">
+          <Link href="/pages/shop" className="underline decoration-2 underline-offset-10 decoration-[#951636] text-white  p-1.5">
             Shops
-          </a>
+          </Link>
 
-          <button className="text-white bg-[#800020] w-20 rounded-2xl p-1.5">
+          <Link href={'/pages/account'} className="text-center text-white bg-[#800020] w-20 rounded-2xl p-1.5">
             Login
-          </button>
+          </Link>
         </div>
       </nav>
 

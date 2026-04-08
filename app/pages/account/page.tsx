@@ -28,7 +28,7 @@ const RegisterOrLogin = () => {
     <ResponsivePageSwap 
      mobile={<AccountMobile/>}
      desktop={<AccountDesktop/>}
-     pad={<div className="text-white">Account Pad</div>}
+     pad={<AccountMobile/>}
      type="application"
     />
     

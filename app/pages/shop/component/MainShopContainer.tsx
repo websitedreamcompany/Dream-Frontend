@@ -1,6 +1,6 @@
 import { Itim } from "next/font/google";
 import Image from "next/image";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { FaRegHeart } from "react-icons/fa";
 import DropDownMenuForCategory from "./Category/DropDownMenuForCategory";
 
@@ -104,7 +104,7 @@ const ForDeskTop = ({
   }, [dropDownCat]);
 
   return (
-    <section className={`${itim.className} md:col-span-9  p-3 `}>
+    <section className={`${itim.className} md:col-span-9   p-3 overflow-hidden relative `}>
       <div className="w-full h-[calc(100dvh-5rem)]  ">
         <div className="bg-web-navbar fh-100 w-full flex gap-2  place-items-center text-white flex-cols relative ">
           <div className="ms-20 bg-white w-[70%] h-[50%] rounded-2xl flex place-item-center">
@@ -233,6 +233,9 @@ const ForDeskTop = ({
           </div>
         </div>
 
+  <div className=" h-full relative mt-2 overflow-y-scroll">
+
+
         {/**Gallery */}
 
         <div className="h-fit bg-white p-3 m-3">
@@ -305,7 +308,7 @@ const ForDeskTop = ({
         </div>
 
         <div
-          className="grid [@media(550px<=width<=1000px)]:mt-10 bg-white p-3 m-3  [@media(550px<=width<=1000px)]:grid-cols-4 grid-cols-4  overflow-y-scroll  fh-400 mb-150  relative"
+          className="grid [@media(550px<=width<=1000px)]:mt-10 mt-10 bg-white p-3 m-3  [@media(550px<=width<=1000px)]:grid-cols-4 grid-cols-4  overflow-hidden  h-full mb-150  relative"
           style={{ scrollbarWidth: "none" }}
         >
           {Array.from({ length: 9 }).map((_, index) => (
@@ -372,6 +375,8 @@ const ForDeskTop = ({
             </div>
           ))}
         </div>
+    
+  </div>
       </div>
     </section>
   );
@@ -383,6 +388,7 @@ const ForMobile = ({
   onItemSelected: (index: number) => void;
 }) => {
   const [dropDownCat, /*setDropDownCat*/] = useState(false);
+  const [data,setData] = useState([])
 
   const category = [
     {
@@ -449,6 +455,25 @@ const ForMobile = ({
     },
   ];
 
+   useEffect(()=>{
+
+   fetch(
+       "https://api.unsplash.com/search/photos?page=3&query=houses,kitchen&client_id=PG4lf1B0kp4ZKEVlfaLmOLzldpPEQK0yyMt5Ml_9Vyk",
+      {
+        method: "get",
+      },
+    )
+      .then((r) => {
+        return r.json();
+      })
+      .then((r) => {
+        console.log(r);
+       
+         setData(r.results)
+      })
+      .catch(console.log);
+
+   })
   /*
   const handleCategoryDropDownMenuFired = useCallback(() => {
     setDropDownCat(!dropDownCat);
@@ -551,7 +576,7 @@ const ForMobile = ({
             className=" grid grid-cols-12 h-65 overflow-y-auto"
             style={{ scrollbarWidth: "none" }}
           >
-            {Array.from({ length: 9 }).map((_, index) => (
+            {data && data.map((item: { urls: { regular: string } }, index) => (
               <div
                 key={index}
                 className=" col-span-6  m-3 shadow-f-cardM bg-white rounded-lg p-5 "
@@ -559,12 +584,12 @@ const ForMobile = ({
                   onItemSelected(index);
                 }}
               >
-                <div className="fw-30 [@media(550px<=width<=1000px)]:fw-60 [@media(550px<=width<=1000px)]:fh-100 fh-60 relative mb-3">
+                <div className="fw-60 [@media(550px<=width<=1000px)]:fw-60 [@media(550px<=width<=1000px)]:fh-100 fh-60 relative mb-3">
                   <Image
                     alt="shop_img"
                     fill
                     className="object-cover rounded-lg"
-                    src={`/shop_img_card_${Math.floor(index / 3) + 1}.png`}
+                    src={ item.urls.regular }
                   />
                 </div>
 
@@ -613,8 +638,11 @@ const ForMobile = ({
           </div>
         </div>
 
+
+
+
         <div
-          className="grid grid-cols-12 [@media(550px<=width<=1000px)]:mt-10 bg-white p-3 m-3  [@media(550px<=width<=1000px)]:grid-cols-4  overflow-y-scroll  fh-400 mb-150  relative"
+          className="grid grid-cols-12 [@media(550px<=width<=1000px)]:mt-10 bg-white p-3 m-3  [@media(550px<=width<=1000px)]:grid-cols-4  overflow-y-scroll  fh-450 mb-150  relative"
           style={{ scrollbarWidth: "none" }}
         >
           {Array.from({ length: 9 }).map((_, index) => (

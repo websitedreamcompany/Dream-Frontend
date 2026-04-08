@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 import { useCallback, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import useDreamTradingStore from "@/store/store";
 
 const inter = Inter({ subsets: ["latin"], weight: "400" });
 const itim = Itim({ subsets: ["latin"], weight: "400" });
@@ -15,6 +16,7 @@ const aclonica = Aclonica({ subsets: ["latin"], weight: "400" });
 
 const Mobile = () => {
   const [toggleNavBar, setToggleNavBar] = useState(false);
+  const {userData} = useDreamTradingStore(state=>state)
   const router = useRouter();
 
   const handleNaVButtonClicked = useCallback(() => {
@@ -37,8 +39,11 @@ const Mobile = () => {
     router.push("/pages/shop");
   }, [router]);
 
+
+
   return (
     <main className="overflow-hidden h-screen ">
+
       <nav
         className="w-screen fh-60  shadow-f-bottom flex flex-row place-items-center 
                
@@ -85,8 +90,15 @@ const Mobile = () => {
         <motion.div
           className={` ${!toggleNavBar && "hidden"} bg-[rgba(44,33,33,0.95)] absolute text-white  right-0 top-0 bottom-[40%] z-100 fw-300 p-4`}
         >
-          <p onClick={handleCloseNavBar}>x</p>
-          uuu
+          <p className="font-bold text-2xl" onClick={handleCloseNavBar}>x</p>
+          <div className={`${itim.className} mt-2 font-bold gap-3 flex flex-col`}>
+            <Link href={'/'} className="underline decoration-2 underline-offset-10 decoration-[#951636] text-white  " >Home</Link>
+             <Link href={'/pages/applications'} >Applications</Link>
+              <Link href={'/pages/projects'} >Projects</Link>
+              <Link href={'/pages/shop'} >Shop</Link>
+              {userData ?        <Link className=" text-white bg-[#800020] w-20 rounded-2xl p-1.5 text-center " href={'/pages/account'} >Login</Link>:null}
+        
+          </div>
         </motion.div>
       </nav>
 

@@ -4,11 +4,13 @@ import Image from "next/image";
 import { Inter, Itim, Aclonica } from "next/font/google";
 import Footer from "../component/Footer";
 import { useMotionValueEvent, useScroll } from "framer-motion";
-import React from "react";
+import React, { useCallback } from "react";
 const itim = Itim({ subsets: ["latin"], weight: "400" });
 const aclonica = Aclonica({ subsets: ["latin"], weight: "400" });
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import useDreamTradingStore from "@/store/store";
 
 const inter = Inter({
   display: "swap",
@@ -21,11 +23,15 @@ const interLight = Inter({
 });
 
 const Desktop = () => {
+  const {userData} = useDreamTradingStore((state) => state)
+  
   const containerRef = React.useRef<HTMLDivElement>(null);
 
   const { scrollY } = useScroll({ container: containerRef });
 
   const [hidden, setHidden] = React.useState(false);
+
+  const router = useRouter()
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     const previous = scrollY.getPrevious() ?? 0;
@@ -37,13 +43,27 @@ const Desktop = () => {
     }
   });
 
+  const handleNavToApplication = useCallback(()=>{
+   router.push('/pages/applications' as never)
+  },[router])
+
+  const handleNavToProjects = useCallback(()=>{
+   router.push('/pages/projects')
+  },[router])
+
+  const handleNavToShops = useCallback(()=>{
+   router.push('/pages/shop')
+  },[router])
+
+  const handleNavToAccountScreen = useCallback(() => {
+    router.push('/pages/account')
+  },[router])
+
   return (
     <div className="w-screen h-screen overflow-hidden">
       {/**Top nav bar */}
       <nav
-        className={`${inter.className} text-fh-8 w-screen border-white border-b fh-95  shadow-f-bottom flex flex-row place-items-center 
-                   
-                pe-5  `}
+        className={`${inter.className} text-fh-8 w-screen fh-110  shadow-f-bottom flex flex-row place-items-center pe-5  `}
       >
         <div className="relative w-[calc(30*var(--spacing-fw))] h-[calc(30*var(--spacing-fw))] ms-fw-16 ">
           <Image
@@ -55,25 +75,24 @@ const Desktop = () => {
         </div>
 
         <div className="w-screen justify-end gap-5    flex">
-          <a href="/*" className="text-white p-1.5">
+          <Link href="/" className="text-white p-1.5  underline decoration-2 underline-offset-10 decoration-[#951636]">
             Home
-          </a>
+          </Link>
 
           <Link href="/pages/applications" className="text-white p-1.5">
             Applications
           </Link>
-
-          <a href="/pages/projects" className="text-white p-1.5">
+          <Link href="/pages/projects" className="text-white p-1.5">
             Projects
-          </a>
+          </Link>
 
-          <a href="/pages/shop" className="text-white  p-1.5">
+          <Link href="/pages/shop" className="text-white  p-1.5">
             Shops
-          </a>
+          </Link>
 
-          <button className="text-white bg-[#800020] w-20 rounded-2xl p-1.5">
+      {!userData ?    <button onClick={handleNavToAccountScreen} className="text-white bg-[#800020] w-20 rounded-2xl p-1.5">
             Login
-          </button>
+          </button>:null}
         </div>
       </nav>
 
@@ -114,12 +133,14 @@ const Desktop = () => {
 
             <div className="flex mt-fh-20 gap-10 ">
               <button
+              onClick={handleNavToProjects}
                 className={`${aclonica.className} text-fw-6 font-extrabold bg-btn-bg-red fw-80 fh-52 ms-fw-20 rounded-2xl text-white 1`}
               >
                 Explore Project
               </button>
 
               <button
+              onClick={handleNavToShops}
                 className={`${aclonica.className} text-fw-6 font-extrabold bg-btn-bg-red fw-40 fh-52 rounded-2xl text-white  pt-1`}
               >
                 Visit Shop
@@ -146,8 +167,10 @@ const Desktop = () => {
           </motion.div>
         </div>
 
-        <div className="relative w-screen grid grid-cols-3    justify-center place-items-center mt-fh-270">
+        <div className="relative w-screen grid grid-cols-3    justify-center place-items-center mt-fh-270" >
+        
           <motion.div
+          onClick={handleNavToApplication}
             initial={{
               borderWidth: 0,
             }}
@@ -176,6 +199,7 @@ const Desktop = () => {
           </motion.div>
 
           <motion.div
+          onClick={handleNavToProjects}
             initial={{
               borderWidth: 0,
             }}
@@ -204,6 +228,7 @@ const Desktop = () => {
           </motion.div>
 
           <motion.div
+           onClick={handleNavToShops}
             initial={{
               borderWidth: 0,
             }}
@@ -232,9 +257,10 @@ const Desktop = () => {
           </motion.div>
         </div>
 
-        <div className="h-0.5 w-full bg-white mt-fh-50" />
+        <div className="h-0.5 w-full bg-white mt-fh-50"  />
 
         <motion.div
+
           initial={{ opacity: 0, transform: "translateY(100px)" }}
           whileInView={{ opacity: 1, transform: "translateY(0)" }}
           transition={{ duration: 0.5, delay: 0.2 }}

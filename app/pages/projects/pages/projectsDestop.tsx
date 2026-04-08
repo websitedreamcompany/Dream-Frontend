@@ -34,7 +34,7 @@ const ProjectsDesktop = () => {
     <div className="h-dvh overflow-hidden">
       {/**Top nav bar */}
       <nav
-        className={`${inter.className} text-fh-8 w-screen  fh-95  shadow-f-bottom flex flex-row place-items-center 
+        className={`${inter.className} text-fh-8 w-screen  fh-110  shadow-f-bottom flex flex-row place-items-center 
                    
                 pe-5  `}
       >
@@ -56,17 +56,17 @@ const ProjectsDesktop = () => {
             Applications
           </Link>
 
-          <a href="/pages/projects" className="text-white p-1.5">
+          <Link href="/pages/projects" className="underline decoration-2 underline-offset-10 decoration-[#951636] text-white p-1.5 ">
             Projects
-          </a>
+          </Link>
 
-          <a href="/pages/shop" className="text-white  p-1.5">
+          <Link href="/pages/shop" className="text-white  p-1.5">
             Shops
-          </a>
+          </Link>
 
-          <button className="text-white bg-[#800020] w-20 rounded-2xl p-1.5">
+          <Link href={'/pages/account'} className="text-white text-center bg-[#800020] w-20 rounded-2xl p-1.5">
             Login
-          </button>
+          </Link>
         </div>
       </nav>
 
@@ -78,6 +78,7 @@ const ProjectsDesktop = () => {
         <div className="grid  grid-cols-12 h-dvh bg-[#D9D9D9] ">
           <section className="bg-transparent   p-5   overflow-y-auto h-dvh col-span-3 ">
             <div className="w-full shadow-f-cardM bg-white">
+
               <div className="bg-[#800020] fh-40 w-full flex gap-2 ps-5 place-items-center text-white  ">
                 <input type="checkbox" />
                 <p>All</p>
