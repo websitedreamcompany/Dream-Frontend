@@ -228,8 +228,8 @@ const DropDownMenuForCategory = () => {
   }, []);
 
   return (
-    <div className="absolute z-100 min-fh-400 bg-transparent w-full flex ">
-      <div className="bg-white w-[18%] ms-[20%] h-full rounded shadow-f-cardM ">
+    <div className="absolute z-100 min-fh-400 bg-transparent w-full flex  ">
+      <div className="bg-white w-[25%] ms-[27%] h-200 rounded shadow-f-cardM overflow-y-scroll">
         {sectionDewtails.map((data, index) => (
           <div
             key={index}

@@ -77,7 +77,7 @@ const ProjectsDesktop = () => {
       <main className="application h-dvh w-full overflow-hidden bg-[#D9D9D9] grid grid-rows-12  ">
         <div className="grid  grid-cols-12 h-dvh bg-[#D9D9D9] ">
           <section className="bg-transparent   p-5   overflow-y-auto h-dvh col-span-3 ">
-            <div className="w-full shadow-f-cardM bg-white">
+            <div className="w-full  bg-white">
 
               <div className="bg-[#800020] fh-40 w-full flex gap-2 ps-5 place-items-center text-white  ">
                 <input type="checkbox" />
@@ -87,78 +87,80 @@ const ProjectsDesktop = () => {
               <div className="   mt-3 gap-2 ps-5 pb-3 flex flex-col">
                 <div className="flex gap-2">
                   <input type="checkbox" />
-                  <p className="text-fw-8 xl:text-fw-5">Finance</p>
+                  <p className="text-[14px]">Finance</p>
                 </div>
 
                 <div className="flex gap-2">
                   <input type="checkbox" />
-                  <p className="text-fw-8 xl:text-fw-5">Travel</p>
+                  <p className="text-[14px]">Travel</p>
                 </div>
               </div>
 
               <div className="border-b-[0.5px] ps-5 border-b-[#D3D3D3] flex flex-col pb-3 gap-2 mt-3 ">
                 <div className="flex gap-2">
                   <input type="checkbox" />
-                  <p className="text-fw-8 xl:text-fw-5">Finance</p>
+                  <p className="text-[14px]">Finance</p>
                 </div>
 
                 <div className="flex gap-2">
                   <input type="checkbox" />
-                  <p className="text-fw-8 xl:text-fw-5">Travel</p>
+                  <p className="text-[14px]">Travel</p>
                 </div>
               </div>
 
               <div className="border-b-[0.5px] ps-5 border-b-[#D3D3D3] mt-3  pb-3">
                 <div className="flex gap-2">
                   <input type="checkbox" />
-                  <p className="text-fw-8 xl:text-fw-5">Finance</p>
+                  <p className="text-[14px]">Finance</p>
                 </div>
               </div>
 
               <div className="border-b-[0.5px] ps-5 border-b-[#D3D3D3] mt-3 pb-3">
                 <div className="flex gap-2">
                   <input type="checkbox" />
-                  <p className="text-fw-8 xl:text-fw-5">Finance</p>
+                  <p className="text-[14px]">Finance</p>
                 </div>
               </div>
 
               <div className="border-b-[0.5px] ps-5 border-b-[#D3D3D3] mt-3 flex flex-col pb-3 gap-3 ">
                 <div className="flex gap-2">
                   <input type="checkbox" />
-                  <p className="text-fw-8 xl:text-fw-5">Finance</p>
+                  <p className="text-[14px]">Finance</p>
                 </div>
 
                 <div className="flex gap-2">
                   <input type="checkbox" />
-                  <p className="text-fw-8 xl:text-fw-5">Travel</p>
+                  <p className="text-[14px]">Travel</p>
                 </div>
 
                 <div className="flex gap-2">
                   <input type="checkbox" />
-                  <p className="text-fw-8 xl:text-fw-5">Finance</p>
+                  <p className="text-[14px]">Finance</p>
                 </div>
 
                 <div className="flex gap-2">
                   <input type="checkbox" />
-                  <p className="text-fw-8 xl:text-fw-5">Finance</p>
+                  <p className="text-[14px]">Finance</p>
                 </div>
               </div>
 
               <div className="border-b-[0.5px] ps-5 border-b-[#D3D3D3] mt-3 pb-3 ">
                 <div className="flex gap-2">
                   <input type="checkbox" />
-                  <p className="text-fw-8 xl:text-fw-5">Finance</p>
+                  <p className="ttext-[14px]">Finance</p>
                 </div>
               </div>
 
               <div className="border-b-[0.5px] ps-5  border-b-[#D3D3D3] mt-3 pb-3">
                 <div className="flex gap-2">
                   <input type="checkbox" />
-                  <p className="text-fw-8 xl:text-fw-5">Finance</p>
+                  <p className="text-[14px]">Finance</p>
                 </div>
               </div>
             </div>
           </section>
+
+
 
           <section
             className={`${itim.className} bg-tansparent  h-dvh    p-5   overflow-y-auto  pb-20 col-span-4`}

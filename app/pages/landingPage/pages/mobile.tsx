@@ -96,7 +96,7 @@ const Mobile = () => {
              <Link href={'/pages/applications'} >Applications</Link>
               <Link href={'/pages/projects'} >Projects</Link>
               <Link href={'/pages/shop'} >Shop</Link>
-              {userData ?        <Link className=" text-white bg-[#800020] w-20 rounded-2xl p-1.5 text-center " href={'/pages/account'} >Login</Link>:null}
+              {userData ? <Link className=" text-white bg-[#800020] w-20 rounded-2xl p-1.5 text-center " href={'/pages/account'} >Login</Link>:null}
         
           </div>
         </motion.div>

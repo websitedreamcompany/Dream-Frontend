@@ -162,6 +162,11 @@ nav {
   min-width: 0;
 }
 
+ .embla__slide_product_view {
+     flex: 0 0 calc(265 * var(--spacing-fw));
+    min-width: 0;
+  }
+
 @media (width<768) {
   .embla__slide {
     flex: 0 0 calc(100 * var(--spacing-fw));

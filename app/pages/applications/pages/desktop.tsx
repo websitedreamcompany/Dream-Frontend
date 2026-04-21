@@ -1,4 +1,4 @@
-import { Inter } from "next/font/google";
+import { Inter, Itim } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -7,6 +7,10 @@ const inter = Inter({
   weight: "600",
 });
 
+const itim = Itim({
+  weight:'400'
+
+});
 const ApplicationDesktop = () => {
   const cardDetails = [
     {
@@ -28,7 +32,7 @@ const ApplicationDesktop = () => {
 
   
   return (
-    <div className="w-full h-full  items-center justify-center">
+    <div className={`${itim.className} w-full h-full  items-center justify-center`}>
       {/**Top nav bar */}
       <nav
         className={`${inter.className} text-fh-8 w-screen  fh-110  shadow-f-bottom flex flex-row place-items-center 
@@ -76,84 +80,85 @@ const ApplicationDesktop = () => {
 
       <main className="application h-dvh w-full overflow-hidden bg-white grid grid-rows-12 ">
         <div className="grid  grid-cols-3 h-dvh bg-gray-600 ">
-          <section className="bg-white shadow-f-cardM   p-5   overflow-y-auto h-300">
-            <div className="w-full shadow-f-cardM">
+          <section className={`${itim.className} bg-white  p-5   overflow-y-auto h-300`}>
+            <div className="w-full  border border-gray-300  ">
+
               <div className="bg-[#2E0B80] fh-40 w-full flex gap-2 ps-5 place-items-center text-white ">
                 <input type="checkbox" />
                 <p>All</p>
               </div>
 
-              <div className="   mt-3 gap-2  pb-3 flex flex-col">
+              <div className="   mt-3 gap-2   flex flex-col ps-3">
                 <div className="flex gap-2">
                   <input type="checkbox" />
-                  <p className="text-fw-8">Finance</p>
+                  <p className="text-[14px]">Finance</p>
                 </div>
 
-                <div className="flex gap-2">
+                <div className="flex gap-2 ">
                   <input type="checkbox" />
-                  <p className="text-fw-8">Travel</p>
-                </div>
-              </div>
-
-              <div className="border-b-[0.5px] border-b-[#D3D3D3] flex flex-col pb-3 gap-2 mt-3 ">
-                <div className="flex gap-2">
-                  <input type="checkbox" />
-                  <p className="text-fw-8">Finance</p>
-                </div>
-
-                <div className="flex gap-2">
-                  <input type="checkbox" />
-                  <p className="text-fw-8">Travel</p>
+                  <p className="text-[14px]">Travel</p>
                 </div>
               </div>
 
-              <div className="border-b-[0.5px] border-b-[#D3D3D3] mt-3  pb-3">
+              <div className="border-b-[0.5px] ps-3 border-b-[#D3D3D3] flex flex-col pb-3 gap-2 mt-3 ">
                 <div className="flex gap-2">
                   <input type="checkbox" />
-                  <p className="text-fw-8">Finance</p>
+                  <p className="text-[14px]">Finance</p>
+                </div>
+
+                <div className="flex gap-2">
+                  <input type="checkbox" />
+                  <p className="text-[14px]">Travel</p>
                 </div>
               </div>
 
-              <div className="border-b-[0.5px] border-b-[#D3D3D3] mt-3 pb-3">
+              <div className="border-b-[0.5px] border-b-[#D3D3D3] mt-3  pb-3 ps-3">
                 <div className="flex gap-2">
                   <input type="checkbox" />
-                  <p className="text-fw-8">Finance</p>
+                  <p className="text-[14px]">Finance</p>
                 </div>
               </div>
 
-              <div className="border-b-[0.5px] border-b-[#D3D3D3] mt-3 flex flex-col pb-3 gap-3 ">
+              <div className="border-b-[0.5px] border-b-[#D3D3D3] mt-3 pb-3 ps-3">
                 <div className="flex gap-2">
                   <input type="checkbox" />
-                  <p className="text-fw-8">Finance</p>
-                </div>
-
-                <div className="flex gap-2">
-                  <input type="checkbox" />
-                  <p className="text-fw-8">Travel</p>
-                </div>
-
-                <div className="flex gap-2">
-                  <input type="checkbox" />
-                  <p className="text-fw-8">Finance</p>
-                </div>
-
-                <div className="flex gap-2">
-                  <input type="checkbox" />
-                  <p className="text-fw-8">Finance</p>
+                  <p className="text-[14px]">Finance</p>
                 </div>
               </div>
 
-              <div className="border-b-[0.5px] border-b-[#D3D3D3] mt-3 pb-3 ">
+              <div className="border-b-[0.5px] border-b-[#D3D3D3] ps-3 mt-3 flex flex-col pb-3 gap-3 ">
                 <div className="flex gap-2">
                   <input type="checkbox" />
-                  <p className="text-fw-8">Finance</p>
+                  <p className="text-[14px]">Finance</p>
+                </div>
+
+                <div className="flex gap-2">
+                  <input type="checkbox" />
+                  <p className="text-[14px]">Travel</p>
+                </div>
+
+                <div className="flex gap-2">
+                  <input type="checkbox" />
+                  <p className="text-[14px]">Finance</p>
+                </div>
+
+                <div className="flex gap-2">
+                  <input type="checkbox" />
+                  <p className="text-[14px]">Finance</p>
                 </div>
               </div>
 
-              <div className="border-b-[0.5px] border-b-[#D3D3D3] mt-3 pb-3">
+              <div className="border-b-[0.5px] border-b-[#D3D3D3] mt-3 pb-3 ps-3">
                 <div className="flex gap-2">
                   <input type="checkbox" />
-                  <p className="text-fw-8">Finance</p>
+                  <p className="text-[14px]">Finance</p>
+                </div>
+              </div>
+
+              <div className="border-b-[0.5px] border-b-[#D3D3D3] mt-3 pb-3 ps-3">
+                <div className="flex gap-2">
+                  <input type="checkbox" />
+                  <p className="text-[14px]">Finance</p>
                 </div>
               </div>
             </div>
@@ -165,9 +170,9 @@ const ApplicationDesktop = () => {
               {cardDetails.map((card, index) => (
                 <div
                   key={index}
-                  className="min:fh-200 shadow-f-card  fw-120 bg-white p-5"
+                  className="min:fh-200   fw-120 bg-white p-5 border border-gray-200 rounded-2xl"
                 >
-                  <div className=" flex">
+                  <div className=" flex ">
                     <div className="fh-30 fw-30">
                       <Image
                         src="/application_contact_icon.png"
@@ -219,7 +224,7 @@ const ApplicationDesktop = () => {
             </div>
           </div>
 
-          <div className=" bg-white shadow-f-cardM   p-5   overflow-y-auto h-300 ">
+          <div className=" bg-white    p-5   overflow-y-auto h-300 ">
             <div className="mt-10 ms-3">
               <p>App details</p>
               <div className="">

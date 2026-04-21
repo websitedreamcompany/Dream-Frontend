@@ -291,7 +291,7 @@ const ShopDesktop = () => {
       <main className="h-full  overflow-y-scroll relative pb-19">
         <div className="grid grid-cols-12 h-full mb-10">
           <section className="bg-transparent   p-3   overflow-y-auto  col-span-3 ">
-            <div className="w-full shadow-f-cardM bg-white h-full">
+            <div className="w-full rounded  bg-white h-full">
               <p className={`${itim.className} p-2 font-bold`}>Category</p>
 
               <div
