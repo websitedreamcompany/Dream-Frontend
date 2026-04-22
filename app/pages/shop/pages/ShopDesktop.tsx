@@ -290,12 +290,12 @@ const ShopDesktop = () => {
 
       <main className="h-full  overflow-y-scroll relative pb-19">
         <div className="grid grid-cols-12 h-full mb-10">
-          <section className="bg-transparent   p-3   overflow-y-auto  col-span-3 ">
-            <div className="w-full rounded  bg-white h-full">
+          <section className="bg-transparent relative   p-3 overflow-y-scroll  col-span-3 ">
+            <div className="w-full rounded  bg-white min:h-200 relative">
               <p className={`${itim.className} p-2 font-bold`}>Category</p>
 
               <div
-                className={`${itim.className} overflow-y-scroll h-[94%]`}
+                className={`${itim.className} overflow-y-scroll h-fit relative`}
                 style={{ scrollbarWidth: "none" }}
               >
                 {sectionDewtails.map((data, index) => (

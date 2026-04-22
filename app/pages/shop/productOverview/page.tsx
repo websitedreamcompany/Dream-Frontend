@@ -241,7 +241,7 @@ Overall, a truly magnificent piece, rarely found these days.</p>
 
 
 
-                      <section className="col-span-4 ms-4 me-2 h-screen space-y-2 font-semi-bold relative">
+           <section className="col-span-4 ms-4 me-2 h-screen space-y-2 font-semi-bold relative">
                         <div className=" p-1 flex align-items-center ms-5 ">
                             <button className="bg-web-navbar h-10 w-93 rounded-2xl text-[12px] text-white hover:bg-white hover:text-black " > Write a message</button>
                         </div>
@@ -263,28 +263,78 @@ Overall, a truly magnificent piece, rarely found these days.</p>
                             <div className="flex flex-col gap-1">
                             <p className="text-web-navbar font-bold text-[14px]">Agwu joe</p>
                             
-                             <div className="bg-gray-300 p-[6px] rounded-2xl mb-1">
+                             <div className="bg-gray-300 p-[6px] rounded-2xl mb-1 flex justify-center place-items-center gap-1">
+                                <div className="fh-38 fw-10 relative ">
+                           <Image
+                             alt="Real estate"
+                             src={"/satisfaction.svg"}
+                             fill
+                             className=" p-1 rounded object-cover"
+                           />
+                         </div>
+                         
                                 <p className="text-web-navbar font-bold text-[12px]">Top satisfaction</p>
                              </div>
 
-                                 <div className="bg-gray-300 p-[6px] rounded-2xl mb-1">
+                               <div className="bg-gray-300 p-[6px] rounded-2xl mb-1 flex justify-center place-items-center gap-1">
+                                <div className="fh-38 fw-10 relative ">
+                           <Image
+                             alt="Real estate"
+                             src={"/friendly_icon.svg"}
+                             fill
+                             className=" p-1 rounded object-cover"
+                           />
+                         </div>
                                 <p className="text-web-navbar font-bold text-[12px]">Very Friendly</p>
                              </div>
 
-                                 <div className="bg-gray-300 p-[6px] rounded-2xl mb-1">
+                      
+                         <div className="bg-gray-300 p-[6px] rounded-2xl mb-1 flex justify-center place-items-center gap-1">
+                                <div className="fh-38 fw-10 relative ">
+                           <Image
+                             alt="Real estate"
+                             src={"/reliable_icon.svg"}
+                             fill
+                             className=" p-1 rounded object-cover"
+                           />
+                         </div>
                                 <p className="text-web-navbar font-bold text-[12px]">Very Reliable</p>
                              </div>
 
-                             <div>
+                             <div className="flex place-items-center gap-1">
+                                   <div className="fh-38 fw-10 relative ">
+                           <Image
+                             alt="Real estate"
+                             src={"/private_account.svg"}
+                             fill
+                             className=" p-1 rounded object-cover"
+                           />
+                         </div>
                                 <p className="text-[14px]">Private user</p>
                              </div>
 
-                                  <div className="mb-8">
+                                   <div className="flex place-items-center gap-1 mb-12">
+                                   <div className="fh-38 fw-10 relative ">
+                           <Image
+                             alt="Real estate"
+                             src={"/bookmark.svg"}
+                             fill
+                             className=" p-1 rounded object-cover"
+                           />
+                         </div>
                                 <p className="text-[14px]">Active since april 30, 2024</p>
                              </div>
 
-                               <div className="absolute bottom-2 right-2 border p-1 rounded-full flex gap-2 hover:text-white cursor-pointer hover:bg-web-navbar">
-                                <p className="text-[14px]">dhh</p>
+                               <div className="absolute bottom-2 right-2 border ps-2 pe-2 pt-1 pb-1 rounded-full flex gap-0 hover:text-white cursor-pointer hover:bg-web-navbar">
+                            <div className="fh-30 fw-10 relative ">
+                           <Image
+                             alt="Real estate"
+                             src={"/person_acccount_build.svg"}
+                             fill
+                             className=" p-1 rounded object-cover"
+                           />
+                         </div>
+                               
                                 <p className="text-[14px] ">Follow</p>
                              </div>
                             </div>
@@ -292,10 +342,11 @@ Overall, a truly magnificent piece, rarely found these days.</p>
                         </div>
 
                          <div className="bg-white shadow-f-cardM p-2 w-[80%] flex ms-10 mt-[6%] min:h-[300px] gap-2  place-items-center align-items-center relative rounded">
-                            <p>Ad ID</p>
+                            <p className="">Ad ID</p>
                             <p className="ms-35">dh939849302-209483</p>
                          </div>
             </section>
+
            </div>
 
 
