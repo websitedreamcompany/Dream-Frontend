@@ -5,7 +5,7 @@ import Image from "next/image"
 import Link from "next/link"
 import Footer from "../../landingPage/component/Footer";
 import ImageSlider from "./component/ImageSlider";
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 
 
@@ -15,9 +15,17 @@ const inter = Inter({ subsets: ["latin"], weight: "400" });
 
 const ProductOverview = () =>{
     
+  return <Suspense fallback={<div>loading....</div>}>
+    <ProductOverviewContent/>
+  </Suspense>
+}
+
+
+const ProductOverviewContent = () =>{
+    
   const [moreData, setMoreData] = useState([]);
       
-      const param = useSearchParams();
+      const param = useSearchParams()
   
     
       useEffect(() => {
@@ -42,7 +50,7 @@ const ProductOverview = () =>{
       }, [setMoreData,moreData,param]);
 
 
-    return <div className="bg-[#E8E8E8] h-screen">
+    return   <div className="bg-[#E8E8E8] h-screen">
          {/**Top nav bar */}
            <nav
              className={`${inter.className} text-fh-8 w-screen  border-b fh-110  shadow-f-bottom flex flex-row place-items-center 
@@ -50,7 +58,7 @@ const ProductOverview = () =>{
                              pe-5  `}
            >
              <div className="relative w-[calc(30*var(--spacing-fw))] h-[calc(30*var(--spacing-fw))] ms-fw-16 ">
-               <Image
+               <Image 
                  src="/logo.svg"
                  alt="Dream Eco Logo"
                  fill
@@ -211,8 +219,8 @@ const ProductOverview = () =>{
                         <p className="w-full h-[0.1px] mt-2 bg-gray-600"></p>
 
                         <div className="flex items-center gap-3 mt-3 ms-2 ">
-                          <p className="leading-7">I'm offering this well-maintained army bicycle in excellent condition. The bike rides like a dream and is in superb mechanical condition. All three brakes work perfectly. The tires are soft and free of cracks, having been recently replaced. The bike comes with its original leather frame bag and includes the complete original tool kit, which is very rare. The key for the rear wheel lock/U-lock is also included.
-Overall, a truly magnificent piece, rarely found these days.</p>
+                          <p className="leading-7">{`I'm offering this well-maintained army bicycle in excellent condition. The bike rides like a dream and is in superb mechanical condition. All three brakes work perfectly. The tires are soft and free of cracks, having been recently replaced. The bike comes with its original leather frame bag and includes the complete original tool kit, which is very rare. The key for the rear wheel lock/U-lock is also included.
+Overall, a truly magnificent piece, rarely found these days.`}</p>
                         </div>
 
                         
@@ -449,6 +457,7 @@ Overall, a truly magnificent piece, rarely found these days.</p>
        
            
         </div>
+ 
 }
 
 
