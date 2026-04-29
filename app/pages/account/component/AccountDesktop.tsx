@@ -10,6 +10,10 @@ import Footer from "../../landingPage/component/Footer";
 import useAccountApi from "@/api/useAccountApi";
 import useDreamTradingStore from "@/store/store";
 import { useRouter } from "next/navigation";
+import { FaAngleDown } from "react-icons/fa";
+import { IoMdSearch } from "react-icons/io";
+import { IoPerson } from "react-icons/io5";
+import { MdAddChart } from "react-icons/md";
 
 const inter = Inter({
   display: "swap",
@@ -179,97 +183,60 @@ const  handleLoginAccount = useCallback(async()=>{
             </div>
       </nav>
     
-        <div className="bg-web-navbar fh-100 w-full mt-2 flex gap-2  place-items-center justify-center text-white flex-cols relative ">
-             
-              <div className=" bg-white w-fit pe-2 h-[50%] rounded-2xl flex place-item-center">
-
-                <div className="text-black place-self-center ms-5 flex w-[30%] ">
-                  <div className="fh-29 fw-10 relative pt-4">
-                    <Image
-                      alt="Real estate"
-                      src={"/category_icons/search_icon.svg"}
-                      fill
-                      className=" p-1 rounded object-cover"
-                    />
-                  </div>
-    
-                  <p className="text-[12px] mt-1 ">what are you looking for? </p>
-                </div>
-    
-                <div className="h-[80%] bg-[#B2AEAE] w-[0.3%] ms-8 mt-1"></div>
-    
-                <div className="text-black  place-self-center place-item-center justify-center ms-5 flex w-[20%] ">
-                  <p className="text-[12px]  ">All categories</p>
-    
-                  <div
-                    className="fh-20 fw-10 relative pt-4"
-                    onClick={handleCategoryDropDownMenuFired}
-                  >
-                    <Image
-                      alt="Real estate"
-                      src={"/category_icons/arrow_down_cat_icon.svg"}
-                      fill
-                      className=" p-1 rounded object-cover"
-                    />
-                  </div>
-                </div>
-    
-                <div className="h-[80%] bg-[#B2AEAE] w-[0.3%] ms-8 mt-1"></div>
-    
-                <div className="text-black place-self-center ms-5 w-[10%] ">
-                  <p className="text-[12px]">Deutshland</p>
-                </div>
-    
-                <div className="h-[80%] bg-[#B2AEAE] w-[0.3%] ms-8 mt-1"></div>
-    
-                <div className="text-black place-self-center ms-5 flex  w-[30%]">
-                  <p className="text-[12px] mt-1">Entire town </p>
-    
-                  <div className="fh-20 fw-10 relative pt-7">
-                    <Image
-                      alt="Real estate"
-                      src={"/category_icons/arrow_down_cat_icon.svg"}
-                      fill
-                      className=" p-1 rounded object-cover"
-                    />
-                  </div>
-    
-                  <p className="text-[12px] bg-web-navbar p-1 rounded text-white  ">
-                    Find
-                  </p>
-                </div>
+   <div className="bg-web-navbar mt-1 fh-100 w-full flex gap-8  place-items-center text-white flex-cols relative justify-center ">
+           
+            <div className="ms-10 bg-white w-[46%] h-[50%] rounded-2xl flex place-item-center">
+  
+        
+              <div className="text-black place-self-center ms-2 flex justify-center place-items-center gap-3  ">
+                 <IoMdSearch className="mt-1" color="black" size={16} />
+                <input  placeholder="what are you looking for ?" className="text-[12px] mt-1 outline-none" />
               </div>
-    
-              <div className="flex gap-10 ms-4">
-                <div className="justify-center place-items-center flex flex-col">
-                  <div className="fh-20 fw-10 relative pt-7 ">
-                    <Image
-                      alt="Real estate"
-                      src={"/category_icons/advert_cat_icon.svg"}
-                      fill
-                      className=" p-1 rounded object-cover"
-                    />
-                  </div>
-    
-                  <p>advertise</p>
-                </div>
-    
-                <div
-                  className="justify-center place-items-center flex flex-col
-                       "
-                >
-                  <div className="fh-20 fw-10 relative pt-7 ">
-                    <Image
-                      alt="Real estate"
-                      src={"/category_icons/person_cat_icon.svg"}
-                      fill
-                      className=" p-1 rounded object-cover"
-                    />
-                  </div>
-                  <p>mine</p>
-                </div>
+  
+              <div className="h-[80%] bg-[#B2AEAE] w-[0.3%] ms-8 mt-1"></div>
+  
+              <div className="text-black place-self-center place-item-center justify-center ms-5 flex gap-5 ">
+                <p className="text-[12px] ">All categories</p>
+                 <FaAngleDown className="mt-0.5" size={15} color="#B2AEAE " />
+                
+              </div>
+  
+              <div className="h-[80%] bg-[#B2AEAE] w-[0.3%] ms-8 mt-1"></div>
+  
+              <div className="text-black place-self-center ms-5 ">
+                <p className="text-[12px]">Deutshland</p>
+              </div>
+  
+              <div className="h-[80%] bg-[#B2AEAE] w-[0.3%] ms-8 mt-1"></div>
+  
+              <div className="text-black place-self-center ms-5 flex gap-5 ">
+                <p className="text-[12px] mt-1">Entire town </p>
+  
+                  <FaAngleDown className="mt-1.5" size={15} color="#B2AEAE " /> 
+  
+                <p className="text-[12px] bg-web-navbar p-1 rounded text-white  ">
+                  Find
+                </p>
               </div>
             </div>
+  
+            <div className="flex gap-6">
+              <div className="justify-center place-items-center flex flex-col">
+             <MdAddChart color="black" />
+  
+  
+                <p className="text-[12px]">advertise</p>
+              </div>
+  
+              <div
+                className="justify-center place-items-center flex flex-col
+                     "
+              >
+               <IoPerson  color="black" />
+                <p className="text-[12px]">mine</p>
+              </div>
+            </div>
+   </div>
 
     <div className="overflow-y-scroll h-full">
 

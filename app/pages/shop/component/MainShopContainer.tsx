@@ -2,6 +2,11 @@ import { Itim } from "next/font/google";
 import Image from "next/image";
 import { useCallback, useEffect, useState } from "react";
 import { FaRegHeart } from "react-icons/fa";
+import { IoMdSearch } from "react-icons/io";
+import { FaAngleDown } from "react-icons/fa";
+import { MdAddChart } from "react-icons/md";
+import { IoPerson } from "react-icons/io5";
+import { MdOutlineChair } from "react-icons/md";
 import DropDownMenuForCategory from "./Category/DropDownMenuForCategory";
 
 const itim = Itim({ subsets: ["latin"], weight: "400" });
@@ -38,6 +43,7 @@ const ForDeskTop = ({
   const category = [
     {
       title: "Real Estate",
+      icon:'/category_icons/home_garden_icon.svg'
     },
     {
       title: "Fashion & Beauty",
@@ -129,37 +135,23 @@ const ForDeskTop = ({
     <section className={`${itim.className} md:col-span-9   p-3 overflow-hidden relative `}>
       
       <div className="w-full h-[calc(100dvh-5rem)]  ">
-        <div className="bg-web-navbar fh-100 w-full flex gap-2  place-items-center text-white flex-cols relative ">
-          <div className="ms-20 bg-white w-[70%] h-[50%] rounded-2xl flex place-item-center">
-            <div className="text-black place-self-center ms-5 flex ">
-              <div className="fh-29 fw-10 relative pt-3 mt-2">
-                <Image
-                  alt="Real estate"
-                  src={"/category_icons/search_icon.svg"}
-                  fill
-                  className=" p-1 rounded object-cover"
-                />
-              </div>
 
-              <input  placeholder="what are you looking for?" className="text-[12px] mt-1 outline-none" />
+        <div className="bg-web-navbar fh-100 w-full flex gap-8  place-items-center text-white flex-cols relative justify-center ">
+         
+          <div className="ms-10 bg-white w-[63%] h-[50%] rounded-2xl flex place-item-center">
+
+      
+            <div className="text-black place-self-center ms-2 flex justify-center place-items-center gap-3  ">
+               <IoMdSearch className="mt-1" color="black" size={16} />
+              <input  placeholder="what are you looking for ?" className="text-[12px] mt-1 outline-none" />
             </div>
 
             <div className="h-[80%] bg-[#B2AEAE] w-[0.3%] ms-8 mt-1"></div>
 
-            <div className="text-black place-self-center place-item-center justify-center ms-5 flex ">
+            <div className="text-black place-self-center place-item-center justify-center ms-5 flex gap-5 ">
               <p className="text-[12px] ">All categories</p>
-
-              <div
-                className="fh-20 fw-10 relative pt-4 mt-[1.5px]"
-                onClick={handleCategoryDropDownMenuFired}
-              >
-                <Image
-                  alt="Real estate"
-                  src={"/category_icons/arrow_down_cat_icon.svg"}
-                  fill
-                  className=" p-1 rounded object-cover"
-                />
-              </div>
+               <FaAngleDown className="mt-0.5" size={15} color="#B2AEAE " />
+              
             </div>
 
             <div className="h-[80%] bg-[#B2AEAE] w-[0.3%] ms-8 mt-1"></div>
@@ -170,17 +162,10 @@ const ForDeskTop = ({
 
             <div className="h-[80%] bg-[#B2AEAE] w-[0.3%] ms-8 mt-1"></div>
 
-            <div className="text-black place-self-center ms-5 flex ">
+            <div className="text-black place-self-center ms-5 flex gap-5 ">
               <p className="text-[12px] mt-1">Entire town </p>
 
-              <div className="fh-20 fw-10 relative pt-7 mt-[0.2px]">
-                <Image
-                  alt="Real estate"
-                  src={"/category_icons/arrow_down_cat_icon.svg"}
-                  fill
-                  className=" p-1 rounded object-cover"
-                />
-              </div>
+                <FaAngleDown className="mt-1.5" size={15} color="#B2AEAE " /> 
 
               <p className="text-[12px] bg-web-navbar p-1 rounded text-white  ">
                 Find
@@ -190,31 +175,18 @@ const ForDeskTop = ({
 
           <div className="flex gap-6">
             <div className="justify-center place-items-center flex flex-col">
-              <div className="fh-20 fw-10 relative pt-7 ">
-                <Image
-                  alt="Real estate"
-                  src={"/category_icons/advert_cat_icon.svg"}
-                  fill
-                  className=" p-1 rounded object-cover"
-                />
-              </div>
+           <MdAddChart color="black" />
 
-              <p>advertise</p>
+
+              <p className="text-[12px]">advertise</p>
             </div>
 
             <div
               className="justify-center place-items-center flex flex-col
                    "
             >
-              <div className="fh-20 fw-10 relative pt-7 ">
-                <Image
-                  alt="Real estate"
-                  src={"/category_icons/person_cat_icon.svg"}
-                  fill
-                  className=" p-1 rounded object-cover"
-                />
-              </div>
-              <p>mine</p>
+             <IoPerson  color="black" />
+              <p className="text-[12px]">mine</p>
             </div>
           </div>
         </div>
@@ -235,8 +207,11 @@ const ForDeskTop = ({
                 key={index}
                 className="min-w-30 mt-3 justify-center place-items-center "
               >
+               
+
                 <div className="justify-center place-items-center w-[90%]">
-                  <div className="relative fh-30 fw-10">
+                   {index===3 ? <MdOutlineChair className=" bg-[#dbcfe4] p-1 rounded" size={30}  color="#391452"/>:
+                  <div className="relative fh-35 fw-10">
                     <Image
                       alt="Real estate"
                       src={
@@ -248,7 +223,7 @@ const ForDeskTop = ({
                       className="bg-[#dbcfe4] p-1 rounded"
                     />
                   </div>
-
+}
                   <p className="text-[10px] ">{item.title}</p>
                 </div>
               </div>
@@ -276,7 +251,7 @@ const ForDeskTop = ({
                   onItemSelected(index);
                 }}
               >
-                <div className="fw-30 [@media(550px<=width<=1000px)]:fw-60 [@media(550px<=width<=1000px)]:fh-100 fh-60 relative mb-3">
+                <div className="fw-30 [@media(550px<=width<=1000px)]:fw-60 [@media(550px<=width<=1000px)]:fh-100 fh-80 relative mb-3">
                   <Image
                     alt="shop_img"
                     fill
@@ -286,9 +261,9 @@ const ForDeskTop = ({
                 </div>
 
                 <div className="flex flex-col gap-1">
-                  <p className="text-sm">Solfar Chair</p>
-                  <p className="text-sm">Solfar Chair</p>
-                  <p className="text-sm">Solfar Chair</p>
+                  <p className="text-[12px]">Solfar Chair</p>
+                  <p className="text-[12px]">Solfar Chair</p>
+                  <p className="text-[12px]">Solfar Chair</p>
                 </div>
 
                 <div className="flex gap-4 place-items-center">
@@ -358,9 +333,9 @@ const ForDeskTop = ({
               </div>
 
               <div className="flex flex-col gap-1">
-                <p className="text-sm">Solfar Chair</p>
-                <p className="text-sm">Solfar Chair</p>
-                <p className="text-sm">Solfar Chair</p>
+                <p className="text-[12px]">Solfar Chair</p>
+                <p className="text-[12px]">Solfar Chair</p>
+                <p className="text-[12px]">Solfar Chair</p>
               </div>
 
               <div className="flex gap-4 place-items-center">

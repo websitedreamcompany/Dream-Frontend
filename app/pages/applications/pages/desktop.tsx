@@ -1,6 +1,8 @@
 import { Inter, Itim } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
+import { GrApps } from "react-icons/gr";
+import Footer from "../../landingPage/component/Footer";
 
 const inter = Inter({
   display: "swap",
@@ -13,6 +15,21 @@ const itim = Itim({
 });
 const ApplicationDesktop = () => {
   const cardDetails = [
+    {
+      name: "Finance App",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      rating: 4,
+    },
+    {
+      name: "Personnal App",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      rating: 5,
+    },
+    {
+      name: "Travel App",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      rating: 3,
+    },
     {
       name: "Finance App",
       description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
@@ -78,12 +95,15 @@ const ApplicationDesktop = () => {
        * Main containerr
        */}
 
-      <main className="application h-dvh w-full overflow-hidden bg-white grid grid-rows-12 ">
-        <div className="grid  grid-cols-3 h-dvh bg-gray-600 ">
-          <section className={`${itim.className} bg-white  p-5   overflow-y-auto h-300`}>
+      <main className="application h-dvh w-full overflow-y-scroll bg-white ">
+        <div className="grid  grid-cols-6 h-dvh bg-gray-600 ">
+        
+        
+          <section className={`${itim.className} bg-white  p-5   overflow-y-auto h-300 col-span-1`}>
+           
             <div className="w-full  border border-gray-300  ">
 
-              <div className="bg-[#2E0B80] fh-40 w-full flex gap-2 ps-5 place-items-center text-white ">
+              <div className="bg-[#2E0B80] fh-40 w-full flex gap-2 ps-5 place-items-center text-white  ">
                 <input type="checkbox" />
                 <p>All</p>
               </div>
@@ -164,28 +184,22 @@ const ApplicationDesktop = () => {
             </div>
           </section>
 
-          <div className="bg-white   pt-5 ">
+          <div className="  pt-5 col-span-3 bg-white flex justify-center overflow-y-auto h-screen">
             {/**Card container */}
             <div className="flex   flex-col gap-4">
               {cardDetails.map((card, index) => (
                 <div
                   key={index}
-                  className="min:fh-200   fw-120 bg-white p-5 border border-gray-200 rounded-2xl"
+                  className="min:fh-200   fw-160 bg-white shadow p-5 border border-gray-200 rounded-2xl"
                 >
-                  <div className=" flex ">
-                    <div className="fh-30 fw-30">
-                      <Image
-                        src="/application_contact_icon.png"
-                        alt="App 1"
-                        width={60}
-                        height={60}
-                        className="object-contain bg-[#2E0B80]"
-                      />
-                    </div>
+                  
+                  <div className=" flex  gap-3 justify-center ">
 
-                    <div>
-                      <h2 className="text-fw-6 text-[#4C1D60] ">{card.name}</h2>
-                      <p className="fh-2 mt-2 fw-80 bg-[#D3D3D3]" />
+                <GrApps className="mt-1" color="#2E0B80" size={30} />
+
+                    <div className="">
+                      <h2 className="text-[24px]  text-[#4C1D60] ">{card.name}</h2>
+                      <p className="fh-2 mt-2 fw-140 bg-[#D3D3D3]" />
 
                       <div className="flex  place-items-center ">
                         <div className="flex gap-2">
@@ -204,18 +218,20 @@ const ApplicationDesktop = () => {
                             ))}
                         </div>
 
-                        <p className="">djjjdjdj</p>
+                     
                       </div>
                     </div>
+
+                
                   </div>
 
-                  <div className="mt-5 flex flex-wrap w-full relative ">
-                    <div>
-                      <p className="text-fw-5">Lorem ipsum dolor</p>
-                      <p className="text-fw-5">Lorem ipsum dolor</p>
+                  <div className="mt-5 flex flex-wrap w-full relative justify-between ">
+                    <div className="ms-8">
+                      <p className="text-[14px]">Lorem ipsum dolor</p>
+                      <p className="text-[14px]">Lorem ipsum dolor</p>
                     </div>
 
-                    <button className="  fh-40 mt-2 ms-20 bg-[#800020] text-white text-fw-4 px-4 rounded">
+                    <button className="  fh-40 mt-2 ms-20 bg-[#800020] text-white text-[14px] px-4 rounded ">
                       View Details
                     </button>
                   </div>
@@ -224,16 +240,16 @@ const ApplicationDesktop = () => {
             </div>
           </div>
 
-          <div className=" bg-white    p-5   overflow-y-auto h-300 ">
-            <div className="mt-10 ms-3">
-              <p>App details</p>
-              <div className="">
+          <div className=" bg-white    p-5   overflow-y-auto h-300 col-span-2">
+            <div className=" ms-3">
+              <p className="text-[24px]">App details</p>
+              <div className="rounded-2xl">
                 <Image
                   src="/application_container_3_bg.png"
                   alt="App 1"
                   width={400}
-                  height={200}
-                  className="object-contain "
+                  height={300}
+                  className="object-contain  "
                 />
               </div>
 
@@ -253,17 +269,17 @@ const ApplicationDesktop = () => {
                     ))}
                 </div>
 
-                <div className="fw-50 flex flex-col place-items-end">
+                <div className="fw-50 flex flex-col place-items-end text-[14px] font-light">
                   <p>Lorem ipsum dolor</p>
                   <p>Lorem ipsum dolor</p>
                 </div>
               </div>
 
               <div className="mt-4 flex justify-evenly">
-                <p className="text-fw-4 font-bold">
+                <p className="text-[14px] font-bold">
                   Lorem ipsum dolor satum vien lori trend{" "}
                 </p>
-                <p className="text-fw-4 font-bold">Configure</p>
+                <p className="text-[14px] font-bold">Configure</p>
               </div>
 
               <div className="fh-2 fw-110 bg-[#D3D3D3] mt-10" />
@@ -272,7 +288,7 @@ const ApplicationDesktop = () => {
                 <div className="flex gap-5 m-5">
                   <div className="fw-15 fh-60 bg-[#2E0B80] rounded" />
 
-                  <div>
+                  <div className="text-[14px]">
                     <p>Lorem ipsum dolor</p>
 
                     <p>Lorem ipsum dolor</p>
@@ -282,7 +298,7 @@ const ApplicationDesktop = () => {
                 <div className="flex gap-5 m-5">
                   <div className="fw-15 fh-60 bg-[#2E0B80] rounded" />
 
-                  <div>
+                  <div className="text-[14px]">
                     <p>Lorem ipsum dolor</p>
 
                     <p>Lorem ipsum dolor</p>
@@ -290,7 +306,7 @@ const ApplicationDesktop = () => {
                 </div>
               </div>
 
-              <div className="mt-8">
+              <div className="mt-8 text-[14px]">
                 <button className="bg-[#4C1D60] fh-50 w-full rounded text-white">
                   View details
                 </button>
@@ -302,6 +318,8 @@ const ApplicationDesktop = () => {
             </div>
           </div>
         </div>
+
+        <Footer mode="desktop" />
       </main>
     </div>
   );

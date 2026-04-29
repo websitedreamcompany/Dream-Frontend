@@ -4,15 +4,15 @@ const itim = Itim({ subsets: ["latin"], weight: "400" });
 
 const PropertyCatSectionBar = () => {
   return (
-    <div className="w-full shadow-f-cardM bg-white h-full p-3 overflow-y-auto rounded">
-      <p className={`${itim.className} p-2 font-extra-bold`}>Category</p>
+    <div className="w-full shadow-f-cardM bg-white h-full p-3 overflow-y-auto rounded text-[14px]">
+      <p className={`${itim.className} p-2 font-extra-bold text-[18px]`}>Category</p>
 
       <div className="">
-        <p className="hover:underline cursor-pointer">All categories ggg</p>
+        <p className="hover:underline cursor-pointer text-[16px]">All categories ggg</p>
       </div>
 
       <div className="">
-        <p className="hover:underline cursor-pointer">Property</p>
+        <p className="hover:underline cursor-pointer ">Property</p>
       </div>
 
     
@@ -22,8 +22,8 @@ const PropertyCatSectionBar = () => {
 
       <div></div>
 
-      <div>
-        <p className="font-bold">Living space</p>
+      <div className="">
+        <p className="font-bold text-[16px]">Living space</p>
 
         <div className="flex place-items-center gap-3 mt-3 ">
           <input
@@ -42,8 +42,8 @@ const PropertyCatSectionBar = () => {
 
 
 {/**Room */}
-      <div>
-        <p className="font-bold">Room</p>
+      <div className="">
+        <p className="font-bold text-[16px]">Room</p>
 
         <div className="flex place-items-center gap-3 mt-3 ">
           <input
@@ -61,8 +61,8 @@ const PropertyCatSectionBar = () => {
       </div>
 
 
-   <div>
-        <p className="font-bold">Year of construction</p>
+   <div className="">
+        <p className="font-bold text-[16px]">Year of construction</p>
 
         <div className="flex place-items-center gap-3 mt-3 ">
           <input
@@ -82,8 +82,8 @@ const PropertyCatSectionBar = () => {
    
 
 
-   <div>
-        <p className="font-bold">Available from </p>
+   <div className="">
+        <p className="font-bold text-[16px]">Available from </p>
 
         <div className="flex place-items-center gap-3 mt-3 ">
           <input
@@ -104,10 +104,10 @@ const PropertyCatSectionBar = () => {
 
      
 
-      <div>
-        <p className="font-bold">Price</p>
+      <div className="">
+        <p className="font-bold text-[16px]">Price</p>
 
-        <div className="flex place-items-center gap-3 ">
+        <div className="flex place-items-center gap-3 text-[12px] ">
           <input
             placeholder="from"
             className="border-[0.1px] p-2 rounded-2xl w-20"
@@ -124,8 +124,8 @@ const PropertyCatSectionBar = () => {
 
      
 
-      <div className="mt-5">
-        <p className="font-bold">Provider</p>
+      <div className="mt-5 ">
+        <p className="font-bold text-[16px]">Provider</p>
 
         <div>
           {["private", "Commercial"].map((data, index) => (
@@ -138,8 +138,8 @@ const PropertyCatSectionBar = () => {
         </div>
       </div>
 
-      <div>
-        <p className="font-bold mt-2 mb-2">Location</p>
+      <div className="">
+        <p className="font-bold mt-2 mb-2 text-[16px]">Location</p>
 
         <div>
           {[
@@ -162,7 +162,7 @@ const PropertyCatSectionBar = () => {
           ].map((data, index) => (
             <div
               key={index}
-              className="flex gap-2 cursor-pointer hover:underline"
+              className="flex gap-10 cursor-pointer hover:underline"
             >
               <p>{data}</p>
             </div>

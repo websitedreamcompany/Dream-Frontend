@@ -6,6 +6,7 @@ import { Inter, Itim } from "next/font/google";
 import { useState } from "react";
 import ImageSlider from "../component/ImageSlider";
 import useDreamTradingStore from "@/store/store";
+import Footer from "../../landingPage/component/Footer";
 
 const inter = Inter({
   display: "swap",
@@ -74,9 +75,12 @@ const ProjectsDesktop = () => {
        * Main containerr
        */}
 
-      <main className="application h-dvh w-full overflow-hidden bg-[#D9D9D9] grid grid-rows-12  ">
-        <div className="grid  grid-cols-12 h-dvh bg-[#D9D9D9] ">
-          <section className="bg-transparent   p-5   overflow-y-auto h-dvh col-span-3 ">
+      <main className="application h-dvh w-full overflow-y-scroll bg-[#D9D9D9]   ">
+      
+        <div className="grid   h-dvh bg-[#D9D9D9] grid-cols-6 ">
+
+          <section className="bg-transparent   p-5   overflow-y-auto h-dvh col-span-1 ">
+          
             <div className="w-full  bg-white">
 
               <div className="bg-[#800020] fh-40 w-full flex gap-2 ps-5 place-items-center text-white  ">
@@ -163,14 +167,15 @@ const ProjectsDesktop = () => {
 
 
           <section
-            className={`${itim.className} bg-tansparent  h-dvh    p-5   overflow-y-auto  pb-20 col-span-4`}
+            className={`${itim.className} bg-tansparent  h-dvh    p-5   overflow-y-auto  pb-20 col-span-3 text-[18px]`}
           >
             <div
               style={{ scrollbarWidth: "none" }}
               className="  sticky top-0 z-50   fh-50 bg-[#C5C4C4] border-[0.2px] border-[rgba(0,0,0,0.2)] shadow-f-cardM flex place-items-center gap-5 overflow-x-scroll "
             >
               <div className=" fh-50 p-3 justify-center ">
-                <div className="relative w-5 h-[calc(4*var(--spacing-fw))]  ">
+
+                <div className="relative w-10 h-[calc(4*var(--spacing-fw))]  ">
                   <Image
                     src="/slanted_rect_for_menu.png"
                     alt="project_menu"
@@ -210,7 +215,7 @@ const ProjectsDesktop = () => {
             </div>
 
             <div className="">
-              <div className="relative w-full h-[calc(80*var(--spacing-fw))] embla__viewport mt-3 mb-4 ">
+              <div className="relative w-full h-[calc(90*var(--spacing-fw))] embla__viewport mt-3 mb-4 ">
                 <Image
                   src={
                     globalDataState &&
@@ -222,7 +227,7 @@ const ProjectsDesktop = () => {
                   alt="project_menu"
                   fill
                   sizes="100%"
-                  className="object-contain"
+                  className="object-fill"
                 />
               </div>
 
@@ -238,17 +243,7 @@ const ProjectsDesktop = () => {
                 />
               )}
 
-              <div className=" grid grid-cols-12  gap-3 mt-3">
-                <div className="relative rounded-2xl h-[calc(130*var(--spacing-fh))] col-span-5 ">
-                  <Image
-                    src="/demo_projects_image_1.png"
-                    alt="project_menu"
-                    fill
-                    sizes="100%"
-                    className="object-contain rounded-2xl "
-                  />
-                </div>
-              </div>
+           
 
               <div className=" grid grid-cols-2  gap-3  mt-3">
                 {moreData &&
@@ -272,7 +267,7 @@ const ProjectsDesktop = () => {
           </section>
 
           <section
-            className={`${itim.className} p-5   overflow-y-auto h-dvh col-span-5 `}
+            className={`${itim.className} p-5   overflow-y-auto h-dvh col-span-2 `}
           >
             <div className="bg-white w-[95%] h-dvh p-5">
               <div className="relative w-full h-[calc(80*var(--spacing-fw))]  ">
@@ -292,9 +287,9 @@ const ProjectsDesktop = () => {
               </div>
 
               <div className="mt-5">
-                <p>Skyline Tower</p>
-                <p>Dubai, 2024</p>
-                <div>
+                <p className="text-[18px]">Skyline Tower</p>
+                <p className="text-[16px]">Dubai, 2024</p>
+                <div className="text-[14px]">
                   <p>Lorem ipsum dolor setum. Duli fort </p>
                   <p>Lorem ipsum dolor setum. Duli fort </p>
                   <p>Lorem ipsum dolor setum. Duli fort </p>
@@ -328,7 +323,7 @@ const ProjectsDesktop = () => {
               </div>
 
               <div className="mt-15 flex justify-center flex-col gap-3 place-items-center">
-                <button className="bg-[#800020] fh-50 w-[90%] rounded text-white">
+                <button className="bg-[#800020] fh-50 w-[90%] rounded text-white text-[14px]">
                   Book project
                 </button>
 
@@ -350,12 +345,12 @@ const ProjectsDesktop = () => {
                     </div>
                   </div>
 
-                  <div className=" w-[40%] bg-[#D9D9D9]  fh-40 flex justify-center place-items-center">
+                  <div className=" w-[40%] bg-[#D9D9D9]  fh-40 flex justify-center place-items-center text-[14px]">
                     <p>120 previews</p>
                   </div>
                 </div>
 
-                <div className="  mt-3  w-[90%]  grid grid-cols-3 justify-center place-items-center gap-2 ">
+                <div className="  mt-3  w-[90%]  grid grid-cols-3 justify-center place-items-center gap-2 text-[14px] ">
                   <div className="bg-[#D9D9D9] w-full p-3 flex justify-center place-items-center gap-2">
                     <p className="fh-10 bg-[#2E0B80] fw-2" />
                     <p>L35</p>
@@ -375,6 +370,8 @@ const ProjectsDesktop = () => {
             </div>
           </section>
         </div>
+
+        <Footer mode="desktop" />
       </main>
     </div>
   );

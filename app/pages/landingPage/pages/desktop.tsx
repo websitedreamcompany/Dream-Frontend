@@ -131,17 +131,17 @@ const Desktop = () => {
               Building Digital Inovation & Modern Control
             </motion.h1>
 
-            <div className="flex mt-fh-20 gap-10 ">
+            <div className="flex mt-fh-10 gap-10 ">
               <button
               onClick={handleNavToProjects}
-                className={`${aclonica.className} text-fw-6 font-extrabold bg-btn-bg-red fw-80 fh-52 ms-fw-20 rounded-2xl text-white 1`}
+                className={`${aclonica.className} text-[14px] font-extrabold bg-btn-bg-red fw-80 fh-52 ms-fw-20 rounded-2xl text-white 1`}
               >
                 Explore Project
               </button>
 
               <button
               onClick={handleNavToShops}
-                className={`${aclonica.className} text-fw-6 font-extrabold bg-btn-bg-red fw-40 fh-52 rounded-2xl text-white  pt-1`}
+                className={`${aclonica.className} text-[12px] font-extrabold bg-btn-bg-red fw-40 fh-52 rounded-2xl text-white  pt-1`}
               >
                 Visit Shop
               </button>
@@ -178,7 +178,7 @@ const Desktop = () => {
               borderWidth: "4px",
               borderColor: "#391452",
             }}
-            className="fh-250  fw-120 bg-[#D3D3D3]  rounded-2xl justify-center items-center flex flex-col  text-center"
+            className="fh-250  fw-120 bg-[#D3D3D3]  rounded-2xl justify-center items-center flex flex-col  text-center p-5"
           >
             <div className="relative w-screen h-[calc(40*var(--spacing-fw))]  ">
               <Image
@@ -190,10 +190,10 @@ const Desktop = () => {
               />
             </div>
 
-            <p className={`${itim.className} font-extrabold text-[18px]`}>
+            <p className={`${itim.className} font-extrabold text-[24px]`}>
               App development
             </p>
-            <p className={`${inter.className} text-fw-6`}>
+            <p className={`${inter.className} font-light text-[14px]`}>
               App development dhdhhd kddkd dhhd dkkdk
             </p>
           </motion.div>
@@ -207,7 +207,7 @@ const Desktop = () => {
               borderWidth: "4px",
               borderColor: "#391452",
             }}
-            className="fh-250   fw-120   bg-[#D3D3D3] rounded-2xl justify-center items-center flex flex-col  text-center"
+            className="fh-250   fw-120   bg-[#D3D3D3] rounded-2xl justify-center items-center flex flex-col  text-center p-5"
           >
             <div className="relative w-screen h-[calc(40*var(--spacing-fw))]  ">
               <Image
@@ -219,10 +219,10 @@ const Desktop = () => {
               />
             </div>
 
-            <p className={`${itim.className} font-extrabold text-[18px]`}>
+            <p className={`${itim.className} font-extrabold text-[24px]`}>
               Construction & Contracting
             </p>
-            <p className={`${inter.className} text-fw-6`}>
+            <p className={`${inter.className} text-[14px]`}>
               App development dhdhhd kddkd dhhd dkkdk
             </p>
           </motion.div>
@@ -236,7 +236,7 @@ const Desktop = () => {
               borderWidth: "4px",
               borderColor: "#391452",
             }}
-            className="fh-250   fw-120  bg-[#D3D3D3] rounded-2xl justify-center items-center flex flex-col  text-center"
+            className="fh-250   fw-120  bg-[#D3D3D3] rounded-2xl justify-center items-center flex flex-col  text-center p-5"
           >
             <div className="relative w-screen h-[calc(40*var(--spacing-fw))]  ">
               <Image
@@ -248,10 +248,10 @@ const Desktop = () => {
               />
             </div>
 
-            <p className={`${itim.className} font-extrabold text-[18px]`}>
+            <p className={`${itim.className} font-extrabold text-[24px]`}>
               Online Store
             </p>
-            <p className={`${inter.className} text-fw-6`}>
+            <p className={`${inter.className} text-[14px]`}>
               App development dhdhhd kddkd dhhd dkkdk
             </p>
           </motion.div>
@@ -301,7 +301,7 @@ const Desktop = () => {
                       style={{ scrollbarWidth: "none" }}
                     >
                       <p
-                        className={`${inter.className}  text-fw-6 mt-fh-20 text-white`}
+                        className={`${inter.className}  text-[14px] mt-fh-20 text-white`}
                       >
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                         Donec efficitur, nunc ut laoreet venenatis, nisl nunc
@@ -347,7 +347,7 @@ const Desktop = () => {
                       style={{ scrollbarWidth: "none" }}
                     >
                       <p
-                        className={`${inter.className}  text-fw-6 mt-fh-20 text-white`}
+                        className={`${inter.className}  text-[14px] mt-fh-20 text-white`}
                       >
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                         Donec efficitur, nunc ut laoreet venenatis, nisl nunc
@@ -393,7 +393,7 @@ const Desktop = () => {
                       style={{ scrollbarWidth: "none" }}
                     >
                       <p
-                        className={`${inter.className}  text-fw-6 mt-fh-20 text-white`}
+                        className={`${inter.className}  text-[14px] mt-fh-20 text-white`}
                       >
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                         Donec efficitur, nunc ut laoreet venenatis, nisl nunc
@@ -422,7 +422,7 @@ const Desktop = () => {
             <div className="fh-200 justify-center place-items-center pt-10 ">
               <p className={`${itim.className} text-white text-fw-16`}>5000+</p>
               <p
-                className={`${interLight.className} text-white text-fw-8 font-extralight`}
+                className={`${interLight.className} text-white text-[24px] font-extralight`}
               >
                 Project integrated
               </p>

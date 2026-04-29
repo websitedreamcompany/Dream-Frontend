@@ -12,6 +12,10 @@ import HouseCatSectionBar from "../component/HouseCatSectionBar";
 import CarsCatSectionBar from "../component/CarsCatSectionBar";
 import ProjectCatSectionBar from "../component/PropertyCatSectionBar";
 import PropertyCatSectionBar from "../component/PropertyCatSectionBar";
+import { FaAngleDown } from "react-icons/fa";
+import { IoMdSearch } from "react-icons/io";
+import { IoPerson } from "react-icons/io5";
+import { MdAddChart } from "react-icons/md";
 
 const itim = Itim({ subsets: ["latin"], weight: "400" });
 
@@ -325,96 +329,63 @@ const ShopProductDisplayDesktop = () => {
       </nav>
 
       <main className="h-full  overflow-y-scroll relative pb-19">
-        <div className="bg-web-navbar mt-2 mb-5 fh-100 w-full flex gap-2  place-items-center text-white flex-cols relative ">
-
-          <div className=" [@media(550px<=width<=1000px)]:ms-[10%] [@media(550px<=width<=1000px)]:w-[70%]  ms-60 bg-white w-[55%] h-[50%] rounded-2xl flex place-item-center justify-center">
-          
-            <div className="text-black place-self-center  flex ">
-
-              <div className="fh-33 fw-6 relative pt-2">
-                <Image
-                  alt="Real estate"
-                  src={"/category_icons/search_icon.svg"}
-                  fill
-                  className=" p-1 rounded object-cover"
-                />
+  
+   <div className="bg-web-navbar mt-1 fh-100 w-full flex gap-8  place-items-center text-white flex-cols relative justify-center ">
+           
+            <div className="ms-10 bg-white w-[46%] h-[50%] rounded-2xl flex place-item-center">
+  
+        
+              <div className="text-black place-self-center ms-2 flex justify-center place-items-center gap-3  ">
+                 <IoMdSearch className="mt-1" color="black" size={16} />
+                <input  placeholder="what are you looking for ?" className="text-[12px] mt-1 outline-none" />
               </div>
-              <input type="search" className="text-[12px] outline-none   w-40 " placeholder="what are you looking for? " />
-            </div>
-
-            <div className="h-[80%] bg-[#B2AEAE] w-[0.3%] ms-8 mt-1"></div>
-
-            <div className="text-black place-self-center place-item-center justify-center ms-5 flex ">
-              <p className="text-[12px] ">{param.get("cat")}</p>
-
-              <div className="fh-10 fw-10 relative pt-4">
-                <Image
-                  alt="Real estate"
-                  src={"/category_icons/arrow_down_cat_icon.svg"}
-                  fill
-                  className=" p-1 rounded object-cover"
-                />
+  
+              <div className="h-[80%] bg-[#B2AEAE] w-[0.3%] ms-8 mt-1"></div>
+  
+              <div className="text-black place-self-center place-item-center justify-center ms-5 flex gap-5 ">
+                <p className="text-[12px] ">All categories</p>
+                 <FaAngleDown className="mt-0.5" size={15} color="#B2AEAE " />
+                
+              </div>
+  
+              <div className="h-[80%] bg-[#B2AEAE] w-[0.3%] ms-8 mt-1"></div>
+  
+              <div className="text-black place-self-center ms-5 ">
+                <p className="text-[12px]">Deutshland</p>
+              </div>
+  
+              <div className="h-[80%] bg-[#B2AEAE] w-[0.3%] ms-8 mt-1"></div>
+  
+              <div className="text-black place-self-center ms-5 flex gap-5 ">
+                <p className="text-[12px] mt-1">Entire town </p>
+  
+                  <FaAngleDown className="mt-1.5" size={15} color="#B2AEAE " /> 
+  
+                <p className="text-[12px] bg-web-navbar p-1 rounded text-white  ">
+                  Find
+                </p>
               </div>
             </div>
-
-            <div className="h-[80%] bg-[#B2AEAE] w-[0.3%] ms-8 mt-1"></div>
-
-            <div className="text-black place-self-center ms-5 ">
-              <p className="text-[12px]">Deutshland</p>
-            </div>
-
-            <div className="h-[80%] bg-[#B2AEAE] w-[0.3%] ms-8 mt-1"></div>
-
-            <div className="text-black place-self-center ms-5 flex ">
-              <p className="text-[12px] mt-1">Entire town </p>
-
-              <div className="fh-20 fw-10 relative pt-7">
-                <Image
-                  alt="Real estate"
-                  src={"/category_icons/arrow_down_cat_icon.svg"}
-                  fill
-                  className=" p-1 rounded object-cover"
-                />
+  
+            <div className="flex gap-6">
+              <div className="justify-center place-items-center flex flex-col">
+             <MdAddChart color="black" />
+  
+  
+                <p className="text-[12px]">advertise</p>
               </div>
-
-              <p className="text-[12px] bg-web-navbar p-1 rounded text-white  ">
-                Find
-              </p>
-            </div>
-          </div>
-
-          <div className="flex gap-6">
-            <div className="ms-10 justify-center place-items-center flex flex-col">
-              <div className="fh-20 fw-10 relative pt-7 ">
-                <Image
-                  alt="Real estate"
-                  src={"/category_icons/advert_cat_icon.svg"}
-                  fill
-                  className=" p-1 rounded object-cover"
-                />
+  
+              <div
+                className="justify-center place-items-center flex flex-col
+                     "
+              >
+               <IoPerson  color="black" />
+                <p className="text-[12px]">mine</p>
               </div>
-
-              <p>advertise</p>
             </div>
+   </div>
 
-            <div
-              className="justify-center place-items-center flex flex-col
-                   "
-            >
-              <div className="fh-20 fw-10 relative pt-7 ">
-                <Image
-                  alt="Real estate"
-                  src={"/category_icons/person_cat_icon.svg"}
-                  fill
-                  className=" p-1 rounded object-cover"
-                />
-              </div>
-              <p>mine</p>
-            </div>
-          </div>
-        </div>
-
-        <div className="p-6 w-full bg-white grid grid-cols-12">
+        <div className="p-6 w-full bg-white grid grid-cols-12 text-[14px]">
           <div className="col-span-9 flex gap-2">
             <p>Rental apartments {">"}</p>
             <p className="font-bold">
@@ -433,7 +404,7 @@ const ShopProductDisplayDesktop = () => {
         {/**Side bar */}
 
         <div className="grid grid-cols-12 h-full mb-10">
-          <section className="bg-transparent   p-3 overflow-y-auto    col-span-3 ">
+          <section className="bg-transparent   p-3 overflow-y-auto    col-span-2 ">
 
             {
              categorySectionToDisplay(param.get("title") as string)
