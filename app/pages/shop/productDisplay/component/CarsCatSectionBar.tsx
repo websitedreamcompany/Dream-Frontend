@@ -4,21 +4,21 @@ const itim = Itim({ subsets: ["latin"], weight: "400" });
 
 const CarsCatSectionBar = () => {
   return (
-    <div className="w-full shadow-f-cardM bg-white h-full p-3 overflow-y-auto">
-      <p className={`${itim.className} p-2 font-extra-bold`}>Category</p>
+    <div className="w-full shadow-f-cardM bg-white h-full p-3 overflow-y-auto text-[14px]" style={{scrollbarWidth:'none'}}>
+      <p className={`${itim.className} p-2 font-extra-bold text-[18px]`}>Category</p>
 
       <div className="">
-        <p className="hover:underline cursor-pointer">All categories</p>
+        <p className="hover:underline cursor-pointer text-[16px]">All categories</p>
       </div>
 
       <div className="">
-        <p className="hover:underline cursor-pointer">Cars</p>
+        <p className="hover:underline cursor-pointer ">Cars</p>
       </div>
 
       <div className=" fh-1 w-full bg-[#B2AEAE] mb-1 mt-3" />
 
       <div>
-        <p className="font-bold mt-2 mb-2">Brand</p>
+        <p className="font-bold mt-2 mb-2 text-[14px]">Brand</p>
 
         <div>
           {[
@@ -56,7 +56,7 @@ const CarsCatSectionBar = () => {
       <div></div>
 
       <div>
-        <p className="font-bold">Mileage</p>
+        <p className="font-bold text-[14px] mb-2">Mileage</p>
 
         <div className="flex place-items-center gap-3 ">
           <input
@@ -74,7 +74,7 @@ const CarsCatSectionBar = () => {
       </div>
 
       <div>
-        <p className="font-bold mt-3">Vehicle type</p>
+        <p className="font-bold mt-3 text-[14px]">Vehicle type</p>
 
         <div>
           {["DamagedVehicle", "Undamaged vehicle"].map((data, index) => (

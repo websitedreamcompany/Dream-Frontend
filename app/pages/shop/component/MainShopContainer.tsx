@@ -1,7 +1,12 @@
 import { Itim } from "next/font/google";
 import Image from "next/image";
-import { useCallback, useState } from "react";
-import { FaFontAwesome, FaHeart, FaRegHeart } from "react-icons/fa";
+import { useCallback, useEffect, useState } from "react";
+import { FaRegHeart } from "react-icons/fa";
+import { IoMdSearch } from "react-icons/io";
+import { FaAngleDown } from "react-icons/fa";
+import { MdAddChart } from "react-icons/md";
+import { IoPerson } from "react-icons/io5";
+import { MdOutlineChair } from "react-icons/md";
 import DropDownMenuForCategory from "./Category/DropDownMenuForCategory";
 
 const itim = Itim({ subsets: ["latin"], weight: "400" });
@@ -33,10 +38,12 @@ const ForDeskTop = ({
   onItemSelected: (index: number) => void;
 }) => {
   const [dropDownCat, setDropDownCat] = useState(false);
+  const [data,setData] = useState([])
 
   const category = [
     {
       title: "Real Estate",
+      icon:'/category_icons/home_garden_icon.svg'
     },
     {
       title: "Fashion & Beauty",
@@ -103,63 +110,64 @@ const ForDeskTop = ({
     setDropDownCat(!dropDownCat);
   }, [dropDownCat]);
 
-  return (
-    <section className={`${itim.className} md:col-span-9  p-3 `}>
-      <div className="w-full h-[calc(100dvh-5rem)]  ">
-        <div className="bg-web-navbar fh-100 w-full flex gap-2  place-items-center text-white flex-cols relative ">
-          <div className="ms-20 bg-white w-[70%] h-[50%] rounded-2xl flex place-item-center">
-            <div className="text-black place-self-center ms-5 flex ">
-              <div className="fh-29 fw-10 relative pt-4">
-                <Image
-                  alt="Real estate"
-                  src={"/category_icons/search_icon.svg"}
-                  fill
-                  className=" p-1 rounded object-cover"
-                />
-              </div>
 
-              <p className="text-fw-4 mt-1">what are you looking for? </p>
+   useEffect(()=>{
+
+   fetch(
+       "https://api.unsplash.com/search/photos?page=3&query=houses,kitchen&client_id=PG4lf1B0kp4ZKEVlfaLmOLzldpPEQK0yyMt5Ml_9Vyk",
+      {
+        method: "get",
+      },
+    )
+      .then((r) => {
+        return r.json();
+      })
+      .then((r) => {
+        console.log(r);
+       
+         setData(r.results)
+      })
+      .catch(console.log);
+
+   })
+
+  return (
+    <section className={`${itim.className} md:col-span-9   p-3 overflow-hidden relative `}>
+      
+      <div className="w-full h-[calc(100dvh-5rem)]  ">
+
+        <div className="bg-web-navbar fh-100 w-full flex gap-8  place-items-center text-white flex-cols relative justify-center ">
+         
+          <div className="ms-10 bg-white w-[63%] h-[50%] rounded-2xl flex place-item-center">
+
+      
+            <div className="text-black place-self-center ms-2 flex justify-center place-items-center gap-3  ">
+               <IoMdSearch className="mt-1" color="black" size={16} />
+              <input  placeholder="what are you looking for ?" className="text-[12px] mt-1 outline-none" />
             </div>
 
             <div className="h-[80%] bg-[#B2AEAE] w-[0.3%] ms-8 mt-1"></div>
 
-            <div className="text-black place-self-center place-item-center justify-center ms-5 flex ">
-              <p className="text-fw-4 ">All categories</p>
-
-              <div
-                className="fh-20 fw-10 relative pt-4"
-                onClick={handleCategoryDropDownMenuFired}
-              >
-                <Image
-                  alt="Real estate"
-                  src={"/category_icons/arrow_down_cat_icon.svg"}
-                  fill
-                  className=" p-1 rounded object-cover"
-                />
-              </div>
+            <div className="text-black place-self-center place-item-center justify-center ms-5 flex gap-5 ">
+              <p className="text-[12px] ">All categories</p>
+               <FaAngleDown className="mt-0.5" size={15} color="#B2AEAE " />
+              
             </div>
 
             <div className="h-[80%] bg-[#B2AEAE] w-[0.3%] ms-8 mt-1"></div>
 
             <div className="text-black place-self-center ms-5 ">
-              <p className="text-fw-4">Deutshland</p>
+              <p className="text-[12px]">Deutshland</p>
             </div>
 
             <div className="h-[80%] bg-[#B2AEAE] w-[0.3%] ms-8 mt-1"></div>
 
-            <div className="text-black place-self-center ms-5 flex ">
-              <p className="text-fw-4 mt-1">Entire town </p>
+            <div className="text-black place-self-center ms-5 flex gap-5 ">
+              <p className="text-[12px] mt-1">Entire town </p>
 
-              <div className="fh-20 fw-10 relative pt-7">
-                <Image
-                  alt="Real estate"
-                  src={"/category_icons/arrow_down_cat_icon.svg"}
-                  fill
-                  className=" p-1 rounded object-cover"
-                />
-              </div>
+                <FaAngleDown className="mt-1.5" size={15} color="#B2AEAE " /> 
 
-              <p className="text-fw-4 bg-web-navbar p-1 rounded text-white  ">
+              <p className="text-[12px] bg-web-navbar p-1 rounded text-white  ">
                 Find
               </p>
             </div>
@@ -167,31 +175,18 @@ const ForDeskTop = ({
 
           <div className="flex gap-6">
             <div className="justify-center place-items-center flex flex-col">
-              <div className="fh-20 fw-10 relative pt-7 ">
-                <Image
-                  alt="Real estate"
-                  src={"/category_icons/advert_cat_icon.svg"}
-                  fill
-                  className=" p-1 rounded object-cover"
-                />
-              </div>
+           <MdAddChart color="black" />
 
-              <p>advertise</p>
+
+              <p className="text-[12px]">advertise</p>
             </div>
 
             <div
               className="justify-center place-items-center flex flex-col
                    "
             >
-              <div className="fh-20 fw-10 relative pt-7 ">
-                <Image
-                  alt="Real estate"
-                  src={"/category_icons/person_cat_icon.svg"}
-                  fill
-                  className=" p-1 rounded object-cover"
-                />
-              </div>
-              <p>mine</p>
+             <IoPerson  color="black" />
+              <p className="text-[12px]">mine</p>
             </div>
           </div>
         </div>
@@ -202,7 +197,7 @@ const ForDeskTop = ({
 
         {/**Category selection */}
         <div
-          className="bg-white h-fit fw-290 justify-center  flex  p-1 mt-5 rounded-2xl overflow-y-hidden  overflow-x-scroll relative"
+          className="bg-white h-fit fw-295 justify-center  flex  p-1 mt-5 rounded-2xl overflow-y-hidden  overflow-x-scroll relative"
           style={{ scrollbarWidth: "none" }}
         >
           {/**Search Icon details now */}
@@ -212,8 +207,11 @@ const ForDeskTop = ({
                 key={index}
                 className="min-w-30 mt-3 justify-center place-items-center "
               >
+               
+
                 <div className="justify-center place-items-center w-[90%]">
-                  <div className="relative fh-30 fw-10">
+                   {index===3 ? <MdOutlineChair className=" bg-[#dbcfe4] p-1 rounded" size={30}  color="#391452"/>:
+                  <div className="relative fh-35 fw-10">
                     <Image
                       alt="Real estate"
                       src={
@@ -225,7 +223,7 @@ const ForDeskTop = ({
                       className="bg-[#dbcfe4] p-1 rounded"
                     />
                   </div>
-
+}
                   <p className="text-[10px] ">{item.title}</p>
                 </div>
               </div>
@@ -233,16 +231,19 @@ const ForDeskTop = ({
           </div>
         </div>
 
+  <div className=" h-full relative mt-2 overflow-y-scroll">
+
+
         {/**Gallery */}
 
-        <div className="h-fit bg-white p-3 m-3">
+        <div className="h-fit bg-white p-3 mt-2 rounded">
           <p>Gallery</p>
 
           <div
             className="flex overflow-x-scroll"
             style={{ scrollbarWidth: "none" }}
           >
-            {Array.from({ length: 9 }).map((_, index) => (
+            {data.map((item: { urls: { regular: string } }, index: number) => (
               <div
                 key={index}
                 className="fw-80 m-3 shadow-f-cardM bg-white rounded-lg p-5 h-fit relative"
@@ -250,19 +251,19 @@ const ForDeskTop = ({
                   onItemSelected(index);
                 }}
               >
-                <div className="fw-30 [@media(550px<=width<=1000px)]:fw-60 [@media(550px<=width<=1000px)]:fh-100 fh-60 relative mb-3">
+                <div className="fw-30 [@media(550px<=width<=1000px)]:fw-60 [@media(550px<=width<=1000px)]:fh-100 fh-80 relative mb-3">
                   <Image
                     alt="shop_img"
                     fill
                     className="object-cover rounded-lg"
-                    src={`/shop_img_card_${Math.floor(index / 3) + 1}.png`}
+                    src={ item.urls.regular }
                   />
                 </div>
 
                 <div className="flex flex-col gap-1">
-                  <p className="text-sm">Solfar Chair</p>
-                  <p className="text-sm">Solfar Chair</p>
-                  <p className="text-sm">Solfar Chair</p>
+                  <p className="text-[12px]">Solfar Chair</p>
+                  <p className="text-[12px]">Solfar Chair</p>
+                  <p className="text-[12px]">Solfar Chair</p>
                 </div>
 
                 <div className="flex gap-4 place-items-center">
@@ -304,11 +305,13 @@ const ForDeskTop = ({
           </div>
         </div>
 
-        <div
-          className="grid [@media(550px<=width<=1000px)]:mt-10 bg-white p-3 m-3  [@media(550px<=width<=1000px)]:grid-cols-4 grid-cols-4  overflow-y-scroll  fh-400 mb-150  relative"
+      <div className="[@media(550px<=width<=1000px)]:mt-10  bg-white p-3 mt-6 rounded ">
+          
+       <div
+          className="grid  bg-white  [@media(550px<=width<=1000px)]:grid-cols-4 grid-cols-4  overflow-hidden  min:h-300 mb-150  relative"
           style={{ scrollbarWidth: "none" }}
         >
-          {Array.from({ length: 9 }).map((_, index) => (
+          {data.map((item: { urls: { regular: string } }, index: number) => (
             <div
               key={index}
               className="fw-65 m-1  rounded-lg p-5 h-fit relative"
@@ -316,23 +319,23 @@ const ForDeskTop = ({
                 onItemSelected(index);
               }}
             >
-              <div className="absolute right-7 z-50 ">
+              <div className="absolute right-10 top-6 z-50 ">
                 <FaRegHeart size={15} />
               </div>
 
-              <div className="fw-50 fh-70 relative mb-3">
+              <div className="fw-50 fh-130 relative mb-3">
                 <Image
                   alt="shop_img"
                   fill
                   className="object-cover rounded-lg"
-                  src={`/shop_img_card_${Math.floor(index / 3) + 1}.png`}
+                  src={ item.urls.regular }
                 />
               </div>
 
               <div className="flex flex-col gap-1">
-                <p className="text-sm">Solfar Chair</p>
-                <p className="text-sm">Solfar Chair</p>
-                <p className="text-sm">Solfar Chair</p>
+                <p className="text-[12px]">Solfar Chair</p>
+                <p className="text-[12px]">Solfar Chair</p>
+                <p className="text-[12px]">Solfar Chair</p>
               </div>
 
               <div className="flex gap-4 place-items-center">
@@ -372,6 +375,10 @@ const ForDeskTop = ({
             </div>
           ))}
         </div>
+
+        </div>
+    
+  </div>
       </div>
     </section>
   );
@@ -382,7 +389,8 @@ const ForMobile = ({
 }: {
   onItemSelected: (index: number) => void;
 }) => {
-  const [dropDownCat, setDropDownCat] = useState(false);
+  const [dropDownCat, /*setDropDownCat*/] = useState(false);
+  const [data,setData] = useState([])
 
   const category = [
     {
@@ -449,9 +457,29 @@ const ForMobile = ({
     },
   ];
 
+   useEffect(()=>{
+
+   fetch(
+       "https://api.unsplash.com/search/photos?page=3&query=houses,kitchen&client_id=PG4lf1B0kp4ZKEVlfaLmOLzldpPEQK0yyMt5Ml_9Vyk",
+      {
+        method: "get",
+      },
+    )
+      .then((r) => {
+        return r.json();
+      })
+      .then((r) => {
+        console.log(r);
+       
+         setData(r.results)
+      })
+      .catch(console.log);
+
+   })
+  /*
   const handleCategoryDropDownMenuFired = useCallback(() => {
     setDropDownCat(!dropDownCat);
-  }, [dropDownCat]);
+  }, [dropDownCat]);*/
 
   return (
     <section className={`${itim.className} md:col-span-9  pt-1 `}>
@@ -550,7 +578,7 @@ const ForMobile = ({
             className=" grid grid-cols-12 h-65 overflow-y-auto"
             style={{ scrollbarWidth: "none" }}
           >
-            {Array.from({ length: 9 }).map((_, index) => (
+            {data && data.map((item: { urls: { regular: string } }, index) => (
               <div
                 key={index}
                 className=" col-span-6  m-3 shadow-f-cardM bg-white rounded-lg p-5 "
@@ -558,12 +586,12 @@ const ForMobile = ({
                   onItemSelected(index);
                 }}
               >
-                <div className="fw-30 [@media(550px<=width<=1000px)]:fw-60 [@media(550px<=width<=1000px)]:fh-100 fh-60 relative mb-3">
+                <div className="fw-60 [@media(550px<=width<=1000px)]:fw-60 [@media(550px<=width<=1000px)]:fh-100 fh-60 relative mb-3">
                   <Image
                     alt="shop_img"
                     fill
                     className="object-cover rounded-lg"
-                    src={`/shop_img_card_${Math.floor(index / 3) + 1}.png`}
+                    src={ item.urls.regular }
                   />
                 </div>
 
@@ -612,8 +640,11 @@ const ForMobile = ({
           </div>
         </div>
 
+
+
+
         <div
-          className="grid grid-cols-12 [@media(550px<=width<=1000px)]:mt-10 bg-white p-3 m-3  [@media(550px<=width<=1000px)]:grid-cols-4  overflow-y-scroll  fh-400 mb-150  relative"
+          className="grid grid-cols-12 [@media(550px<=width<=1000px)]:mt-10 bg-white p-3 m-3  [@media(550px<=width<=1000px)]:grid-cols-4  overflow-y-scroll  fh-450 mb-150  relative"
           style={{ scrollbarWidth: "none" }}
         >
           {Array.from({ length: 9 }).map((_, index) => (

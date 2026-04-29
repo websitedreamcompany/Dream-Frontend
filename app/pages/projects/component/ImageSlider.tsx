@@ -45,6 +45,11 @@ const ImageSlider = ({
     emblaApi.plugins().autoplay?.play();
   }, [emblaApi]);
 
+  useEffect(()=>{
+    if(data)
+   handleOnItemSelected({ img: data.at(0)?.urls?.regular })
+  },[data])
+
   const handleOnItemSelected = (item: unknown) => {
     if (!emblaApi) return;
     emblaApi.plugins().autoplay?.play();

@@ -7,9 +7,15 @@ import MainShopContainer from "../../component/MainShopContainer";
 import ProductDetailsContainer from "../../component/ProductDetailsContainer";
 import { useCallback, useEffect, useState } from "react";
 import useDreamTradingStore from "@/store/store";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import HouseCatSectionBar from "../component/HouseCatSectionBar";
 import CarsCatSectionBar from "../component/CarsCatSectionBar";
+import ProjectCatSectionBar from "../component/PropertyCatSectionBar";
+import PropertyCatSectionBar from "../component/PropertyCatSectionBar";
+import { FaAngleDown } from "react-icons/fa";
+import { IoMdSearch } from "react-icons/io";
+import { IoPerson } from "react-icons/io5";
+import { MdAddChart } from "react-icons/md";
 
 const itim = Itim({ subsets: ["latin"], weight: "400" });
 
@@ -18,10 +24,13 @@ const inter = Inter({ subsets: ["latin"], weight: "400" });
 const ShopProductDisplayDesktop = () => {
   //const {moreData} = useDreamTradingStore((state)=>state)
   const [moreData, setMoreData] = useState([]);
+  const router = useRouter()
 
   const param = useSearchParams();
 
   useEffect(() => {
+
+    
     fetch(
       `https://api.unsplash.com/search/photos?page=3&query=${param.get("cat")}&client_id=PG4lf1B0kp4ZKEVlfaLmOLzldpPEQK0yyMt5Ml_9Vyk`,
       {
@@ -274,11 +283,16 @@ const ShopProductDisplayDesktop = () => {
     [activeIndex],
   );
 
+  const handleNavToProductOverview = useCallback(()=>{
+    
+    router.push(`/pages/shop/productOverview?cat=${param.get('cat')}`)
+  },[router,param])
+
   return (
     <div className={`${itim.className}  h-dvh overflow-hidden`}>
       {/**Top nav bar */}
       <nav
-        className={`${inter.className} text-fh-8 w-screen e border-b fh-95  shadow-f-bottom flex flex-row place-items-center 
+        className={`${inter.className} text-fh-8 w-screen e border-b fh-120  shadow-f-bottom flex flex-row place-items-center 
                            
                         pe-5  `}
       >
@@ -315,93 +329,63 @@ const ShopProductDisplayDesktop = () => {
       </nav>
 
       <main className="h-full  overflow-y-scroll relative pb-19">
-        <div className="bg-web-navbar mt-2 mb-5 fh-100 w-full flex gap-2  place-items-center text-white flex-cols relative ">
-          <div className="ms-70 bg-white w-[50%] h-[50%] rounded-2xl flex place-item-center">
-            <div className="text-black place-self-center ms-5 flex ">
-              <div className="fh-29 fw-10 relative pt-4">
-                <Image
-                  alt="Real estate"
-                  src={"/category_icons/search_icon.svg"}
-                  fill
-                  className=" p-1 rounded object-cover"
-                />
+  
+   <div className="bg-web-navbar mt-1 fh-100 w-full flex gap-8  place-items-center text-white flex-cols relative justify-center ">
+           
+            <div className="ms-10 bg-white w-[46%] h-[50%] rounded-2xl flex place-item-center">
+  
+        
+              <div className="text-black place-self-center ms-2 flex justify-center place-items-center gap-3  ">
+                 <IoMdSearch className="mt-1" color="black" size={16} />
+                <input  placeholder="what are you looking for ?" className="text-[12px] mt-1 outline-none" />
               </div>
-              <p className="text-fw-4 mt-1">what are you looking for? </p>
-            </div>
-
-            <div className="h-[80%] bg-[#B2AEAE] w-[0.3%] ms-8 mt-1"></div>
-
-            <div className="text-black place-self-center place-item-center justify-center ms-5 flex ">
-              <p className="text-fw-4 ">{param.get("cat")}</p>
-
-              <div className="fh-20 fw-10 relative pt-4">
-                <Image
-                  alt="Real estate"
-                  src={"/category_icons/arrow_down_cat_icon.svg"}
-                  fill
-                  className=" p-1 rounded object-cover"
-                />
+  
+              <div className="h-[80%] bg-[#B2AEAE] w-[0.3%] ms-8 mt-1"></div>
+  
+              <div className="text-black place-self-center place-item-center justify-center ms-5 flex gap-5 ">
+                <p className="text-[12px] ">All categories</p>
+                 <FaAngleDown className="mt-0.5" size={15} color="#B2AEAE " />
+                
+              </div>
+  
+              <div className="h-[80%] bg-[#B2AEAE] w-[0.3%] ms-8 mt-1"></div>
+  
+              <div className="text-black place-self-center ms-5 ">
+                <p className="text-[12px]">Deutshland</p>
+              </div>
+  
+              <div className="h-[80%] bg-[#B2AEAE] w-[0.3%] ms-8 mt-1"></div>
+  
+              <div className="text-black place-self-center ms-5 flex gap-5 ">
+                <p className="text-[12px] mt-1">Entire town </p>
+  
+                  <FaAngleDown className="mt-1.5" size={15} color="#B2AEAE " /> 
+  
+                <p className="text-[12px] bg-web-navbar p-1 rounded text-white  ">
+                  Find
+                </p>
               </div>
             </div>
-
-            <div className="h-[80%] bg-[#B2AEAE] w-[0.3%] ms-8 mt-1"></div>
-
-            <div className="text-black place-self-center ms-5 ">
-              <p className="text-fw-4">Deutshland</p>
-            </div>
-
-            <div className="h-[80%] bg-[#B2AEAE] w-[0.3%] ms-8 mt-1"></div>
-
-            <div className="text-black place-self-center ms-5 flex ">
-              <p className="text-fw-4 mt-1">Entire town </p>
-
-              <div className="fh-20 fw-10 relative pt-7">
-                <Image
-                  alt="Real estate"
-                  src={"/category_icons/arrow_down_cat_icon.svg"}
-                  fill
-                  className=" p-1 rounded object-cover"
-                />
+  
+            <div className="flex gap-6">
+              <div className="justify-center place-items-center flex flex-col">
+             <MdAddChart color="black" />
+  
+  
+                <p className="text-[12px]">advertise</p>
               </div>
-
-              <p className="text-fw-4 bg-web-navbar p-1 rounded text-white  ">
-                Find
-              </p>
-            </div>
-          </div>
-
-          <div className="flex gap-6">
-            <div className="ms-10 justify-center place-items-center flex flex-col">
-              <div className="fh-20 fw-10 relative pt-7 ">
-                <Image
-                  alt="Real estate"
-                  src={"/category_icons/advert_cat_icon.svg"}
-                  fill
-                  className=" p-1 rounded object-cover"
-                />
+  
+              <div
+                className="justify-center place-items-center flex flex-col
+                     "
+              >
+               <IoPerson  color="black" />
+                <p className="text-[12px]">mine</p>
               </div>
-
-              <p>advertise</p>
             </div>
+   </div>
 
-            <div
-              className="justify-center place-items-center flex flex-col
-                   "
-            >
-              <div className="fh-20 fw-10 relative pt-7 ">
-                <Image
-                  alt="Real estate"
-                  src={"/category_icons/person_cat_icon.svg"}
-                  fill
-                  className=" p-1 rounded object-cover"
-                />
-              </div>
-              <p>mine</p>
-            </div>
-          </div>
-        </div>
-
-        <div className="p-6 w-full bg-white grid grid-cols-12">
+        <div className="p-6 w-full bg-white grid grid-cols-12 text-[14px]">
           <div className="col-span-9 flex gap-2">
             <p>Rental apartments {">"}</p>
             <p className="font-bold">
@@ -420,19 +404,24 @@ const ShopProductDisplayDesktop = () => {
         {/**Side bar */}
 
         <div className="grid grid-cols-12 h-full mb-10">
-          <section className="bg-transparent   p-3 overflow-y-auto    col-span-3 ">
-            <CarsCatSectionBar />
+          <section className="bg-transparent   p-3 overflow-y-auto    col-span-2 ">
+
+            {
+             categorySectionToDisplay(param.get("title") as string)
+            }
+           
           </section>
 
           <section className="bg-transparent   p-3   overflow-y-auto  col-span-8 ">
             {moreData.length > 0 &&
-              moreData.map((data, index) => (
+              moreData.map((data:{ urls: { regular: string } }, index: number) => (
                 <div
+                onClick={handleNavToProductOverview}
                   key={index}
-                  className="shadow-f-cardM bg-white fh-350 w-full rounded mb-5 p-6 flex"
+                  className="bg-white fh-350 w-full rounded-2xl mb-5 p-6 flex"
                 >
                   <div className="relative fh-300 w-[40%]">
-                    <Image alt="vibe" fill src={`${data.urls.regular}`} />
+                    <Image alt="vibe" fill src={`${data.urls.regular}`} className="rounded" />
                   </div>
 
                   <div className="ms-5">
@@ -446,8 +435,8 @@ const ShopProductDisplayDesktop = () => {
                       </p>
 
                       <p className="text-sm font-extralight">
-                        The renovation work on the "Weitblick" project is
-                        currently in full swing. Since October 1st, 2025
+                        {`The renovation work on the "Weitblick" project is
+                        currently in full swing. Since October 1st, 2025`}
                       </p>
 
                       <p className="mt-5">64 m² · 3 Zi.</p>
@@ -467,4 +456,19 @@ const ShopProductDisplayDesktop = () => {
   );
 };
 
+const  categorySectionToDisplay = (cat:string) =>{
+ 
+    switch(cat.toLowerCase().trim()){
+                
+                case "Car, Bike".toLowerCase().trim():{ return <CarsCatSectionBar />
+                break
+                }
+                case "property".toLowerCase().trim(): {
+                return <PropertyCatSectionBar />
+                 break
+                }
+                default : return <HouseCatSectionBar />
+              }
+}
+ 
 export default ShopProductDisplayDesktop;

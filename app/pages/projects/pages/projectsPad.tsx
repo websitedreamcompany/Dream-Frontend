@@ -217,8 +217,8 @@ const ProjectsIpad = () => {
               <div className="relative w-full h-[calc(140*var(--spacing-fw))] mt-4 mb-5 embla__viewport ">
                 <Image
                   src={
-                    projectData?.data.length > 0
-                      ? ` ${projectData?.data[6]?.urls?.regular}`
+                   ( projectData?.data as []).length > 0
+                      ? ` ${(projectData?.data[6] as { urls: { regular: string } })?.urls?.regular}`
                       : "/"
                   }
                   alt="project_menu"
@@ -250,8 +250,8 @@ const ProjectsIpad = () => {
                       className="relative rounded-2xl h-[calc(130*var(--spacing-fh))]  col-span-1 "
                     >
                       <Image
-                        src={item?.urls.regular}
-                        alt={item.alt_description || "project_menu"}
+                        src={(item as { urls: { regular: string } }).urls.regular}
+                        alt={(item as { alt_description: string }).alt_description || "project_menu"}
                         fill
                         sizes="100%"
                         className="object-cover   rounded-2xl "

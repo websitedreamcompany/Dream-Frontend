@@ -4,11 +4,13 @@ import Image from "next/image";
 import { Inter, Itim, Aclonica } from "next/font/google";
 import Footer from "../component/Footer";
 import { useMotionValueEvent, useScroll } from "framer-motion";
-import React from "react";
+import React, { useCallback } from "react";
 const itim = Itim({ subsets: ["latin"], weight: "400" });
 const aclonica = Aclonica({ subsets: ["latin"], weight: "400" });
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import useDreamTradingStore from "@/store/store";
 
 const inter = Inter({
   display: "swap",
@@ -21,11 +23,15 @@ const interLight = Inter({
 });
 
 const Desktop = () => {
+  const {userData} = useDreamTradingStore((state) => state)
+  
   const containerRef = React.useRef<HTMLDivElement>(null);
 
   const { scrollY } = useScroll({ container: containerRef });
 
   const [hidden, setHidden] = React.useState(false);
+
+  const router = useRouter()
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     const previous = scrollY.getPrevious() ?? 0;
@@ -37,13 +43,27 @@ const Desktop = () => {
     }
   });
 
+  const handleNavToApplication = useCallback(()=>{
+   router.push('/pages/applications' as never)
+  },[router])
+
+  const handleNavToProjects = useCallback(()=>{
+   router.push('/pages/projects')
+  },[router])
+
+  const handleNavToShops = useCallback(()=>{
+   router.push('/pages/shop')
+  },[router])
+
+  const handleNavToAccountScreen = useCallback(() => {
+    router.push('/pages/account')
+  },[router])
+
   return (
     <div className="w-screen h-screen overflow-hidden">
       {/**Top nav bar */}
       <nav
-        className={`${inter.className} text-fh-8 w-screen border-white border-b fh-95  shadow-f-bottom flex flex-row place-items-center 
-                   
-                pe-5  `}
+        className={`${inter.className} text-fh-8 w-screen fh-110  shadow-f-bottom flex flex-row place-items-center pe-5  `}
       >
         <div className="relative w-[calc(30*var(--spacing-fw))] h-[calc(30*var(--spacing-fw))] ms-fw-16 ">
           <Image
@@ -55,25 +75,24 @@ const Desktop = () => {
         </div>
 
         <div className="w-screen justify-end gap-5    flex">
-          <a href="/*" className="text-white p-1.5">
+          <Link href="/" className="text-white p-1.5  underline decoration-2 underline-offset-10 decoration-[#951636]">
             Home
-          </a>
+          </Link>
 
           <Link href="/pages/applications" className="text-white p-1.5">
             Applications
           </Link>
-
-          <a href="/pages/projects" className="text-white p-1.5">
+          <Link href="/pages/projects" className="text-white p-1.5">
             Projects
-          </a>
+          </Link>
 
-          <a href="/pages/shop" className="text-white  p-1.5">
+          <Link href="/pages/shop" className="text-white  p-1.5">
             Shops
-          </a>
+          </Link>
 
-          <button className="text-white bg-[#800020] w-20 rounded-2xl p-1.5">
+      {!userData ?    <button onClick={handleNavToAccountScreen} className="text-white bg-[#800020] w-20 rounded-2xl p-1.5">
             Login
-          </button>
+          </button>:null}
         </div>
       </nav>
 
@@ -112,15 +131,17 @@ const Desktop = () => {
               Building Digital Inovation & Modern Control
             </motion.h1>
 
-            <div className="flex mt-fh-20 gap-10 ">
+            <div className="flex mt-fh-10 gap-10 ">
               <button
-                className={`${aclonica.className} text-fw-6 font-extrabold bg-btn-bg-red fw-80 fh-52 ms-fw-20 rounded-2xl text-white 1`}
+              onClick={handleNavToProjects}
+                className={`${aclonica.className} text-[14px] font-extrabold bg-btn-bg-red fw-80 fh-52 ms-fw-20 rounded-2xl text-white 1`}
               >
                 Explore Project
               </button>
 
               <button
-                className={`${aclonica.className} text-fw-6 font-extrabold bg-btn-bg-red fw-40 fh-52 rounded-2xl text-white  pt-1`}
+              onClick={handleNavToShops}
+                className={`${aclonica.className} text-[12px] font-extrabold bg-btn-bg-red fw-40 fh-52 rounded-2xl text-white  pt-1`}
               >
                 Visit Shop
               </button>
@@ -146,8 +167,10 @@ const Desktop = () => {
           </motion.div>
         </div>
 
-        <div className="relative w-screen grid grid-cols-3    justify-center place-items-center mt-fh-270">
+        <div className="relative w-screen grid grid-cols-3    justify-center place-items-center mt-fh-270" >
+        
           <motion.div
+          onClick={handleNavToApplication}
             initial={{
               borderWidth: 0,
             }}
@@ -155,7 +178,7 @@ const Desktop = () => {
               borderWidth: "4px",
               borderColor: "#391452",
             }}
-            className="fh-250  fw-120 bg-[#D3D3D3]  rounded-2xl justify-center items-center flex flex-col  text-center"
+            className="fh-250  fw-120 bg-[#D3D3D3]  rounded-2xl justify-center items-center flex flex-col  text-center p-5"
           >
             <div className="relative w-screen h-[calc(40*var(--spacing-fw))]  ">
               <Image
@@ -167,15 +190,16 @@ const Desktop = () => {
               />
             </div>
 
-            <p className={`${itim.className} font-extrabold text-[18px]`}>
+            <p className={`${itim.className} font-extrabold text-[24px]`}>
               App development
             </p>
-            <p className={`${inter.className} text-fw-6`}>
+            <p className={`${inter.className} font-light text-[14px]`}>
               App development dhdhhd kddkd dhhd dkkdk
             </p>
           </motion.div>
 
           <motion.div
+          onClick={handleNavToProjects}
             initial={{
               borderWidth: 0,
             }}
@@ -183,7 +207,7 @@ const Desktop = () => {
               borderWidth: "4px",
               borderColor: "#391452",
             }}
-            className="fh-250   fw-120   bg-[#D3D3D3] rounded-2xl justify-center items-center flex flex-col  text-center"
+            className="fh-250   fw-120   bg-[#D3D3D3] rounded-2xl justify-center items-center flex flex-col  text-center p-5"
           >
             <div className="relative w-screen h-[calc(40*var(--spacing-fw))]  ">
               <Image
@@ -195,15 +219,16 @@ const Desktop = () => {
               />
             </div>
 
-            <p className={`${itim.className} font-extrabold text-[18px]`}>
+            <p className={`${itim.className} font-extrabold text-[24px]`}>
               Construction & Contracting
             </p>
-            <p className={`${inter.className} text-fw-6`}>
+            <p className={`${inter.className} text-[14px]`}>
               App development dhdhhd kddkd dhhd dkkdk
             </p>
           </motion.div>
 
           <motion.div
+           onClick={handleNavToShops}
             initial={{
               borderWidth: 0,
             }}
@@ -211,7 +236,7 @@ const Desktop = () => {
               borderWidth: "4px",
               borderColor: "#391452",
             }}
-            className="fh-250   fw-120  bg-[#D3D3D3] rounded-2xl justify-center items-center flex flex-col  text-center"
+            className="fh-250   fw-120  bg-[#D3D3D3] rounded-2xl justify-center items-center flex flex-col  text-center p-5"
           >
             <div className="relative w-screen h-[calc(40*var(--spacing-fw))]  ">
               <Image
@@ -223,18 +248,19 @@ const Desktop = () => {
               />
             </div>
 
-            <p className={`${itim.className} font-extrabold text-[18px]`}>
+            <p className={`${itim.className} font-extrabold text-[24px]`}>
               Online Store
             </p>
-            <p className={`${inter.className} text-fw-6`}>
+            <p className={`${inter.className} text-[14px]`}>
               App development dhdhhd kddkd dhhd dkkdk
             </p>
           </motion.div>
         </div>
 
-        <div className="h-0.5 w-full bg-white mt-fh-50" />
+        <div className="h-0.5 w-full bg-white mt-fh-50"  />
 
         <motion.div
+
           initial={{ opacity: 0, transform: "translateY(100px)" }}
           whileInView={{ opacity: 1, transform: "translateY(0)" }}
           transition={{ duration: 0.5, delay: 0.2 }}
@@ -275,7 +301,7 @@ const Desktop = () => {
                       style={{ scrollbarWidth: "none" }}
                     >
                       <p
-                        className={`${inter.className}  text-fw-6 mt-fh-20 text-white`}
+                        className={`${inter.className}  text-[14px] mt-fh-20 text-white`}
                       >
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                         Donec efficitur, nunc ut laoreet venenatis, nisl nunc
@@ -321,7 +347,7 @@ const Desktop = () => {
                       style={{ scrollbarWidth: "none" }}
                     >
                       <p
-                        className={`${inter.className}  text-fw-6 mt-fh-20 text-white`}
+                        className={`${inter.className}  text-[14px] mt-fh-20 text-white`}
                       >
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                         Donec efficitur, nunc ut laoreet venenatis, nisl nunc
@@ -367,7 +393,7 @@ const Desktop = () => {
                       style={{ scrollbarWidth: "none" }}
                     >
                       <p
-                        className={`${inter.className}  text-fw-6 mt-fh-20 text-white`}
+                        className={`${inter.className}  text-[14px] mt-fh-20 text-white`}
                       >
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                         Donec efficitur, nunc ut laoreet venenatis, nisl nunc
@@ -396,7 +422,7 @@ const Desktop = () => {
             <div className="fh-200 justify-center place-items-center pt-10 ">
               <p className={`${itim.className} text-white text-fw-16`}>5000+</p>
               <p
-                className={`${interLight.className} text-white text-fw-8 font-extralight`}
+                className={`${interLight.className} text-white text-[24px] font-extralight`}
               >
                 Project integrated
               </p>

@@ -319,7 +319,7 @@ const ShopMobile = () => {
         <motion.div
           className={` ${!toggleNavBar && "hidden"} bg-[rgba(44,33,33,0.95)] absolute text-white  right-0 top-0 bottom-[0%] z-100 fw-300 p-4`}
         >
-          <button title="" onClick={handleCloseNavBar}>
+          <button className="text-2xl font-bold" onClick={handleCloseNavBar}>
             x
           </button> 
           <p className="mt-3 font-bold" onClick={hangleToggleCategory}>Category </p>

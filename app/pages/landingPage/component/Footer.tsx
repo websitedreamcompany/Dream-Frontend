@@ -81,7 +81,7 @@ const MobileMode = () => {
 
 const DesktopMode = () => {
   return (
-    <div className=" w-full fh-750  bg-[#4A4A4A]   border-t-2 border-white pt-5 relative ">
+    <div className=" w-full fh-680  bg-[#4A4A4A]   border-t-2 border-white pt-5 relative ">
       <div className="grid grid-cols-2 p-2">
         <div className="ms-fw-20">
           <div className="relative w-[calc(42*var(--spacing-fw))] h-[calc(42*var(--spacing-fw))]  ">
@@ -104,12 +104,12 @@ const DesktopMode = () => {
         <div className={`${inter.className}   p-2 text-white`}>
           <p>Quick links</p>
 
-          <div className="grid grid-cols-3   mt-10">
-            <div className="w-[50%]   justify-center place-content-center flex flex-col gap-[2%] ps-5 ">
+          <div className="grid grid-cols-3   mt-10 text-[14px]">
+            <div className="w-[50%]   justify-center place-content-center flex flex-col gap-[2%] ps-5 text-[14px]">
               {Array(9)
                 .fill(0)
                 .map((_, index) => (
-                  <a href="/*" className="text-white text-fw-5" key={index}>
+                  <a href="/*" className="text-white text-[14px]" key={index}>
                     Quick links
                   </a>
                 ))}
@@ -119,7 +119,7 @@ const DesktopMode = () => {
               {Array(9)
                 .fill(0)
                 .map((_, index) => (
-                  <a href="/*" className="text-white text-fw-5" key={index}>
+                  <a href="/*" className="text-white " key={index}>
                     Quick links
                   </a>
                 ))}
@@ -129,7 +129,7 @@ const DesktopMode = () => {
               {Array(9)
                 .fill(0)
                 .map((_, index) => (
-                  <a href="/*" className="text-white text-fw-5" key={index}>
+                  <a href="/*" className="text-white " key={index}>
                     Quick links
                   </a>
                 ))}

@@ -7,6 +7,9 @@ import Link from "next/link";
 import { useState, useCallback } from "react";
 import Footer from "../../landingPage/component/Footer";
 import {LoaderIcon} from 'lucide-react'
+import { useAccountApi } from "@/api/useAccountApi";
+import useDreamTradingStore from "@/store/store";
+import { useRouter } from "next/navigation";
 
 const inter = Inter({
   display: "swap",
@@ -19,9 +22,23 @@ const itim = Itim({
 });
 
 const AccountMobile = () => {
-
+      const  { setUSerAccountData,userData} = useDreamTradingStore(state=>state)
+     const [adPernalization,setupAdPersonalization] = useState('' as '' | 'Private' | 'Commercial')
       const [dropDownCat, setDropDownCat] = useState(false);
       const [toggleRegOrLoginAccount,setToggleRegOrLoginAccount] = useState(false)
+
+       const {createAccount, loginAccount} = useAccountApi()
+       const [error,setError] = useState(false)
+       const [loading,setLoading] = useState(false)
+       const [errorMessage,setErrorMessage] = useState("")
+         const [crateAccountData, setCreateAccountData] = useState({
+        email:"",
+        password:"",
+        adClassification:'Commercial' as  'Private' | 'Commercial',
+        subscribeToNewsLetter:false
+
+       })
+         const  router = useRouter()
 
  const handleCategoryDropDownMenuFired = useCallback(() => {
     setDropDownCat(!dropDownCat);
@@ -36,6 +53,93 @@ const AccountMobile = () => {
     setToggleRegOrLoginAccount(true)
   },[])
 
+
+  
+  const handleEmailEntered = useCallback((e:React.ChangeEvent<HTMLInputElement>)=>{
+     if(error) setError(false)
+    setCreateAccountData((prev)=>({
+        ...prev,
+        email:e.target.value
+    }))
+},[error])
+
+const handlePasswordEntered = useCallback((e:React.ChangeEvent<HTMLInputElement>)=>{
+    if(error) setError(false)
+    setCreateAccountData((prev)=>({
+        ...prev,
+        password:e.target.value
+    }))
+},[error])
+
+
+
+
+  const hanldeAdPersonalization = useCallback((type:''|'Private'|'Commercial')=>{
+    setupAdPersonalization(type)
+    setCreateAccountData({...crateAccountData,adClassification:type as 'Private'|'Commercial'})
+  },[crateAccountData])
+
+  const handleNewsletterSubscription = useCallback(()=>{
+ setCreateAccountData({...crateAccountData,subscribeToNewsLetter:!crateAccountData.subscribeToNewsLetter})
+  },[crateAccountData])
+
+
+  const handleCreateAccount = useCallback( async()=>{
+    setLoading(true)
+ setErrorMessage("")
+    try{
+       
+
+    const result = await createAccount(crateAccountData.email, crateAccountData.password, crateAccountData.adClassification, crateAccountData.subscribeToNewsLetter)
+     
+    if(!result.successful){
+      
+        setError(true)
+        setErrorMessage(result.error? result.error: result.message|| "Failed to create account. Please check your input and try again.")
+         setLoading(false)
+        
+         return
+     }
+        
+   setLoading(false)
+      setUSerAccountData(result.data)
+      router.push('/')
+       
+    } catch(error:unknown){
+        setError(true)
+        setErrorMessage("Failed to create account. Please check your input and try again.".concat((error as Error).message))
+        setLoading(false)
+    }
+  
+
+},[crateAccountData,createAccount,setUSerAccountData,router])
+
+const  handleLoginAccount = useCallback(async()=>{
+
+     setLoading(true)
+ setErrorMessage("")
+    try {
+        const  result  = await  loginAccount(crateAccountData.email,crateAccountData.password)
+         if(!result.successful){
+      
+        setError(true)
+        setErrorMessage(result.error? result.error: result.message|| "Failed to create account. Please check your input and try again.")
+         setLoading(false)
+        
+         return
+     }
+        
+     setLoading(false)
+      setUSerAccountData(result.data)
+      router.push('/')
+        
+    } catch (error) {
+         setError(true)
+        setErrorMessage("Failed to create account. Please check your input and try again.".concat((error as Error).message))
+        setLoading(false) 
+    }
+
+},[loginAccount,crateAccountData,setUSerAccountData,router])
   
 
     return <div className={`${itim.className} bg-white h-dvh overflow-hidden`}>
@@ -144,12 +248,14 @@ const AccountMobile = () => {
 
           <div className=" p-8 gap-8 flex flex-col">
             <input
+            onChange={handleEmailEntered}
               type="email"
               className="border w-full p-1 rounded"
               placeholder="email"
             />
 
             <input
+            onChange={handlePasswordEntered}
               type="password"
               className="border w-full p-1 rounded"
               placeholder="password"
@@ -164,7 +270,7 @@ const AccountMobile = () => {
           </div>
 
           <div className="ps-5 pe-5 pb-5">
-            <button className="bg-red-700 w-full text-white p-2 rounded-2xl">
+            <button className="bg-red-700 w-full text-white p-2 rounded-2xl" onClick={handleLoginAccount}>
               Login
             </button>
 
@@ -176,7 +282,10 @@ const AccountMobile = () => {
             </p>
           </div>
 
-          <LoaderIcon className="animate-spin place-self-center  " size={40} color="#4c1d60"/>
+           {error && <p className="text-center text-[12px] text-red-500">{errorMessage}</p>}
+      
+      {loading && <LoaderIcon className="animate-spin place-self-center  " size={40} color="#4c1d60"/>
+           }
         </div>
 
 
@@ -208,13 +317,13 @@ const AccountMobile = () => {
             <div className="flex gap-6 mt-5 justify-center place-items-center ">
 
                 <div className="flex gap-2 items-center justify-center border border-[#4A4A4A] p-2 rounded w-30">
-               <input type="checkbox" />
+               <input checked={adPernalization === 'Private'} type="checkbox" onChange={()=>hanldeAdPersonalization('Private')} />
                <p>Private</p>
                </div>
 
                  <div className="flex gap-2 items-center justify-center border-[#4A4A4A] p-2 rounded border w-30">
-               <input type="checkbox" />
-               <p>Public</p>
+               <input checked={adPernalization === 'Commercial'} type="checkbox" onChange={()=>hanldeAdPersonalization('Commercial')} />
+               <p>Commercial</p>
                </div>
 
                 </div>
@@ -222,27 +331,29 @@ const AccountMobile = () => {
 
           <div className=" p-8 gap-8 flex flex-col">
             <input
+            onChange={handleEmailEntered}
               type="email"
               className="border w-full p-1 rounded"
               placeholder="email"
             />
 
             <input
+            onChange={handlePasswordEntered}
               type="password"
               className="border w-full p-1 rounded"
               placeholder="password"
             />
 
         <div className="flex gap-3">
-            <input type="checkbox" className="place-self-start mt-1" />
-            <p>
+            <input type="checkbox" onClick={handleNewsletterSubscription} className="place-self-start mt-1" />
+            <p className="text-[12px]">
                 Yes, I look forward to receiving regular updates via email from the company group - you can unsubscribe at any time.
             </p>
         </div>
           </div>
 
           <div className="ps-5 pe-5 pb-5">
-            <button className="bg-red-700 w-full text-white p-2 rounded-2xl hover:bg-white hover:text-red-700 border border-red-700 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-red-700 focus:ring-opacity-50 active:bg-web-navbar">
+            <button className="bg-red-700 w-full text-white p-2 rounded-2xl hover:bg-white hover:text-red-700 border border-red-700 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-red-700 focus:ring-opacity-50 active:bg-web-navbar" onClick={handleCreateAccount}>
              Register for Free
             </button>
 
@@ -265,7 +376,10 @@ const AccountMobile = () => {
             </p>
           </div>
 
-          <LoaderIcon className="animate-spin place-self-center  " size={40} color="#4c1d60"/>
+            {error && <p className="text-center text-[12px] text-red-500">{errorMessage}</p>}
+      
+      {loading && <LoaderIcon className="animate-spin place-self-center  " size={40} color="#4c1d60"/>
+           }
         </div>
 
 

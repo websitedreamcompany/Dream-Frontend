@@ -233,24 +233,7 @@ const ShopDesktop = () => {
   const [showMoreindex, setShowMoreIndex] = useState(-1);
   const [activeIndex, setActiveIndex] = useState(-1);
 
-  useEffect(() => {
-    window.history.pushState(null, null, window.location.href);
-
-    const handlePopState = (event: PopStateEvent) => {
-      // 2. FORCE the history to push another state immediately.
-      // This "cancels" the back movement by replacing it with a new forward entry.
-      window.history.pushState(null, null, window.location.href);
-
-      // 3. Your Custom Logic Here
-      setProductItemClicked(false);
-    };
-
-    window.addEventListener("popstate", handlePopState);
-
-    return () => {
-      window.removeEventListener("popstate", handlePopState);
-    };
-  }, []);
+ 
 
   const handleShowMore = useCallback(
     (index: number) => {
@@ -269,7 +252,7 @@ const ShopDesktop = () => {
     <div className="h-dvh overflow-hidden">
       {/**Top nav bar */}
       <nav
-        className={`${inter.className} text-fh-8 w-screen  border-b fh-95  shadow-f-bottom flex flex-row place-items-center 
+        className={`${inter.className} text-fh-8 w-screen  border-b fh-110  shadow-f-bottom flex flex-row place-items-center 
                            
                         pe-5  `}
       >
@@ -283,36 +266,36 @@ const ShopDesktop = () => {
         </div>
 
         <div className="w-screen justify-end gap-5    flex">
-          <a href="/*" className="text-white p-1.5">
+          <Link href="/" className="text-white p-1.5">
             Home
-          </a>
+          </Link>
 
           <Link href="/pages/applications" className="text-white p-1.5">
             Applications
           </Link>
 
-          <a href="/pages/projects" className="text-white p-1.5">
+          <Link href="/pages/projects" className="text-white p-1.5">
             Projects
-          </a>
+          </Link>
 
-          <a href="/pages/shop" className="text-white  p-1.5">
+          <Link href="/pages/shop" className="underline decoration-2 underline-offset-10 decoration-[#951636] text-white  p-1.5">
             Shops
-          </a>
+          </Link>
 
-          <button className="text-white bg-[#800020] w-20 rounded-2xl p-1.5">
+          <Link href={'/pages/account'} className="text-center text-white bg-[#800020] w-20 rounded-2xl p-1.5">
             Login
-          </button>
+          </Link>
         </div>
       </nav>
 
       <main className="h-full  overflow-y-scroll relative pb-19">
         <div className="grid grid-cols-12 h-full mb-10">
-          <section className="bg-transparent   p-3   overflow-y-auto  col-span-3 ">
-            <div className="w-full shadow-f-cardM bg-white h-full">
+          <section className="bg-transparent relative   p-3 overflow-y-scroll  col-span-3 ">
+            <div className="w-full rounded  bg-white min:h-200 relative">
               <p className={`${itim.className} p-2 font-bold`}>Category</p>
 
               <div
-                className={`${itim.className} overflow-y-scroll h-[94%]`}
+                className={`${itim.className} overflow-y-scroll h-fit relative`}
                 style={{ scrollbarWidth: "none" }}
               >
                 {sectionDewtails.map((data, index) => (

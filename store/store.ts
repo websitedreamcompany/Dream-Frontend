@@ -3,15 +3,29 @@ import { create } from "zustand";
 type ProjectData = {
   data: unknown[];
 };
+type userProps = {
+   email:string,
+  token:string, 
+}
 
 interface DreamStoreData {
+    userData:userProps | null,
+  setUSerAccountData: (data: userProps | null) => void;
+  
   projectData: ProjectData | null;
   moreData: unknown[];
   setProjectData: (data: ProjectData) => void;
   setMoreData: (data: unknown[]) => void;
 }
 
+
 const useDreamTradingStore = create<DreamStoreData>((set) => ({
+    userData:null,
+  setUSerAccountData: (userData: userProps | null) => {
+    console.log('Setting user account data:',userData)
+    set({ userData});
+  },
+
   projectData: null,
   moreData: [],
   setMoreData: (data: unknown[]) => {
@@ -25,4 +39,6 @@ const useDreamTradingStore = create<DreamStoreData>((set) => ({
   },
 }));
 
-export default useDreamTradingStore;
+
+
+export default useDreamTradingStore

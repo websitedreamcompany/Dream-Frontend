@@ -1,10 +1,12 @@
 import ResponsivePageSwap from "@/utils/ResponsivePage";
 import ShopDesktop from "./pages/ShopDesktop";
 import ShopMobile from "./pages/ShopMobile";
+import { Suspense } from "react";
 
 const ShopsPage = () => {
   return (
-    <div className="bg-[#E8E8E8]">
+    <Suspense fallback={<div>Loading....</div>}>
+      <div className="bg-[#E8E8E8]">
       <ResponsivePageSwap
         mobile={<ShopMobile />}
         desktop={<ShopDesktop />}
@@ -12,6 +14,7 @@ const ShopsPage = () => {
         type="shop"
       />
     </div>
+    </Suspense>
   );
 };
 
