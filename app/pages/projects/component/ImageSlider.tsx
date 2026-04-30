@@ -11,7 +11,11 @@ const ImageSlider = ({
   data,
   onItemSelected,
 }: {
-  data: [];
+  data: [{
+                id: string;
+                alt_description: string;
+                urls: { regular: string };
+              }];
   onItemSelected: (item: unknown) => void;
 }) => {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: false }, [Autoplay()]);
@@ -48,7 +52,7 @@ const ImageSlider = ({
   useEffect(()=>{
     if(data)
    handleOnItemSelected({ img: data.at(0)?.urls?.regular })
-  },[data])
+  },[])
 
   const handleOnItemSelected = (item: unknown) => {
     if (!emblaApi) return;

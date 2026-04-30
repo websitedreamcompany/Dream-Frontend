@@ -233,7 +233,7 @@ const ProjectsDesktop = () => {
 
               {globalDataState?.data && globalDataState.data?.length > 0 && (
                 <ImageSlider
-                  data={globalDataState.data as []}
+                  data={globalDataState.data as [{ id: string; alt_description: string; urls: { regular: string; }; }]}
                   onItemSelected={(item) => {
                     setSelectedDetails({
                       img: (item as { img: string }).img,
