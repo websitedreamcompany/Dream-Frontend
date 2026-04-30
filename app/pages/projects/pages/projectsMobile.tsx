@@ -142,7 +142,7 @@ const ProjectsMobile = () => {
 
             {projectData?.data && projectData.data.length > 0 && (
               <ImageSlider
-                data={projectData.data as []}
+                data={projectData.data as [{ id: string; alt_description: string; urls: { regular: string; }; }]}
                 onItemSelected={(item) => {
                   setSelectedDetails({
                     img: (item as { img: string }).img,

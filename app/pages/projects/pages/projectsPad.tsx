@@ -217,7 +217,11 @@ const ProjectsIpad = () => {
               <div className="relative w-full h-[calc(140*var(--spacing-fw))] mt-4 mb-5 embla__viewport ">
                 <Image
                   src={
-                   ( projectData?.data as []).length > 0
+                   ( projectData?.data as [{
+    img: string;
+    desc: string;
+  }
+]).length > 0
                       ? ` ${(projectData?.data[6] as { urls: { regular: string } })?.urls?.regular}`
                       : "/"
                   }
@@ -230,7 +234,7 @@ const ProjectsIpad = () => {
 
               {projectData?.data && projectData.data?.length > 0 && (
                 <ImageSlider
-                  data={projectData.data as []}
+                  data={projectData.data as [{ id: string; alt_description: string; urls: { regular: string; }; }]}
                   onItemSelected={(item) => {
                     handleScroll();
                     setSelectedDetails({

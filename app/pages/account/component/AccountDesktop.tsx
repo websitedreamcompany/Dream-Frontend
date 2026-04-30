@@ -286,7 +286,7 @@ const  handleLoginAccount = useCallback(async()=>{
             </button>
 
             <p className="text-sm m-2 pt-2">
-              Don't have account yet?{" "}
+              {` Don't have account yet?`} {" "}
               <button onClick={handleRegisterClicked} className="text-red-600 hover:underline">
                 Register
               </button>
