@@ -96,40 +96,40 @@ const ProductOverviewContent = () =>{
            
             <div className="bg-web-navbar mt-1 fh-100 w-full flex gap-8  place-items-center text-white flex-cols relative justify-center ">
                       
-                       <div className="ms-10 bg-white w-[46%] h-[50%] rounded-2xl flex place-item-center">
-             
-                   
-                         <div className="text-black place-self-center ms-2 flex justify-center place-items-center gap-3  ">
-                            <IoMdSearch className="mt-1" color="black" size={16} />
-                           <input  placeholder="what are you looking for ?" className="text-[12px] mt-1 outline-none" />
-                         </div>
-             
-                         <div className="h-[80%] bg-[#B2AEAE] w-[0.3%] ms-8 mt-1"></div>
-             
-                         <div className="text-black place-self-center place-item-center justify-center ms-5 flex gap-5 ">
-                           <p className="text-[12px] ">All categories</p>
-                            <FaAngleDown className="mt-0.5" size={15} color="#B2AEAE " />
-                           
-                         </div>
-             
-                         <div className="h-[80%] bg-[#B2AEAE] w-[0.3%] ms-8 mt-1"></div>
-             
-                         <div className="text-black place-self-center ms-5 ">
-                           <p className="text-[12px]">Deutshland</p>
-                         </div>
-             
-                         <div className="h-[80%] bg-[#B2AEAE] w-[0.3%] ms-8 mt-1"></div>
-             
-                         <div className="text-black place-self-center ms-5 flex gap-5 ">
-                           <p className="text-[12px] mt-1">Entire town </p>
-             
-                             <FaAngleDown className="mt-1.5" size={15} color="#B2AEAE " /> 
-             
-                           <p className="text-[12px] bg-web-navbar p-1 rounded text-white  ">
-                             Find
-                           </p>
-                         </div>
-                       </div>
+                     <div className="ms-10 bg-white w-[46%] h-[50%] rounded-4xl flex place-item-center">
+
+      
+            <div className="text-black place-self-center ps-5 flex justify-center place-items-center gap-3 hover:border-1 hover:border-[#391452] hover:rounded-l-2xl h-full border-r-1  border-r-[#B2AEAE] border-r-2 pe-3 cursor-pointer">
+               <IoMdSearch className="mt-1 " color="black" size={14} />
+              <input  placeholder="what are you looking....." className="text-[12px] mt-1 outline-none " />
+            </div>
+
+
+
+            <div className="text-black place-self-center place-item-center justify-center  flex gap-5 ps-5 place-items-center gap-3 hover:border-1 hover:border-[#391452]  h-full border-r-0  border-r-[#B2AEAE] border-r-2 pe-5 h-full ">
+              <p className="text-[12px] ">All categories</p>
+               <FaAngleDown className="mt-0.5" size={15} color="#B2AEAE " />
+              
+            </div>
+
+           
+
+            <div className="text-black place-self-center flex ps-10 place-items-center gap-3 hover:border-1 hover:border-[#391452]  h-full border-r-1  border-r-[#B2AEAE] border-r-2 pe-8  ">
+              <p className="text-[12px]">Deutshland</p>
+            </div>
+
+          
+
+            <div className="text-black place-self-center ps-5 flex gap-5 place-items-center gap-3 hover:border-1 hover:border-[#391452] hover:border-r-0 h-full    ">
+              <p className="text-[12px] mt-1">Entire town </p>
+
+                <FaAngleDown className="mt-1.5" size={15} color="#B2AEAE " /> 
+
+              <p className="text-[12px] ps-5 pe-5 bg-web-navbar p-[3.8px] rounded-2xl text-white text-center ">
+                Find
+              </p>
+            </div>
+          </div>
              
                        <div className="flex gap-6">
                          <div className="justify-center place-items-center flex flex-col">

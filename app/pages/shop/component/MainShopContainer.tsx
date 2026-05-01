@@ -1,13 +1,18 @@
 import { Itim } from "next/font/google";
 import Image from "next/image";
 import { useCallback, useEffect, useState } from "react";
-import { FaRegHeart } from "react-icons/fa";
+import { FaBabyCarriage, FaRegHeart } from "react-icons/fa";
 import { IoMdSearch } from "react-icons/io";
 import { FaAngleDown } from "react-icons/fa";
-import { MdAddChart } from "react-icons/md";
-import { IoPerson } from "react-icons/io5";
+import { MdAddChart, MdOutlinePets, MdOutlinePlayLesson, MdOutlineSportsVolleyball } from "react-icons/md";
+import { IoCarOutline, IoPerson } from "react-icons/io5";
+import { TbHomeStar, TbMovie } from "react-icons/tb";
 import { MdOutlineChair } from "react-icons/md";
 import DropDownMenuForCategory from "./Category/DropDownMenuForCategory";
+import { PiBagBold, PiGraduationCapBold, PiPlugsDuotone, PiTShirtBold } from "react-icons/pi";
+import { BsGift } from "react-icons/bs";
+import { GiShoppingCart, GiLightningSpanner, GiHerbsBundle } from "react-icons/gi";
+import { LiaHandsHelpingSolid } from "react-icons/lia";
 
 const itim = Itim({ subsets: ["latin"], weight: "400" });
 
@@ -43,66 +48,80 @@ const ForDeskTop = ({
   const category = [
     {
       title: "Real Estate",
-      icon:'/category_icons/home_garden_icon.svg'
+      icon:<TbHomeStar className=" bg-[#dbcfe4] p-1 rounded" size={35}  color="#391452"/>,
+  
     },
     {
       title: "Fashion & Beauty",
-      icon: "/category_icons/beauty_fashion_cat.svg",
+      icon:<PiTShirtBold className=" bg-[#dbcfe4] p-1 rounded" size={35}  color="#391452" />,
+      
     },
     {
       title: "Cars,Bikes & Boats",
-      icon: "/category_icons/cars_cat_icon.svg",
+      icon:<IoCarOutline className=" bg-[#dbcfe4] p-[1.0px] rounded" size={35}  color="#391452" />,
+    
     },
     {
       title: "Home & Garden",
-      icon: "/category_icons/home_garden_icon.svg",
+      icon:  <MdOutlineChair className=" bg-[#dbcfe4] p-1 rounded" size={35}  color="#391452"/>
     },
     {
       title: "Jobs",
-      icon: "/category_icons/jobs_icon.svg",
+      icon:<PiBagBold className=" bg-[#dbcfe4] p-1 rounded" size={35}  color="#391452" />,
+    
     },
     {
       title: "Electronics",
-      icon: "/category_icons/electronics_cat_icon.svg",
+      icon:<PiPlugsDuotone className=" bg-[#dbcfe4] p-1 rounded" size={35}  color="#391452" />,
+    
     },
     {
       title: "Family,Child & Baby",
-      icon: "/category_icons/family_child_cat_icon.svg",
+      icon:<FaBabyCarriage  className=" bg-[#dbcfe4] p-[5.2px] rounded" size={35}  color="#391452" />,
+   
     },
     {
       title: "Pets",
-      icon: "/category_icons/pet_cat_icon.svg",
+      icon:<MdOutlinePets className=" bg-[#dbcfe4] p-1 rounded" size={35}  color="#391452" />,
+     
     },
     {
       title: "Leisure & Hobby",
-      icon: "/category_icons/leisure_cat_icon.svg",
+      icon:<MdOutlineSportsVolleyball className=" bg-[#dbcfe4] p-[1.8px]  rounded" size={35}  color="#391452" />,
+      
     },
     {
       title: "Music,Movies & Books",
-      icon: "/category_icons/film_cat_icon.svg",
+      icon:<TbMovie className=" bg-[#dbcfe4] p-[1.9px]  rounded" size={35}  color="#391452" />,
+     
     },
     {
       title: "Admission Tickets & Passes",
-      icon: "/category_icons/addmission_cat_icon.svg",
+      icon:<PiGraduationCapBold className=" bg-[#dbcfe4] p-[3.6px]  rounded" size={35}  color="#391452" />,
+ 
     },
     {
       title: "Services",
-      icon: "/category_icons/seervice_cat_icon.svg",
+      icon:<GiLightningSpanner className=" bg-[#dbcfe4] p-1 rounded" size={35}  color="#391452" />,
+  
     },
     {
       title: "Give Away & Swap",
-      icon: "/category_icons/gift_cat_icon.svg",
+      icon:<BsGift  className=" bg-[#dbcfe4] p-[5.2px]  rounded" size={35}  color="#391452"/>,
+      
     },
     {
       title: "Lessons & Courses",
-      icon: "/category_icons/lesson_cat_icon.svg",
+      icon:<MdOutlinePlayLesson className=" bg-[#dbcfe4] p-1 rounded" size={35}  color="#391452"/>,
     },
     {
       title: "Dried herbs & oils",
-      icon: "/category_icons/herbs_cat_icon.svg",
+      icon:<GiHerbsBundle  className=" bg-[#dbcfe4] p-1 rounded" size={35}  color="#391452" />,
+    
     },
     {
       title: "Neighborhood Help",
+      icon:<LiaHandsHelpingSolid  className=" bg-[#dbcfe4] p-1 rounded" size={35}  color="#391452"/>
     },
   ];
 
@@ -138,36 +157,36 @@ const ForDeskTop = ({
 
         <div className="bg-web-navbar fh-100 w-full flex gap-8  place-items-center text-white flex-cols relative justify-center ">
          
-          <div className="ms-10 bg-white w-[63%] h-[50%] rounded-2xl flex place-item-center">
+          <div className="ms-10 bg-white w-[63%] h-[50%] rounded-4xl flex place-item-center">
 
       
-            <div className="text-black place-self-center ms-2 flex justify-center place-items-center gap-3  ">
-               <IoMdSearch className="mt-1" color="black" size={16} />
-              <input  placeholder="what are you looking for ?" className="text-[12px] mt-1 outline-none" />
+            <div className="text-black place-self-center ps-5 flex justify-center place-items-center gap-3 hover:border-1 hover:border-[#391452] hover:rounded-l-2xl h-full border-r-1  border-r-[#B2AEAE] border-r-2 pe-3 cursor-pointer">
+               <IoMdSearch className="mt-1 " color="black" size={14} />
+              <input  placeholder="what are you looking....." className="text-[12px] mt-1 outline-none " />
             </div>
 
-            <div className="h-[80%] bg-[#B2AEAE] w-[0.3%] ms-8 mt-1"></div>
 
-            <div className="text-black place-self-center place-item-center justify-center ms-5 flex gap-5 ">
+
+            <div className="text-black place-self-center place-item-center justify-center  flex gap-5 ps-5 place-items-center gap-3 hover:border-1 hover:border-[#391452]  h-full border-r-0  border-r-[#B2AEAE] border-r-2 pe-5 h-full ">
               <p className="text-[12px] ">All categories</p>
-               <FaAngleDown className="mt-0.5" size={15} color="#B2AEAE " />
+               <FaAngleDown className="mt-0.5" size={15} color="#B2AEAE " onClick={handleCategoryDropDownMenuFired} />
               
             </div>
 
-            <div className="h-[80%] bg-[#B2AEAE] w-[0.3%] ms-8 mt-1"></div>
+           
 
-            <div className="text-black place-self-center ms-5 ">
+            <div className="text-black place-self-center flex ps-10 place-items-center gap-3 hover:border-1 hover:border-[#391452]  h-full border-r-1  border-r-[#B2AEAE] border-r-2 pe-8  ">
               <p className="text-[12px]">Deutshland</p>
             </div>
 
-            <div className="h-[80%] bg-[#B2AEAE] w-[0.3%] ms-8 mt-1"></div>
+          
 
-            <div className="text-black place-self-center ms-5 flex gap-5 ">
+            <div className="text-black place-self-center ps-5 flex gap-5 place-items-center gap-3 hover:border-1 hover:border-[#391452] hover:border-r-0 h-full    ">
               <p className="text-[12px] mt-1">Entire town </p>
 
                 <FaAngleDown className="mt-1.5" size={15} color="#B2AEAE " /> 
 
-              <p className="text-[12px] bg-web-navbar p-1 rounded text-white  ">
+              <p className="text-[12px] ps-5 pe-5 bg-web-navbar p-[3.8px] rounded-2xl text-white text-center ">
                 Find
               </p>
             </div>
@@ -210,20 +229,10 @@ const ForDeskTop = ({
                
 
                 <div className="justify-center place-items-center w-[90%]">
-                   {index===3 ? <MdOutlineChair className=" bg-[#dbcfe4] p-1 rounded" size={30}  color="#391452"/>:
-                  <div className="relative fh-35 fw-10">
-                    <Image
-                      alt="Real estate"
-                      src={
-                        item.icon
-                          ? item.icon
-                          : "/category_icons/home_cat_icon.svg"
-                      }
-                      fill
-                      className="bg-[#dbcfe4] p-1 rounded"
-                    />
-                  </div>
-}
+                  
+
+                  {item.icon}
+
                   <p className="text-[10px] ">{item.title}</p>
                 </div>
               </div>
@@ -260,8 +269,8 @@ const ForDeskTop = ({
                   />
                 </div>
 
-                <div className="flex flex-col gap-1">
-                  <p className="text-[12px]">Solfar Chair</p>
+                <div className="flex flex-col gap-[0.4px]">
+                  <p className="text-[12px]">Solfar Chair ffg gghh </p>
                   <p className="text-[12px]">Solfar Chair</p>
                   <p className="text-[12px]">Solfar Chair</p>
                 </div>
