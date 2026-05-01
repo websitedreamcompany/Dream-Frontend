@@ -76,7 +76,8 @@ const ProjectsDesktop = () => {
        */}
 
       <main className="application h-dvh w-full overflow-y-scroll bg-[#D9D9D9]   ">
-      
+        
+        
         <div className="grid   h-dvh bg-[#D9D9D9] grid-cols-6 ">
 
           <section className="bg-transparent   p-5   overflow-y-auto h-dvh col-span-1 ">
