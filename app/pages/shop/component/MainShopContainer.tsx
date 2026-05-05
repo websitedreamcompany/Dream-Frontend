@@ -151,243 +151,109 @@ const ForDeskTop = ({
    })
 
   return (
-    <section className={`${itim.className} md:col-span-9   p-3 overflow-hidden relative `}>
+     <section className={`${itim.className} col-span-12 lg:col-span-9 bg-slate-50 min-h-screen p-4 overflow-x-hidden`}>
       
-      <div className="w-full h-[calc(100dvh-5rem)]  ">
-
-        <div className="bg-web-navbar fh-100 w-full flex gap-8  place-items-center text-white flex-cols relative justify-center ">
-         
-          <div className="ms-10 bg-white w-[63%] h-[50%] rounded-4xl flex place-item-center">
-
-      
-            <div className="text-black place-self-center ps-5 flex justify-center place-items-center gap-3 hover:border-1 hover:border-[#391452] hover:rounded-l-2xl h-full border-r-1  border-r-[#B2AEAE] border-r-2 pe-3 cursor-pointer">
-               <IoMdSearch className="mt-1 " color="black" size={14} />
-              <input  placeholder="what are you looking....." className="text-[12px] mt-1 outline-none " />
-            </div>
-
-
-
-            <div className="text-black place-self-center place-item-center justify-center  flex gap-5 ps-5 place-items-center gap-3 hover:border-1 hover:border-[#391452]  h-full border-r-0  border-r-[#B2AEAE] border-r-2 pe-5 h-full ">
-              <p className="text-[12px] ">All categories</p>
-               <FaAngleDown className="mt-0.5" size={15} color="#B2AEAE " onClick={handleCategoryDropDownMenuFired} />
-              
-            </div>
-
-           
-
-            <div className="text-black place-self-center flex ps-10 place-items-center gap-3 hover:border-1 hover:border-[#391452]  h-full border-r-1  border-r-[#B2AEAE] border-r-2 pe-8  ">
-              <p className="text-[12px]">Deutshland</p>
-            </div>
-
+      {/* 1. COMPOSITE SEARCH BAR AREA */}
+      <div className="bg-[#391452] rounded-[2rem] p-4 md:p-6 mb-6 shadow-xl">
+        <div className="flex flex-col md:flex-row items-center gap-6">
           
-
-            <div className="text-black place-self-center ps-5 flex gap-5 place-items-center gap-3 hover:border-1 hover:border-[#391452] hover:border-r-0 h-full    ">
-              <p className="text-[12px] mt-1">Entire town </p>
-
-                <FaAngleDown className="mt-1.5" size={15} color="#B2AEAE " /> 
-
-              <p className="text-[12px] ps-5 pe-5 bg-web-navbar p-[3.8px] rounded-2xl text-white text-center ">
-                Find
-              </p>
+          {/* Main Search Input Group */}
+          <div className="flex-1 bg-white rounded-full h-12 flex items-center overflow-hidden shadow-inner w-full">
+            <div className="flex-[2] flex items-center px-4 border-r border-slate-200 h-full hover:bg-slate-50 transition-colors">
+              <IoMdSearch className="text-slate-400 shrink-0" size={18} />
+              <input placeholder="Search products..." className="ml-2 w-full text-xs outline-none text-slate-700 bg-transparent" />
             </div>
+
+            <div className="flex-1 hidden md:flex items-center px-4 border-r border-slate-200 h-full hover:bg-slate-50 cursor-pointer" onClick={handleCategoryDropDownMenuFired}>
+              <p className="text-[10px] font-bold uppercase truncate">Categories</p>
+              <FaAngleDown className="ml-auto text-slate-300" size={14} />
+            </div>
+
+            <div className="flex-1 hidden lg:flex items-center px-4 h-full">
+              <p className="text-[10px] font-bold uppercase truncate">Deutschland</p>
+            </div>
+
+            <button className="bg-[#391452] text-white px-6 h-10 rounded-full text-[10px] font-black uppercase tracking-widest mr-1 ml-1 hover:bg-red-600 transition-all">
+              Find
+            </button>
           </div>
 
-          <div className="flex gap-6">
-            <div className="justify-center place-items-center flex flex-col">
-           <MdAddChart color="black" />
-
-
-              <p className="text-[12px]">advertise</p>
+          {/* User Actions */}
+          <div className="flex gap-8 px-2">
+            <div className="flex flex-col items-center group cursor-pointer">
+              <MdAddChart className="text-white group-hover:text-red-400 transition-colors" size={20} />
+              <p className="text-[9px] text-white uppercase font-bold mt-1 tracking-tighter">Advertise</p>
             </div>
-
-            <div
-              className="justify-center place-items-center flex flex-col
-                   "
-            >
-             <IoPerson  color="black" />
-              <p className="text-[12px]">mine</p>
+            <div className="flex flex-col items-center group cursor-pointer">
+              <IoPerson className="text-white group-hover:text-red-400 transition-colors" size={20} />
+              <p className="text-[9px] text-white uppercase font-bold mt-1 tracking-tighter">Mine</p>
             </div>
           </div>
         </div>
+      </div>
 
-        {/** Custom Div for drop down */}
+      {/* 2. DROP DOWN MENU (Conditional) */}
+      {dropDownCat && <div className="absolute z-[60] mt-[-20px] ml-10 shadow-2xl rounded-2xl overflow-hidden animate-in fade-in slide-in-from-top-4">
+        <DropDownMenuForCategory />
+      </div>}
 
-        {dropDownCat ? <DropDownMenuForCategory /> : null}
-
-        {/**Category selection */}
-        <div
-          className="bg-white h-fit fw-295 justify-center  flex  p-1 mt-5 rounded-2xl overflow-y-hidden  overflow-x-scroll relative"
-          style={{ scrollbarWidth: "none" }}
-        >
-          {/**Search Icon details now */}
-          <div className="flex gap-4 fw-290">
-            {category.map((item, index) => (
-              <div
-                key={index}
-                className="min-w-30 mt-3 justify-center place-items-center "
-              >
-               
-
-                <div className="justify-center place-items-center w-[90%]">
-                  
-
-                  {item.icon}
-
-                  <p className="text-[10px] ">{item.title}</p>
-                </div>
+      {/* 3. HORIZONTAL CATEGORY SELECTOR */}
+      <div className="bg-white rounded-2xl p-4 mb-6 shadow-sm border border-slate-200 overflow-x-auto scrollbar-hide">
+        <div className="flex gap-10 min-w-max px-4">
+          {category.map((item, index) => (
+            <div key={index} className="flex flex-col items-center group cursor-pointer">
+              <div className="w-10 h-10 flex items-center justify-center text-[#391452] group-hover:scale-110 transition-transform">
+                {item.icon}
               </div>
-            ))}
-          </div>
+              <p className="text-[9px] font-bold uppercase text-slate-400 group-hover:text-[#391452] transition-colors mt-1">{item.title}</p>
+            </div>
+          ))}
         </div>
+      </div>
 
-  <div className=" h-full relative mt-2 overflow-y-scroll">
-
-
-        {/**Gallery */}
-
-        <div className="h-fit bg-white p-3 mt-2 rounded">
-          <p>Gallery</p>
-
-          <div
-            className="flex overflow-x-scroll"
-            style={{ scrollbarWidth: "none" }}
-          >
-            {data.map((item: { urls: { regular: string } }, index: number) => (
-              <div
-                key={index}
-                className="fw-80 m-3 shadow-f-cardM bg-white rounded-lg p-5 h-fit relative"
-                onClick={() => {
-                  onItemSelected(index);
-                }}
-              >
-                <div className="fw-30 [@media(550px<=width<=1000px)]:fw-60 [@media(550px<=width<=1000px)]:fh-100 fh-80 relative mb-3">
-                  <Image
-                    alt="shop_img"
-                    fill
-                    className="object-cover rounded-lg"
-                    src={ item.urls.regular }
-                  />
-                </div>
-
-                <div className="flex flex-col gap-[0.4px]">
-                  <p className="text-[12px]">Solfar Chair ffg gghh </p>
-                  <p className="text-[12px]">Solfar Chair</p>
-                  <p className="text-[12px]">Solfar Chair</p>
-                </div>
-
-                <div className="flex gap-4 place-items-center">
-                  {/*
-
-                                      <div className="flex  place-items-center ">
-                               <div className="flex gap-2">
-                                                        {Array(5)
-                                                          .fill(0)
-                                                          .map((_, index) => (
-                                                            <div key={index} className="flex gap-2  h-[calc(6*var(--spacing-fw))] w-[calc(6*var(--spacing-fw))] relative">
-                                                              <Image
-                                                                src="/star_icon.png"
-                                                                alt={`App ${index + 1}`}
-                                                                 fill
-                                                                 sizes="auto"
-                                                                className="object-contain "
-                                                              />
-                                                            </div>
-                                                          ))}
-                                                      </div>
-                              
-                                                 
-                               </div>
-                              <p className="text-fh-6 ">Loren sjjsjsjsjj</p>
-                       
-                            </div>
-                         
-
-                         <div className="mt-3 flex justify-between place-items-center">
-
-                          <p>926</p>
-                          
-                          <button className="text-white bg-[#800020] w-30 rounded p-1 mx-[50%]">Purchase </button>
-       */}
-                </div>
-              </div>
-            ))}
-          </div>
+      {/* 4. HORIZONTAL GALLERY */}
+      <div className="bg-white rounded-3xl p-6 mb-6 shadow-sm">
+        <div className="flex items-center justify-between mb-4">
+          <h2 className="text-lg font-bold text-[#391452]">Trending Gallery</h2>
+          <div className="h-0.5 w-12 bg-red-500 rounded-full" />
         </div>
-
-      <div className="[@media(550px<=width<=1000px)]:mt-10  bg-white p-3 mt-6 rounded ">
-          
-       <div
-          className="grid  bg-white  [@media(550px<=width<=1000px)]:grid-cols-4 grid-cols-4  overflow-hidden  min:h-300 mb-150  relative"
-          style={{ scrollbarWidth: "none" }}
-        >
-          {data.map((item: { urls: { regular: string } }, index: number) => (
-            <div
-              key={index}
-              className="fw-65 m-1  rounded-lg p-5 h-fit relative"
-              onClick={() => {
-                onItemSelected(index);
-              }}
-            >
-              <div className="absolute right-10 top-6 z-50 ">
-                <FaRegHeart size={15} />
+        <div className="flex gap-6 overflow-x-auto pb-4 scrollbar-hide snap-x">
+          {data.map((item, index) => (
+            <div key={index} onClick={() => onItemSelected(index)} className="snap-start min-w-[160px] md:min-w-[200px] bg-slate-50 rounded-2xl p-3 border border-slate-100 hover:shadow-xl transition-all cursor-pointer group">
+              <div className="relative aspect-square mb-4 rounded-xl overflow-hidden">
+                <Image fill alt="img" src={(item as { urls?: { regular?: string } })?.urls?.regular || "/"} className="object-cover group-hover:scale-110 transition-transform duration-500" />
               </div>
-
-              <div className="fw-50 fh-130 relative mb-3">
-                <Image
-                  alt="shop_img"
-                  fill
-                  className="object-cover rounded-lg"
-                  src={ item.urls.regular }
-                />
-              </div>
-
-              <div className="flex flex-col gap-1">
-                <p className="text-[12px]">Solfar Chair</p>
-                <p className="text-[12px]">Solfar Chair</p>
-                <p className="text-[12px]">Solfar Chair</p>
-              </div>
-
-              <div className="flex gap-4 place-items-center">
-                {/*
-
-                                      <div className="flex  place-items-center ">
-                               <div className="flex gap-2">
-                                                        {Array(5)
-                                                          .fill(0)
-                                                          .map((_, index) => (
-                                                            <div key={index} className="flex gap-2  h-[calc(6*var(--spacing-fw))] w-[calc(6*var(--spacing-fw))] relative">
-                                                              <Image
-                                                                src="/star_icon.png"
-                                                                alt={`App ${index + 1}`}
-                                                                 fill
-                                                                 sizes="auto"
-                                                                className="object-contain "
-                                                              />
-                                                            </div>
-                                                          ))}
-                                                      </div>
-                              
-                                                 
-                               </div>
-                              <p className="text-fh-6 ">Loren sjjsjsjsjj</p>
-                       
-                            </div>
-                         
-
-                         <div className="mt-3 flex justify-between place-items-center">
-
-                          <p>926</p>
-                          
-                          <button className="text-white bg-[#800020] w-30 rounded p-1 mx-[50%]">Purchase </button>
-       */}
+              <div className="space-y-1">
+                <p className="text-xs font-bold text-slate-800 truncate">Solfar Premium Chair</p>
+                <p className="text-[10px] text-slate-400">Construction Grade</p>
+                <p className="text-sm font-black text-red-600">$926.00</p>
               </div>
             </div>
           ))}
         </div>
+      </div>
 
-        </div>
-    
-  </div>
+      {/* 5. PRODUCT GRID - High Visibility */}
+      <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 mb-20">
+        {data.map((item, index) => (
+          <div key={index} onClick={() => onItemSelected(index)} className="bg-white rounded-2xl p-4 border border-slate-100 relative group cursor-pointer hover:shadow-2xl transition-all">
+            <button className="absolute top-4 right-4 z-10 p-2 bg-white/80 backdrop-blur rounded-full text-slate-400 hover:text-red-500 transition-colors">
+              <FaRegHeart size={14} />
+            </button>
+            <div className="relative aspect-square mb-4 rounded-xl overflow-hidden shadow-inner">
+              <Image fill alt="grid_img" src={(item as { urls?: { regular?: string } })?.urls?.regular || "/"} className="object-cover transition-transform group-hover:scale-105 duration-700" />
+            </div>
+            <div className="space-y-1 px-1">
+              <h4 className="text-[11px] font-bold text-slate-800 line-clamp-1">Solfar Construction Chair</h4>
+              <div className="flex justify-between items-center pt-2">
+                <p className="text-sm font-black text-[#391452]">$926</p>
+                <button className="bg-[#800020] text-white text-[9px] font-bold px-3 py-1.5 rounded-lg hover:brightness-110">
+                  Buy
+                </button>
+              </div>
+            </div>
+          </div>
+        ))}
       </div>
     </section>
   );

@@ -4,9 +4,10 @@ import { Inter, Itim } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
 import { GrApps } from "react-icons/gr";
-import Footer from "../../landingPage/component/Footer";
+import Footer from "../../../../component/ui/Footer";
 import { IoMdSearch } from "react-icons/io";
 import { useCallback, useEffect, useState } from "react";
+import TopNavigationBar from "@/component/ui/TopNavigationBar";
 
 const inter = Inter({
   display: "swap",
@@ -543,233 +544,135 @@ const handleItemSelected = useCallback((index:number)=>{
   return (
     <div className={`${itim.className} w-full h-full  items-center justify-center`}>
       {/**Top nav bar */}
-      <nav
-        className={`${inter.className} text-fh-8 w-screen  fh-110  shadow-f-bottom flex flex-row place-items-center 
-                   
-                pe-5  `}
-      >
-        <div className="relative w-[calc(30*var(--spacing-fw))] h-[calc(30*var(--spacing-fw))] ms-fw-16 ">
-          <Image
-            src="/logo.svg"
-            alt="Dream Eco Logo"
-            fill
-            className="object-contain"
+     <TopNavigationBar/>
+
+    <main className="min-h-screen w-full bg-white flex flex-col font-sans">
+      
+      {/* 1. TOP SEARCH BAR - Centered Logic */}
+      <div className="w-full border-b border-gray-100 py-6 px-[5%] flex justify-start">
+        <div className="flex items-center w-full max-w-md gap-3 px-4 py-2 border-2 border-[#391452] rounded-2xl group transition-all focus-within:shadow-md">
+          <IoMdSearch className="text-gray-400 group-focus-within:text-[#391452]" size={22} />
+          <input 
+            placeholder="What are you looking for..." 
+            className="text-sm outline-none w-full bg-transparent placeholder:text-gray-400" 
           />
         </div>
+      </div>
 
-        <div className="w-screen justify-end gap-5    flex">
-          <Link href="/" className="text-white p-1.5">
-            Home
-          </Link>
-
-          <Link href="/pages/applications" className=" underline decoration-2 underline-offset-10 decoration-[#951636] text-white p-1.5">
-            Applications
-          </Link>
-
-          <Link href="/pages/projects" className="text-white p-1.5">
-            Projects
-          </Link>
-
-          <Link href="/pages/shop" className="text-white  p-1.5">
-            Shops
-          </Link>
-
-          <Link
-            href={"/pages/account"}
-            className="text-white bg-[#800020] w-20 rounded-2xl p-1.5 text-center"
-          >
-            Login
-          </Link>
-        </div>
-      </nav>
-
-      {/**
-       * Main containerr
-       */}
-
-      <main className="application h-dvh w-full overflow-y-scroll bg-white ">
-        <div className=" h-15 w-full flex   ps-[21%] place-items-center">
-
-                <div className="text-black place-self-start w-150 mt-5 p-1 flex gap-3 border-1 border-[#391452] rounded-2xl  cursor-pointer">
-                         <IoMdSearch className="mt-1 " color="black" size={24} />
-                        <input  placeholder="what are you looking....." className="text-[12px] mt-1 outline-none w-full" />
-                      </div>
-        </div>
-
-
-        <div className="grid  grid-cols-6 h-dvh bg-gray-600 ">
+      {/* 2. MAIN HUB - 6 Column Grid */}
+      <div className="grid grid-cols-6 flex-1 overflow-hidden">
         
-        
-          <section className={`${itim.className} bg-white  p-5   overflow-y-auto h-300 col-span-1`} style={{scrollbarWidth:'none'}}>
-           
-            <div className="w-full  border border-gray-300  ">
-
-              <div className={` fh-30 pt-1 w-full flex gap-2 ps-3 place-items-center  ${categorySelected === 'All' ?'text-white bg-[#2E0B80]':'text-black'}  `}>
-                <input type="checkbox"  checked={categorySelected ==="All"} onChange={(e)=>{
-                    if(e.target.checked)
-                    setCategorySelected("All")
-                  }} />
-                <p className="text-[14px]">All</p>
-              </div>
-
-              {cardDetails.map((item,index)=>(
-             <div key={index} className={`fh-30 pt-1  mt-3 gap-2   flex flex-col ps-3 ${categorySelected === item.name ?'text-white bg-[#2E0B80]':'text-black'} `}>
-                <div className="flex gap-2">
-                  <input type="checkbox"  checked={categorySelected === item.name} onChange={(e)=>{
-                    if(e.target.checked)
-                    setCategorySelected(item.name)
-                  }} />
-                  <p className="text-[14px]">{item.name}</p>
-                </div>
-
-              </div>
-              ))}
-
-        
-
+        {/* COLUMN 1: CATEGORIES - Stays Fixed on Scroll */}
+        <section className={`${itim.className} col-span-1 border-r border-gray-100 p-6 overflow-y-auto h-[calc(100vh-80px)]`}>
+          <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-6">Categories</p>
+          <div className="space-y-2">
+            {/* All Category */}
+            <div 
+              onClick={() => setCategorySelected("All")}
+              className={`flex items-center gap-3 p-3 rounded-xl cursor-pointer transition-all ${categorySelected === 'All' ? 'bg-[#2E0B80] text-white shadow-lg' : 'text-gray-600 hover:bg-gray-50'}`}
+            >
+              <input type="checkbox" checked={categorySelected === "All"} readOnly className="accent-white" />
+              <p className="text-sm font-medium">All Apps</p>
             </div>
-          </section>
 
-          <div className="  pt-5 col-span-3 bg-white flex justify-center overflow-y-auto h-screen" style={{scrollbarWidth:'none'}}>
-            {/**Card container */}
-            <div className="flex   flex-col gap-4">
-              {cacheCardDetails.map((card, index) => (
-                <div
-                  key={index}
-                  onClick={()=>{handleItemSelected(index)}}
-                  className="min:fh-200   fw-160 bg-white shadow p-5 border border-gray-200 rounded-2xl"
-                >
-                  
-                  <div className=" flex  gap-3 justify-center ">
+            {/* Dynamic Categories */}
+            {cardDetails.map((item, index) => (
+              <div 
+                key={index} 
+                onClick={() => setCategorySelected(item.name)}
+                className={`flex items-center gap-3 p-3 rounded-xl cursor-pointer transition-all ${categorySelected === item.name ? 'bg-[#2E0B80] text-white shadow-md' : 'text-gray-600 hover:bg-gray-50'}`}
+              >
+                <input type="checkbox" checked={categorySelected === item.name} readOnly className="accent-white" />
+                <p className="text-sm font-medium">{item.name}</p>
+              </div>
+            ))}
+          </div>
+        </section>
 
-                <GrApps className="mt-1" color="#2E0B80" size={30} />
-
-                    <div className="">
-                      <h2 className="text-[24px]  text-[#4C1D60] ">{card.name}</h2>
-                      <p className="fh-2 mt-2 fw-140 bg-[#D3D3D3]" />
-
-                      <div className="flex  place-items-center ">
-                        <div className="flex gap-2">
-                          {Array(card.rating)
-                            .fill(0)
-                            .map((_, index) => (
-                              <div key={index} className="flex gap-2 mt-3 ">
-                                <Image
-                                  src="/application_rating_star_icon.png"
-                                  alt={`App ${index + 1}`}
-                                  width={20}
-                                  height={20}
-                                  className="object-contain "
-                                />
-                              </div>
-                            ))}
-                        </div>
-
-                     
-                      </div>
+        {/* COLUMN 2: APP LIST - Center Scrollable */}
+        <section className="col-span-3 bg-gray-50 p-8 overflow-y-auto h-[calc(100vh-80px)] space-y-6">
+          {cacheCardDetails.map((card, index) => (
+            <div
+              key={index}
+              onClick={() => handleItemSelected(index)}
+              className="bg-white p-6 border border-gray-200 rounded-3xl shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all cursor-pointer group"
+            >
+              <div className="flex gap-5">
+                <div className="p-4 bg-gray-50 rounded-2xl flex items-center justify-center h-fit">
+                  <GrApps color="#2E0B80" size={32} className="group-hover:scale-110 transition-transform" />
+                </div>
+                <div className="flex-1">
+                  <div className="flex justify-between items-start">
+                    <h2 className="text-2xl font-bold text-[#4C1D60]">{card.name}</h2>
+                    <div className="flex gap-1">
+                      {Array(card.rating).fill(0).map((_, i) => (
+                        <Image key={i} src="/application_rating_star_icon.png" alt="star" width={16} height={16} />
+                      ))}
                     </div>
-
-                
                   </div>
-
-                  <div className="mt-5 flex flex-wrap w-full relative justify-between ">
-                    <div className="ms-8">
-                      <p className="text-[14px] w-70 text-elipsis">{card.description}</p>
-            
-                    </div>
-
-                    <button className="  fh-40 mt-2 ms-20 bg-[#800020] text-white text-[14px] px-4 rounded ">
+                  <div className="h-0.5 w-full bg-gray-100 my-4" />
+                  <p className="text-sm text-gray-500 leading-relaxed line-clamp-2">{card.description}</p>
+                  <div className="flex justify-end mt-4">
+                    <button className="bg-[#800020] text-white text-xs font-bold px-6 py-2.5 rounded-lg hover:brightness-110 transition-all uppercase tracking-wider">
                       View Details
                     </button>
                   </div>
                 </div>
+              </div>
+            </div>
+          ))}
+        </section>
+
+        {/* COLUMN 3: APP DETAILS - Right Sidebar */}
+        <section className="col-span-2 border-l border-gray-100 p-8 overflow-y-auto h-[calc(100vh-80px)] bg-white">
+          <div className="space-y-8">
+            <h3 className="text-2xl font-bold text-gray-800 border-b border-gray-100 pb-4">App Details</h3>
+            
+            <div className="rounded-3xl overflow-hidden shadow-2xl bg-gray-100 aspect-video relative">
+              <Image src="/application_container_3_bg.png" alt="preview" fill className="object-cover" />
+            </div>
+
+            <div className="flex items-center justify-between">
+              <h4 className="text-xl font-bold text-[#4C1D60]">{cardDetails[selectedData].name}</h4>
+              <div className="flex gap-1">
+                {Array(cardDetails[selectedData].rating).fill(0).map((_, i) => (
+                  <Image key={i} src="/star_icon.png" alt="star" width={18} height={18} />
+                ))}
+              </div>
+            </div>
+
+            <p className="text-sm leading-relaxed text-gray-600 bg-gray-50 p-5 rounded-2xl italic border border-gray-100">
+              "{cardDetails[selectedData].description}"
+            </p>
+
+            {/* Feature Highlights */}
+            <div className="space-y-4">
+              {[1, 2].map((i) => (
+                <div key={i} className="flex gap-4 p-4 rounded-2xl bg-[#2E0B80]/5 border border-[#2E0B80]/10 items-center">
+                  <div className="w-2 h-10 bg-[#2E0B80] rounded-full" />
+                  <div className="text-sm text-gray-700">
+                    <p className="font-bold">Feature Highlight {i}</p>
+                    <p className="text-xs opacity-60">System optimization and control.</p>
+                  </div>
+                </div>
               ))}
             </div>
-          </div>
 
-
-          <div className=" bg-white    p-5   overflow-y-auto h-300 col-span-2" style={{scrollbarWidth:'none'}}>
-            <div className=" ms-3">
-              <p className="text-[24px]">App details</p>
-              <div className="rounded-2xl">
-                <Image
-                  src="/application_container_3_bg.png"
-                  alt="App 1"
-                  width={400}
-                  height={300}
-                  className="object-contain  "
-                />
-              </div>
-
-              <div className="flex flex-wrap gap-10 mt-3">
-                <div className="fw-50 flex flex-col  text-[14px] font-light">
-                  <p>{cardDetails[selectedData].name}</p>
-                </div>
-                
-                <div className="flex gap-2 fh-30 ">
-                  {Array(cardDetails[selectedData].rating)
-                    .fill(0)
-                    .map((_, index) => (
-                      <Image
-                        key={index}
-                        src="/star_icon.png"
-                        alt={`App ${index + 1}`}
-                        width={20}
-                        height={10}
-                        className="object-contain "
-                      />
-                    ))}
-                </div>
-
-                
-              </div>
-
-              <div className="mt-4 flex justify-evenly pe-3">
-                <p className="text-[14px] ">
-                 {cardDetails[selectedData].description}
-                </p>
-           
-              </div>
-
-              <div className="fh-2 fw-110 bg-[#D3D3D3] mt-10" />
-
-              <div className="mt-5">
-                <div className="flex gap-5 m-5">
-                  <div className="fw-15 fh-60 bg-[#2E0B80] rounded" />
-
-                  <div className="text-[14px]">
-                    <p>Lorem ipsum dolor</p>
-
-                    <p>Lorem ipsum dolor</p>
-                  </div>
-                </div>
-
-                <div className="flex gap-5 m-5">
-                  <div className="fw-15 fh-60 bg-[#2E0B80] rounded" />
-
-                  <div className="text-[14px]">
-                    <p>Lorem ipsum dolor</p>
-
-                    <p>Lorem ipsum dolor</p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="mt-8 text-[14px]">
-                <button className="bg-[#4C1D60] fh-50 w-full rounded text-white">
-                  Download
-                </button>
-
-                <button className="bg-[#800020] fh-50 w-full rounded mt-3 text-white">
-                Contact
-                </button>
-              </div>
+            {/* Action Buttons */}
+            <div className="flex flex-col gap-3 pt-6">
+              <button className="bg-[#4C1D60] text-white py-4 rounded-2xl font-bold shadow-lg shadow-purple-900/20 hover:brightness-110 active:scale-95 transition-all">
+                Download Now
+              </button>
+              <button className="bg-[#800020] text-white py-4 rounded-2xl font-bold hover:brightness-110 active:scale-95 transition-all">
+                Contact Support
+              </button>
             </div>
           </div>
-        </div>
+        </section>
+      </div>
 
-        <Footer mode="desktop" />
-      </main>
+      <Footer />
+    </main>
     </div>
   );
 };

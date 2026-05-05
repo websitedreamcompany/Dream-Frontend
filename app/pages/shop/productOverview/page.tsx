@@ -3,7 +3,7 @@
 import { Itim, Inter } from "next/font/google";
 import Image from "next/image"
 import Link from "next/link"
-import Footer from "../../landingPage/component/Footer";
+import Footer from "../../../../component/ui/Footer";
 import ImageSlider from "./component/ImageSlider";
 import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
@@ -11,6 +11,7 @@ import { FaAngleDown } from "react-icons/fa";
 import { IoMdSearch } from "react-icons/io";
 import { IoPerson } from "react-icons/io5";
 import { MdAddChart } from "react-icons/md";
+import TopNavigationBar from "@/component/ui/TopNavigationBar";
 
 
 const itim = Itim({ subsets: ["latin"], weight: "400" });
@@ -54,376 +55,200 @@ const ProductOverviewContent = () =>{
       }, [setMoreData,moreData,param]);
 
 
-    return   <div className="bg-[#E8E8E8] h-screen">
+    return   <div className="bg-[#E8E8E8] h-screen overflow-y-scroll">
          {/**Top nav bar */}
-           <nav
-             className={`${inter.className} text-fh-8 w-screen  border-b fh-110  shadow-f-bottom flex flex-row place-items-center 
-                                
-                             pe-5  `}
-           >
-             <div className="relative w-[calc(30*var(--spacing-fw))] h-[calc(30*var(--spacing-fw))] ms-fw-16 ">
-               <Image 
-                 src="/logo.svg"
-                 alt="Dream Eco Logo"
-                 fill
-                 className="object-contain"
-               />
-             </div>
-     
-             <div className="w-screen justify-end gap-5    flex">
-               <Link href="/" className="text-white p-1.5">
-                 Home
-               </Link>
-     
-               <Link href="/pages/applications" className="text-white p-1.5">
-                 Applications
-               </Link>
-     
-               <Link href="/pages/projects" className="text-white p-1.5">
-                 Projects
-               </Link>
-     
-               <Link href="/pages/shop" className="underline decoration-2 underline-offset-10 decoration-[#951636] text-white  p-1.5">
-                 Shops
-               </Link>
-     
-               <Link href={'/pages/account'} className="text-center text-white bg-[#800020] w-20 rounded-2xl p-1.5">
-                 Login
-               </Link>
-             </div>
-           </nav>
+          <TopNavigationBar/>
 
            
-            <div className="bg-web-navbar mt-1 fh-100 w-full flex gap-8  place-items-center text-white flex-cols relative justify-center ">
-                      
-                     <div className="ms-10 bg-white w-[46%] h-[50%] rounded-4xl flex place-item-center">
-
-      
-            <div className="text-black place-self-center ps-5 flex justify-center place-items-center gap-3 hover:border-1 hover:border-[#391452] hover:rounded-l-2xl h-full border-r-1  border-r-[#B2AEAE] border-r-2 pe-3 cursor-pointer">
-               <IoMdSearch className="mt-1 " color="black" size={14} />
-              <input  placeholder="what are you looking....." className="text-[12px] mt-1 outline-none " />
+            <div className="bg-web-navbar w-full flex items-center justify-center mt-1 py-4">
+    
+      <div className="max-w-6xl w-full mx-auto h-auto flex flex-col md:flex-row items-center justify-between px-5 gap-6">
+        
+        <div className="w-full lg:flex-1">
+          <div className="flex flex-col md:flex-row bg-white min-h-12 md:h-12 rounded-2xl md:rounded-full shadow-sm border border-slate-200 overflow-hidden p-2 md:p-0">
+            
+            <div className="flex flex-1 items-center px-4 min-w-37.5">
+              <IoMdSearch className="text-slate-400 shrink-0" size={20} />
+              <input 
+                placeholder="What are you looking for..." 
+                className="ml-3 w-full text-[13px] outline-none bg-transparent" 
+              />
             </div>
 
+            <div className="hidden md:block h-6 w-px bg-slate-200 self-center"></div>
 
+            <div className="flex items-center justify-between px-4 md:px-6 py-2 md:py-0 cursor-pointer hover:bg-slate-50">
+              <p className="text-[13px] whitespace-nowrap">All categories</p>
+              <FaAngleDown className="ml-2 text-slate-400" size={14} />
+            </div>
 
-            <div className="text-black place-self-center place-item-center justify-center  flex gap-5 ps-5 place-items-center gap-3 hover:border-1 hover:border-[#391452]  h-full border-r-0  border-r-[#B2AEAE] border-r-2 pe-5 h-full ">
-              <p className="text-[12px] ">All categories</p>
-               <FaAngleDown className="mt-0.5" size={15} color="#B2AEAE " />
+            <div className="hidden md:block h-6 w-px bg-slate-200 self-center"></div>
+
+            <div className="flex items-center px-4 md:px-6 py-2 md:py-0">
+              <p className="text-[13px] whitespace-nowrap">Deutschland</p>
+            </div>
+
+            <div className="hidden md:block h-6 w-px bg-slate-200 self-center"></div>
+
+            <div className="flex items-center justify-between px-4 md:pl-6 md:pr-1 py-2 md:py-0 gap-4">
+              <div className="flex items-center cursor-pointer">
+                <p className="text-[13px] whitespace-nowrap">Entire town</p>
+                <FaAngleDown className="ml-2 text-slate-400" size={14} />
+              </div>
               
-            </div>
-
-           
-
-            <div className="text-black place-self-center flex ps-10 place-items-center gap-3 hover:border-1 hover:border-[#391452]  h-full border-r-1  border-r-[#B2AEAE] border-r-2 pe-8  ">
-              <p className="text-[12px]">Deutshland</p>
-            </div>
-
-          
-
-            <div className="text-black place-self-center ps-5 flex gap-5 place-items-center gap-3 hover:border-1 hover:border-[#391452] hover:border-r-0 h-full    ">
-              <p className="text-[12px] mt-1">Entire town </p>
-
-                <FaAngleDown className="mt-1.5" size={15} color="#B2AEAE " /> 
-
-              <p className="text-[12px] ps-5 pe-5 bg-web-navbar p-[3.8px] rounded-2xl text-white text-center ">
+              <button className="bg-blue-600 text-white px-6 h-10 rounded-xl md:rounded-full text-[13px] font-bold hover:bg-blue-700 transition w-full md:w-auto">
                 Find
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div className="flex gap-8 items-center shrink-0">
+          <div className="flex flex-col items-center cursor-pointer group">
+            <MdAddChart className="text-slate-700 group-hover:text-blue-600 transition" size={20} />
+            <p className="text-[10px] uppercase font-bold mt-1 tracking-wide">Advertise</p>
+          </div>
+
+          <div className="flex flex-col items-center cursor-pointer group">
+            <IoPerson className="text-slate-700 group-hover:text-blue-600 transition" size={20} />
+            <p className="text-[10px] uppercase font-bold mt-1 tracking-wide">Mine</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+           {/**Body  */}
+             <main className="min-h-screen bg-slate-50 overflow-y-auto font-sans pb-20">
+      <div className="max-w-7xl mx-auto grid grid-cols-12 gap-8 px-6 pt-10">
+        
+        {/* LEFT SECTION: Content & Description (8 Columns) */}
+        <section className="col-span-12 lg:col-span-8 space-y-6">
+          
+          {/* 1. Image Slider Container */}
+          <div className="rounded-3xl overflow-hidden shadow-xl bg-white border border-slate-100">
+            {moreData ? (
+              <ImageSlider data={moreData as []} onItemSelected={() => {}} />
+            ) : (
+              <div className="h-96 bg-slate-200 animate-pulse flex items-center justify-center text-slate-400">
+                Loading Images...
+              </div>
+            )}
+          </div>
+
+          {/* 2. Primary Product Info Card */}
+          <div className="bg-white p-8 rounded-3xl shadow-sm border border-slate-100">
+            <h1 className="font-bold text-3xl text-slate-900 leading-tight mb-4">
+              Modern 3-room apartment with large balcony in Malchin
+            </h1>
+            
+            <div className="flex items-center gap-4 mb-6">
+              <span className="text-emerald-600 font-black text-3xl">€725</span>
+              <span className="bg-emerald-50 text-emerald-700 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+                Negotiable
+              </span>
+              <div className="h-4 w-px bg-slate-200 mx-2" />
+              <p className="text-slate-500 text-sm font-medium">Local Pickup Only</p>
+            </div>
+
+            <div className="flex flex-wrap items-center gap-6 pt-6 border-t border-slate-50 text-slate-500 text-sm">
+              <div className="flex items-center gap-2">
+                <span className="opacity-60">📍</span>
+                <p>13629 Berlin - Charlottenburg</p>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="opacity-60">📅</span>
+                <p>April 11, 2026</p>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="opacity-60">👁️</span>
+                <p>138 Views</p>
+              </div>
+            </div>
+          </div>
+
+          {/* 3. Description Card */}
+          <div className="bg-white p-8 rounded-3xl shadow-sm border border-slate-100">
+            <h2 className="font-bold text-xl text-slate-900 mb-6 border-b border-slate-50 pb-4">
+              Description
+            </h2>
+            <div className="text-slate-600 leading-8 text-base">
+              <p>
+                I'm offering this well-maintained army bicycle in excellent condition. 
+                The bike rides like a dream and is in superb mechanical condition. 
+                All three brakes work perfectly. The tires are soft and free of cracks, 
+                having been recently replaced.
+              </p>
+              <br />
+              <p>
+                The bike comes with its original leather frame bag and includes the 
+                complete original tool kit, which is very rare. The key for the rear 
+                wheel lock/U-lock is also included. Overall, a truly magnificent piece.
               </p>
             </div>
           </div>
-             
-                       <div className="flex gap-6">
-                         <div className="justify-center place-items-center flex flex-col">
-                        <MdAddChart color="black" />
-             
-             
-                           <p className="text-[12px]">advertise</p>
-                         </div>
-             
-                         <div
-                           className="justify-center place-items-center flex flex-col
-                                "
-                         >
-                          <IoPerson  color="black" />
-                           <p className="text-[12px]">mine</p>
-                         </div>
-                       </div>
+        </section>
+
+        {/* RIGHT SECTION: User Profile & Actions (4 Columns) */}
+        <section className="col-span-12 lg:col-span-4 space-y-6">
+          
+          {/* 1. Quick Action Buttons */}
+          <div className="sticky top-10 space-y-3">
+            <button className="w-full bg-[#391452] hover:bg-purple-900 text-white font-bold py-4 rounded-2xl shadow-lg shadow-purple-900/20 transition-all active:scale-[0.98]">
+              Send Message
+            </button>
+            <button className="w-full bg-white border-2 border-slate-200 text-slate-700 font-bold py-4 rounded-2xl hover:bg-slate-50 transition-all active:scale-[0.98]">
+              Add to Watchlist
+            </button>
+            <button className="w-full bg-white border-2 border-slate-200 text-slate-700 font-bold py-4 rounded-2xl hover:bg-slate-50 transition-all active:scale-[0.98]">
+              Share This Ad
+            </button>
+
+            {/* 2. Detailed Profile Card */}
+            <div className="bg-white rounded-3xl border border-slate-100 shadow-xl p-6 mt-8 overflow-hidden">
+              <div className="flex items-start gap-4 mb-8">
+                <div className="w-14 h-14 bg-purple-100 text-[#391452] flex items-center justify-center rounded-2xl font-black text-xl shrink-0">
+                  A
+                </div>
+                <div>
+                  <h3 className="font-bold text-lg text-slate-900">Agwu Joe</h3>
+                  <p className="text-xs text-slate-400 font-medium">Member since April 2024</p>
+                </div>
               </div>
 
-           {/**Body  */}
-           <main className="overflow-y-scroll h-screen">
-                <div className="grid grid-cols-12 ps-8 pt-6  ">
+              {/* Status Badges - Using #391452 for consistency */}
+              <div className="space-y-2 mb-8">
+                {[
+                  { icon: "/satisfaction.svg", label: "Top Satisfaction" },
+                  { icon: "/friendly_icon.svg", label: "Very Friendly" },
+                  { icon: "/reliable_icon.svg", label: "Very Reliable" }
+                ].map((badge, i) => (
+                  <div key={i} className="flex items-center gap-3 bg-purple-50 p-3 rounded-xl border border-purple-100">
+                    <div className="w-5 h-5 relative">
+                      <Image alt="icon" src={badge.icon} fill className="object-contain" />
+                    </div>
+                    <span className="text-[#391452] font-bold text-xs">{badge.label}</span>
+                  </div>
+                ))}
+              </div>
 
-            <section className="col-span-8 min:h-480 ">
-
-                <div className=" ">
-                   
-                  {moreData ? <ImageSlider data={moreData as []} onItemSelected={()=>{}}/>
-
-                    :null}
-
-                    <div className="mt-6 bg-white fh-250 p-4 rounded-2xl ">
-                        <p className="font-bold text-[24px] w-150 ms-2">Modern 3-room apartment with large balcony in Malchin hddhdhh dkdk</p>
-
-                        <div className="flex items-center gap-3 mt-3 ms-2 ">
-                            <p className="text-green-600 font-bold text-[20px]">€725 negotiable </p>
-                            <p>Only pickup</p>
-                        </div>
-
-                        <div className="ms-2 mt-3 text-[14px]">
-
-              <p>13629 Berlin - Charlottenburg</p>
-               
-                <div className="flex  ">
-                        <p>April 11, 2026 </p>
-                        <p>138</p>
+              <div className="pt-6 border-t border-slate-50 space-y-3">
+                <div className="flex items-center gap-3 text-slate-600 text-sm">
+                  <Image alt="private" src="/private_account.svg" width={18} height={18} />
+                  <span>Private User</span>
                 </div>
-                        </div>
-                    </div>
-
-
-
-                      <div className="mt-6 bg-white min:fh-250 p-4 rounded-2xl ">
-                        <p className="font-bold text-[18px] w-150 ms-2 ">Description</p>
-
-                        <p className="w-full h-[0.1px] mt-2 bg-gray-600"></p>
-
-                        <div className="flex items-center gap-3 mt-3 ms-2 ">
-                          <p className="leading-7">{`I'm offering this well-maintained army bicycle in excellent condition. The bike rides like a dream and is in superb mechanical condition. All three brakes work perfectly. The tires are soft and free of cracks, having been recently replaced. The bike comes with its original leather frame bag and includes the complete original tool kit, which is very rare. The key for the rear wheel lock/U-lock is also included.
-Overall, a truly magnificent piece, rarely found these days.`}</p>
-                        </div>
-
-                        
-                    </div>
-     
-                   <div className="mt-6 bg-white min:fh-250 p-4 rounded-2xl ">
-                        <p className="font-bold text-[18px] w-150 ms-2 ">Write a message</p>
-
-                        <p className="w-full h-[0.1px] mt-2 bg-gray-600"></p>
-
-                        <div className="flex items-center gap-3 mt-3  ">
-                         <button className="bg-web-navbar p-2 rounded-2xl text-white mt-2">
-                          <p>Send a message</p>
-                         </button>
-                        </div>
-
-                        
-                    </div>
-
-                   
-      
-       </div>
-
-                
-       </section>
-
-
-
-           <section className="col-span-4 ms-4 me-2 h-screen space-y-2 font-semi-bold relative">
-                        <div className=" p-1 flex align-items-center ms-5 ">
-                            <button className="bg-web-navbar h-10 w-93 rounded-2xl text-[12px] text-white hover:bg-white hover:text-black " > Write a message</button>
-                        </div>
-
-                         <div className="  p-1 flex align-items-center ms-5  ">
-                            <button className="bg-white border border-gray-400  h-10 w-93 rounded-2xl text-[12px] text-black hover:bg-white hover:text-web-navbar " > Add this to watch list</button>
-                        </div>
-
-                           <div className=" p-1 flex align-items-center ms-5  ">
-                            <button className="bg-white border border-gray-400 h-10 w-93 rounded-2xl text-[12px] text-black hover:bg-white hover:text-web-navbar " > Share this ads</button>
-                        </div>
-
-
-                        <div className="bg-white shadow-f-cardM rounded p-2 w-[80%] flex ms-8 mt-[6%] min:h-[300px] gap-2 relative">
-                            <div className="bg-gray-300 w-10 h-10  flex justify-center place-items-center  rounded-full">
-                                <p className="font-bold">A</p>
-                            </div>
-
-                            <div className="flex flex-col gap-1">
-                            <p className="text-web-navbar font-bold text-[14px]">Agwu joe</p>
-                            
-                             <div className="bg-gray-300 p-[6px] rounded-2xl mb-1 flex justify-center place-items-center gap-1">
-                                <div className="fh-38 fw-10 relative ">
-                           <Image
-                             alt="Real estate"
-                             src={"/satisfaction.svg"}
-                             fill
-                             className=" p-1 rounded object-cover"
-                           />
-                         </div>
-                         
-                                <p className="text-web-navbar font-bold text-[12px]">Top satisfaction</p>
-                             </div>
-
-                               <div className="bg-gray-300 p-[6px] rounded-2xl mb-1 flex justify-center place-items-center gap-1">
-                                <div className="fh-38 fw-10 relative ">
-                           <Image
-                             alt="Real estate"
-                             src={"/friendly_icon.svg"}
-                             fill
-                             className=" p-1 rounded object-cover"
-                           />
-                         </div>
-                                <p className="text-web-navbar font-bold text-[12px]">Very Friendly</p>
-                             </div>
-
-                      
-                         <div className="bg-gray-300 p-[6px] rounded-2xl mb-1 flex justify-center place-items-center gap-1">
-                                <div className="fh-38 fw-10 relative ">
-                           <Image
-                             alt="Real estate"
-                             src={"/reliable_icon.svg"}
-                             fill
-                             className=" p-1 rounded object-cover"
-                           />
-                         </div>
-                                <p className="text-web-navbar font-bold text-[12px]">Very Reliable</p>
-                             </div>
-
-                             <div className="flex place-items-center gap-1">
-                                   <div className="fh-38 fw-10 relative ">
-                           <Image
-                             alt="Real estate"
-                             src={"/private_account.svg"}
-                             fill
-                             className=" p-1 rounded object-cover"
-                           />
-                         </div>
-                                <p className="text-[14px]">Private user</p>
-                             </div>
-
-                                   <div className="flex place-items-center gap-1 mb-12">
-                                   <div className="fh-38 fw-10 relative ">
-                           <Image
-                             alt="Real estate"
-                             src={"/bookmark.svg"}
-                             fill
-                             className=" p-1 rounded object-cover"
-                           />
-                         </div>
-                                <p className="text-[14px]">Active since april 30, 2024</p>
-                             </div>
-
-                               <div className="absolute bottom-2 right-2 border ps-2 pe-2 pt-1 pb-1 rounded-full flex gap-0 hover:text-white cursor-pointer hover:bg-web-navbar">
-                            <div className="fh-30 fw-10 relative ">
-                           <Image
-                             alt="Real estate"
-                             src={"/person_acccount_build.svg"}
-                             fill
-                             className=" p-1 rounded object-cover"
-                           />
-                         </div>
-                               
-                                <p className="text-[14px] ">Follow</p>
-                             </div>
-                            </div>
-                   
-                        </div>
-
-                         <div className="bg-white shadow-f-cardM p-2 w-[80%] flex ms-10 mt-[6%] min:h-[300px] gap-2  place-items-center align-items-center relative rounded">
-                            <p className="">Ad ID</p>
-                            <p className="ms-35">dh939849302-209483</p>
-                         </div>
-            </section>
-
-           </div>
-
-
-
-          <div className=" mt-10 min:h-100 p-10">
-           <p className="font-bold text-[20px] mb-3">Other ads from this seller</p>
-
-           <div className="">
-
-                    {moreData.length > 0 &&
-                          moreData.slice(0,2).map((data:{ urls: { regular: string } }, index: number) => (
-                            <div
-                             
-                              key={index}
-                              className="bg-white fh-250 w-full rounded-2xl mb-5 p-6 flex"
-                            >
-                              <div className="relative fh-200 w-[30%]">
-                                <Image alt="vibe" fill src={`${data.urls.regular}`} className="rounded" />
-                              </div>
-            
-                              <div className="ms-5">
-                                {/** Location */}
-                                <p className="text-sm">sdjdjj</p>
-            
-                                <div>
-                                  <p className="font-bold text-[16px] text-ellipsis text-wrap overflow-hidden fw-150">
-                                    Modern 3-room apartment with large balcony in Malchin
-                                    hddhdhh dkdk
-                                  </p>
-            
-                                  <p className="text-sm font-extralight">
-                                    {`The renovation work on the "Weitblick" project is
-                                    currently in full swing. Since October 1st, 2025`}
-                                  </p>
-            
-                                  <p className="mt-1">64 m² · 3 Zi.</p>
-                                  <p className="text-green-800 font-bold text-[16px] mt-3">
-                                    €495
-                                  </p>
-                                </div>
-                              </div>
-                            </div>
-                          ))}
-
-           </div>
-
-          
-         </div>
-
-
-          <div className=" min:h-100 ps-10 pe-10">
-           <p className="font-bold text-[20px] mb-3">You may also like this</p>
-
-           <div className="">
-
-                    {moreData.length > 0 &&
-                          moreData.slice(0,2).map((data:{ urls: { regular: string } }, index: number) => (
-                            <div
-                             
-                              key={index}
-                              className="bg-white fh-250 w-full rounded-2xl mb-5 p-6 flex"
-                            >
-                              <div className="relative fh-200 w-[30%]">
-                                <Image alt="vibe" fill src={`${data.urls.regular}`} className="rounded" />
-                              </div>
-            
-                              <div className="ms-5">
-                                {/** Location */}
-                                <p className="text-sm">sdjdjj</p>
-            
-                                <div>
-                                  <p className="font-bold text-[16px] text-ellipsis text-wrap overflow-hidden fw-150">
-                                    Modern 3-room apartment with large balcony in Malchin
-                                    hddhdhh dkdk
-                                  </p>
-            
-                                  <p className="text-sm font-extralight">
-                                    {`The renovation work on the "Weitblick" project is
-                                    currently in full swing. Since October 1st, 2025`}
-                                  </p>
-            
-                                  <p className="mt-1">64 m² · 3 Zi.</p>
-                                  <p className="text-green-800 font-bold text-[16px] mt-3">
-                                    €495
-                                  </p>
-                                </div>
-                              </div>
-                            </div>
-                          ))}
-
-           </div>
-
-          
-         </div>
-
-  
-           <Footer mode="desktop" />
-
-            </main>
-       
+                <div className="flex items-center justify-between mt-6">
+                  <button className="flex items-center gap-2 px-6 py-2 border-2 border-[#391452] text-[#391452] rounded-full font-bold text-sm hover:bg-[#391452] hover:text-white transition-all">
+                    Follow User
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+       <Footer/>
            
         </div>
  
