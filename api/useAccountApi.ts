@@ -3,7 +3,7 @@ import { createAccountSchema, LoginAccountValidationSchema } from "@/validation/
 import { BASE_URL } from "./serverUrlConstant";
 
 
-const createAccount = async (email: string, password: string, adClassification: 'Private' | 'Commercial',  signup_for_newsletter: boolean) => {
+const createAccount = async (email: string, password: string, adClassification: 'Buyer' | 'Seller',  signup_for_newsletter: boolean) => {
      const  cleanedData = sanitizeData(createAccountSchema, {email,password, adClassification,  signup_for_newsletter})
         if(!cleanedData.success){
            // console.error("Data validation failed:", cleanedData.error?.message);

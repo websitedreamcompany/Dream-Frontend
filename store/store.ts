@@ -4,8 +4,7 @@ type ProjectData = {
   data: unknown[];
 };
 type userProps = {
-   email:string,
-  token:string, 
+ user:{ email: string;}| null
 }
 
 interface DreamStoreData {

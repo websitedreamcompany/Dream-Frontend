@@ -1,7 +1,7 @@
 import { Itim } from "next/font/google";
 import Image from "next/image";
 import { useCallback, useEffect, useState } from "react";
-import { FaBabyCarriage, FaRegHeart } from "react-icons/fa";
+import { FaBabyCarriage, FaMapMarkerAlt, FaRegHeart } from "react-icons/fa";
 import { IoMdSearch } from "react-icons/io";
 import { FaAngleDown } from "react-icons/fa";
 import { MdAddChart, MdOutlinePets, MdOutlinePlayLesson, MdOutlineSportsVolleyball } from "react-icons/md";
@@ -43,6 +43,7 @@ const ForDeskTop = ({
   onItemSelected: (index: number) => void;
 }) => {
   const [dropDownCat, setDropDownCat] = useState(false);
+  const [dropDownLoc, setDropDownLoc] = useState(false);
   const [data,setData] = useState([])
 
   const category = [
@@ -124,6 +125,9 @@ const ForDeskTop = ({
       icon:<LiaHandsHelpingSolid  className=" bg-[#dbcfe4] p-1 rounded" size={35}  color="#391452"/>
     },
   ];
+ const handleLocationDropDownMenuFired = useCallback(() => {
+    setDropDownLoc(!dropDownLoc);
+  }, [dropDownLoc]);
 
   const handleCategoryDropDownMenuFired = useCallback(() => {
     setDropDownCat(!dropDownCat);
@@ -154,48 +158,88 @@ const ForDeskTop = ({
      <section className={`${itim.className} col-span-12 lg:col-span-9 bg-slate-50 min-h-screen p-4 overflow-x-hidden`}>
       
       {/* 1. COMPOSITE SEARCH BAR AREA */}
-      <div className="bg-[#391452] rounded-[2rem] p-4 md:p-6 mb-6 shadow-xl">
-        <div className="flex flex-col md:flex-row items-center gap-6">
+  <div className="bg-[#391452] rounded-[1.5rem] md:rounded-[2rem] p-4 md:p-6 mb-6 shadow-xl relative">
+      <div className="flex flex-col lg:flex-row items-center gap-4 md:gap-6">
+        
+        {/* Main Search Input Group */}
+        <div className="flex-1 bg-white rounded-2xl md:rounded-full min-h-[48px] md:h-12 flex flex-col md:flex-row items-stretch md:items-center overflow-visible shadow-inner w-full">
           
-          {/* Main Search Input Group */}
-          <div className="flex-1 bg-white rounded-full h-12 flex items-center overflow-hidden shadow-inner w-full">
-            <div className="flex-[2] flex items-center px-4 border-r border-slate-200 h-full hover:bg-slate-50 transition-colors">
-              <IoMdSearch className="text-slate-400 shrink-0" size={18} />
-              <input placeholder="Search products..." className="ml-2 w-full text-xs outline-none text-slate-700 bg-transparent" />
-            </div>
+          {/* 1. SEARCH INPUT */}
+          <div className="flex-[2] flex items-center px-4 border-b md:border-b-0 md:border-r border-slate-100 md:border-slate-200 h-12 md:h-full hover:bg-slate-50 rounded-t-2xl md:rounded-l-full md:rounded-tr-none transition-colors">
+            <IoMdSearch className="text-slate-400 shrink-0" size={18} />
+            <input 
+              placeholder="Search products..." 
+              className="ml-2 w-full text-xs outline-none text-slate-700 bg-transparent" 
+            />
+          </div>
 
-            <div className="flex-1 hidden md:flex items-center px-4 border-r border-slate-200 h-full hover:bg-slate-50 cursor-pointer" onClick={handleCategoryDropDownMenuFired}>
-              <p className="text-[10px] font-bold uppercase truncate">Categories</p>
+          {/* 2. CATEGORY ANCHOR */}
+          <div className="flex-1 h-12 md:h-full relative border-b md:border-b-0 md:border-r border-slate-100 md:border-slate-200">
+            <div 
+              className="flex items-center px-4 h-full hover:bg-slate-50 cursor-pointer transition-all" 
+              onClick={handleCategoryDropDownMenuFired}
+            >
+              <p className="text-[10px] font-bold uppercase truncate text-slate-700">Categories</p>
               <FaAngleDown className="ml-auto text-slate-300" size={14} />
             </div>
 
-            <div className="flex-1 hidden lg:flex items-center px-4 h-full">
-              <p className="text-[10px] font-bold uppercase truncate">Deutschland</p>
-            </div>
-
-            <button className="bg-[#391452] text-white px-6 h-10 rounded-full text-[10px] font-black uppercase tracking-widest mr-1 ml-1 hover:bg-red-600 transition-all">
-              Find
-            </button>
+            {/* CATEGORY DROPDOWN */}
+            {dropDownCat && (
+              <div className="absolute top-full left-0 z-[70] mt-1 w-full md:w-max md:min-w-[250px] shadow-2xl rounded-xl md:rounded-2xl overflow-hidden animate-in fade-in slide-in-from-top-2 bg-white">
+                <DropDownMenuForCategory />
+              </div>
+            )}
           </div>
 
-          {/* User Actions */}
-          <div className="flex gap-8 px-2">
-            <div className="flex flex-col items-center group cursor-pointer">
-              <MdAddChart className="text-white group-hover:text-red-400 transition-colors" size={20} />
-              <p className="text-[9px] text-white uppercase font-bold mt-1 tracking-tighter">Advertise</p>
+          {/* 3. LOCATION ANCHOR - Same logic as Categories */}
+          <div className="flex-1 h-12 md:h-full relative border-b md:border-b-0 md:border-r border-slate-100 md:border-slate-200">
+            <div 
+              className="flex items-center px-4 h-full hover:bg-slate-50 cursor-pointer transition-all" 
+              onClick={handleLocationDropDownMenuFired}
+            >
+              <div className="flex items-center gap-2 truncate">
+                <FaMapMarkerAlt className="text-slate-300" size={12} />
+                <p className="text-[10px] font-bold uppercase truncate text-slate-700">Deutschland</p>
+              </div>
+              <FaAngleDown className="ml-auto text-slate-300" size={14} />
             </div>
-            <div className="flex flex-col items-center group cursor-pointer">
-              <IoPerson className="text-white group-hover:text-red-400 transition-colors" size={20} />
-              <p className="text-[9px] text-white uppercase font-bold mt-1 tracking-tighter">Mine</p>
-            </div>
+
+            {/* LOCATION DROPDOWN */}
+            {dropDownLoc && (
+              <div className="absolute top-full left-0 z-[70] mt-1 w-full md:w-max md:min-w-[250px] shadow-2xl rounded-xl md:rounded-2xl overflow-hidden animate-in fade-in slide-in-from-top-2 bg-white">
+                {/* Reusing your dropdown style or a specific location component */}
+                <div className="p-4">
+                   <input placeholder="Enter city or zip..." className="w-full p-2 bg-slate-50 rounded-lg text-xs outline-none border border-slate-100 mb-2" />
+                   <p className="text-[10px] font-bold text-slate-400 uppercase mb-2 px-1">Nearby Towns</p>
+                   <div className="space-y-1">
+                      <p className="text-xs p-2 hover:bg-slate-50 rounded-lg cursor-pointer">Berlin</p>
+                      <p className="text-xs p-2 hover:bg-slate-50 rounded-lg cursor-pointer">Munich</p>
+                      <p className="text-xs p-2 hover:bg-slate-50 rounded-lg cursor-pointer">Hamburg</p>
+                   </div>
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* 4. FIND BUTTON */}
+          <button className="bg-[#391452] text-white px-8 h-12 md:h-10 rounded-b-2xl md:rounded-full text-[10px] font-black uppercase tracking-widest md:mr-1 md:ml-1 hover:bg-red-600 transition-all shrink-0">
+            Find
+          </button>
+        </div>
+
+        {/* ACTIONS */}
+        <div className="flex gap-8 px-2 shrink-0">
+          <div className="flex flex-col items-center group cursor-pointer">
+            <MdAddChart className="text-white group-hover:text-red-400" size={20} />
+            <p className="text-[9px] text-white uppercase font-bold mt-1 tracking-tighter">Advertise</p>
+          </div>
+          <div className="flex flex-col items-center group cursor-pointer">
+            <IoPerson className="text-white group-hover:text-red-400" size={20} />
+            <p className="text-[9px] text-white uppercase font-bold mt-1 tracking-tighter">Mine</p>
           </div>
         </div>
       </div>
-
-      {/* 2. DROP DOWN MENU (Conditional) */}
-      {dropDownCat && <div className="absolute z-[60] mt-[-20px] ml-10 shadow-2xl rounded-2xl overflow-hidden animate-in fade-in slide-in-from-top-4">
-        <DropDownMenuForCategory />
-      </div>}
+    </div>
 
       {/* 3. HORIZONTAL CATEGORY SELECTOR */}
       <div className="bg-white rounded-2xl p-4 mb-6 shadow-sm border border-slate-200 overflow-x-auto scrollbar-hide">

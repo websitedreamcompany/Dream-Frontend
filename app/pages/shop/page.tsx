@@ -257,26 +257,31 @@ const ShopDesktop = () => {
     <div className="h-dvh overflow-y-scroll">
       {/**Top nav bar */}
      <TopNavigationBar/>
-<main className="h-full overflow-y-auto relative pb-20 bg-slate-50">
-  <div className="grid grid-cols-12 h-full mb-10 max-w-[1600px] mx-auto">
+<main className="min-h-screen relative pb-20 bg-slate-50">
+  {/* The main container should not have overflow-y-scroll if you want the sidebar to stick to the viewport */}
+  <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 h-full max-w-[1600px] mx-auto px-4 lg:px-8">
     
-    {/* SECTION 1: SIDEBAR (Retaining 3-column span and mapping logic) */}
-    <section className="bg-transparent relative p-4 col-span-3">
-      <div className="w-full rounded-3xl bg-white border border-slate-200 shadow-sm sticky top-4">
+    {/* SECTION 1: SIDEBAR COLUMN */}
+    <aside className="col-span-1 lg:col-span-3 pt-6 hidden md:flex">
+      {/* 
+          1. lg:sticky: Only stick on desktop 
+          2. lg:top-24: Distance from top (adjust based on your Nav height)
+          3. h-fit: Ensures the container only takes up as much space as the categories 
+      */}
+      <div className=" w-full rounded-3xl bg-white border border-slate-200 shadow-sm lg:sticky lg:top-24 h-fit overflow-hidden">
         
-        <p className={`${itim.className} p-5 font-bold text-xl text-[#391452] border-b border-slate-100`}>
+        <p className={`${itim.className} p-5 font-bold text-xl text-[#391452] border-b border-slate-100 bg-white`}>
           Category
         </p>
 
+        {/* Internal scroll for categories if the list is longer than the screen */}
         <div
-          className={`${itim.className} overflow-y-auto max-h-[70vh] p-2`}
+          className={`${itim.className} overflow-y-auto max-h-[50vh] lg:max-h-[calc(100vh-200px)] p-2`}
           style={{ scrollbarWidth: "none" }}
         >
           {sectionDewtails.map((data, index) => (
-            <div key={index} className="p-4">
-              {index > 0 && (
-                <div className="h-px w-full bg-slate-100 mb-4" />
-              )}
+            <div key={index} className="p-4 group">
+              {index > 0 && <div className="h-px w-full bg-slate-100 mb-4 group-hover:bg-[#ff0000]/10" />}
               
               <p className="font-bold mb-3 text-[#391452] uppercase text-[10px] tracking-widest opacity-60">
                 {data.title}
@@ -287,7 +292,7 @@ const ShopDesktop = () => {
                   <Link
                     href={`/pages/shop/productDisplay?title=${data.title}&cat=${item}`}
                     key={idx}
-                    className="text-slate-600 text-sm hover:text-[#ff0000] hover:translate-x-1 transition-all duration-200"
+                    className="text-slate-600 text-sm hover:text-[#ff0000] hover:translate-x-1 transition-all duration-200 block"
                   >
                     {item}
                   </Link>
@@ -297,7 +302,7 @@ const ShopDesktop = () => {
               {data.items.length > 2 && (
                 <button
                   onClick={() => handleShowMore(index)}
-                  className="text-xs font-bold text-[#ff0000] mt-4 hover:underline underline-offset-4"
+                  className="text-xs font-bold text-[#ff0000] mt-4 hover:underline"
                 >
                   {showMoreindex === index ? "Show Less ↑" : "More Items +"}
                 </button>
@@ -306,17 +311,16 @@ const ShopDesktop = () => {
           ))}
         </div>
       </div>
-    </section>
+    </aside>
 
-    {/* SECTION 2: CONTENT (Retaining conditional rendering logic) */}
-    <section className="col-span-9 p-4">
+    {/* SECTION 2: CONTENT AREA */}
+    <section className="col-span-1 lg:col-span-9 pt-6">
       {productItemClicked ? (
-        <div className="bg-white rounded-3xl p-6 shadow-sm border border-slate-200 min-h-[600px]">
+        <div className="bg-white rounded-[2.5rem] p-6 lg:p-10 shadow-sm border border-slate-200 min-h-screen transition-all">
            <ProductDetailsContainer />
         </div>
       ) : (
-        <div className="min-h-screen">
-          {/* Ensure MainShopContainer uses a responsive grid inside its logic */}
+        <div className="w-full h-full">
           <MainShopContainer
             onItemSelected={() => {
               setProductItemClicked(true);
@@ -326,9 +330,9 @@ const ShopDesktop = () => {
       )}
     </section>
   </div>
-
-
 </main>
+
+
   <Footer  />
     </div>
   );

@@ -27,7 +27,7 @@ const AccountDesktop = () => {
     
     const  { setUSerAccountData,userData} = useDreamTradingStore(state=>state)
     
- const [adPernalization,setupAdPersonalization] = useState('' as '' | 'Private' | 'Commercial')
+ const [adPernalization,setupAdPersonalization] = useState('' as '' | 'Buyer' | 'Seller')
 
  const {createAccount, loginAccount} = useAccountApi()
  const [error,setError] = useState(false)
@@ -40,7 +40,7 @@ const AccountDesktop = () => {
   const [crateAccountData, setCreateAccountData] = useState({
         email:"",
         password:"",
-        adClassification:'Commercial' as  'Private' | 'Commercial',
+        adClassification:'Seller' as  'Buyer' | 'Seller',
         subscribeToNewsLetter:false
 
        })
@@ -81,9 +81,9 @@ const handlePasswordEntered = useCallback((e:React.ChangeEvent<HTMLInputElement>
   }, [dropDownCat]);
 
 
-  const hanldeAdPersonalization = useCallback((type:''|'Private'|'Commercial')=>{
+  const hanldeAdPersonalization = useCallback((type:''|'Buyer'|'Seller')=>{
     setupAdPersonalization(type)
-    setCreateAccountData({...crateAccountData,adClassification:type as 'Private'|'Commercial'})
+    setCreateAccountData({...crateAccountData,adClassification:type as 'Buyer'|'Seller'})
   },[crateAccountData])
 
   const handleNewsletterSubscription = useCallback(()=>{
@@ -283,15 +283,15 @@ const  handleLoginAccount = useCallback(async()=>{
           </div>
 
           <div className="mb-8 text-center">
-            <p className="text-sm font-bold text-slate-700 mb-4">How would you like to use classified ads?</p>
+            <p className="text-sm font-bold text-slate-700 mb-4">How would you like to use application?</p>
             <div className="flex gap-4">
-              <label className={`flex-1 flex items-center justify-center gap-2 p-3 rounded-xl border-2 cursor-pointer transition-all ${adPernalization === 'Private' ? 'border-red-500 bg-red-50 text-red-700' : 'border-slate-100 text-slate-500'}`}>
-                <input type="radio" className="hidden" checked={adPernalization === 'Private'} onChange={() => hanldeAdPersonalization('Private')} />
-                <span className="text-sm font-bold">Private</span>
+              <label className={`flex-1 flex items-center justify-center gap-2 p-3 rounded-xl border-2 cursor-pointer transition-all ${adPernalization === 'Buyer' ? 'border-red-500 bg-red-50 text-red-700' : 'border-slate-100 text-slate-500'}`}>
+                <input type="radio" className="hidden" checked={adPernalization === 'Buyer'} onChange={() => hanldeAdPersonalization('Buyer')} />
+                <span className="text-sm font-bold">Buyer</span>
               </label>
-              <label className={`flex-1 flex items-center justify-center gap-2 p-3 rounded-xl border-2 cursor-pointer transition-all ${adPernalization === 'Commercial' ? 'border-red-500 bg-red-50 text-red-700' : 'border-slate-100 text-slate-500'}`}>
-                <input type="radio" className="hidden" checked={adPernalization === 'Commercial'} onChange={() => hanldeAdPersonalization('Commercial')} />
-                <span className="text-sm font-bold">Public</span>
+              <label className={`flex-1 flex items-center justify-center gap-2 p-3 rounded-xl border-2 cursor-pointer transition-all ${adPernalization === 'Seller' ? 'border-red-500 bg-red-50 text-red-700' : 'border-slate-100 text-slate-500'}`}>
+                <input type="radio" className="hidden" checked={adPernalization === 'Seller'} onChange={() => hanldeAdPersonalization('Seller')} />
+                <span className="text-sm font-bold">Seller</span>
               </label>
             </div>
           </div>
