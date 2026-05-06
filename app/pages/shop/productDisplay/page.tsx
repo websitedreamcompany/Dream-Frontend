@@ -6,7 +6,7 @@ import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState, useEffect, useCallback, Suspense } from "react";
 
-import { FaAngleDown } from "react-icons/fa";
+import { FaAngleDown, FaMapMarkerAlt } from "react-icons/fa";
 import { IoMdSearch } from "react-icons/io";
 import { IoPerson } from "react-icons/io5";
 import { MdAddChart } from "react-icons/md";
@@ -14,6 +14,7 @@ import CarsCatSectionBar from "./component/CarsCatSectionBar";
 import HouseCatSectionBar from "./component/HouseCatSectionBar";
 import PropertyCatSectionBar from "./component/PropertyCatSectionBar";
 import TopNavigationBar from "@/component/ui/TopNavigationBar";
+import DropDownMenuForCategory from "../component/Category/DropDownMenuForCategory";
 
 const itim = Itim({ subsets: ["latin"], weight: "400" });
 
@@ -34,7 +35,18 @@ const MainComponent = () => {
 
   const [moreData, setMoreData] = useState([]);
   const router = useRouter()
+ const [dropDownCat, setDropDownCat] = useState(false);
+  const [dropDownLoc, setDropDownLoc] = useState(false);
+  const [data,setData] = useState([])
 
+
+ const handleLocationDropDownMenuFired = useCallback(() => {
+    setDropDownLoc(!dropDownLoc);
+  }, [dropDownLoc]);
+
+  const handleCategoryDropDownMenuFired = useCallback(() => {
+    setDropDownCat(!dropDownCat);
+  }, [dropDownCat]);
 
 
   useEffect(() => {
@@ -309,14 +321,15 @@ const MainComponent = () => {
       {/**
        * Main containerr
        */}
- <div className="bg-web-navbar w-full flex items-center justify-center mt-1 py-4">
-    
+  <div className="bg-web-navbar w-full flex items-center justify-center mt-1 py-4">
       <div className="max-w-6xl w-full mx-auto h-auto flex flex-col md:flex-row items-center justify-between px-5 gap-6">
         
         <div className="w-full lg:flex-1">
-          <div className="flex flex-col md:flex-row bg-white min-h-12 md:h-12 rounded-2xl md:rounded-full shadow-sm border border-slate-200 overflow-hidden p-2 md:p-0">
+          {/* Main Search Input Group - Overflow visible to allow dropdowns to show */}
+          <div className="flex flex-col md:flex-row bg-white min-h-12 md:h-12 rounded-2xl md:rounded-full shadow-sm border border-slate-200 overflow-visible p-2 md:p-0">
             
-            <div className="flex flex-1 items-center px-4 min-w-37.5">
+            {/* 1. Search Input */}
+            <div className="flex flex-1 items-center px-4 min-w-[150px] border-b md:border-b-0 md:border-r border-slate-100 md:border-slate-200 py-2 md:py-0">
               <IoMdSearch className="text-slate-400 shrink-0" size={20} />
               <input 
                 placeholder="What are you looking for..." 
@@ -324,34 +337,68 @@ const MainComponent = () => {
               />
             </div>
 
-            <div className="hidden md:block h-6 w-px bg-slate-200 self-center"></div>
+            {/* 2. CATEGORY ANCHOR */}
+            <div className="relative flex-1 border-b md:border-b-0 md:border-r border-slate-100 md:border-slate-200">
+              <div 
+                className="flex h-full items-center justify-between px-4 md:px-6 py-2 md:py-0 cursor-pointer hover:bg-slate-50 transition-all"
+                onClick={handleCategoryDropDownMenuFired}
+              >
+                <p className="text-[13px] whitespace-nowrap">All categories</p>
+                <FaAngleDown className="ml-2 text-slate-400 shrink-0" size={14} />
+              </div>
 
-            <div className="flex items-center justify-between px-4 md:px-6 py-2 md:py-0 cursor-pointer hover:bg-slate-50">
-              <p className="text-[13px] whitespace-nowrap">All categories</p>
-              <FaAngleDown className="ml-2 text-slate-400" size={14} />
+              {/* Category Dropdown */}
+              {dropDownCat && (
+                <div className="absolute top-full left-0 z-[60] mt-2 w-full md:w-max min-w-full bg-white shadow-2xl rounded-2xl overflow-hidden border border-slate-100 animate-in fade-in slide-in-from-top-2">
+                  <DropDownMenuForCategory />
+                </div>
+              )}
             </div>
 
-            <div className="hidden md:block h-6 w-px bg-slate-200 self-center"></div>
+              {/* 3. LOCATION ANCHOR - Same logic as Categories */}
+                      <div className="flex-1 h-12 md:h-full relative border-b md:border-b-0 md:border-r border-slate-100 md:border-slate-200">
+                        <div 
+                          className="flex items-center px-4 h-full hover:bg-slate-50 cursor-pointer transition-all" 
+                          onClick={handleLocationDropDownMenuFired}
+                        >
+                          <div className="flex items-center gap-2 truncate">
+                            <FaMapMarkerAlt className="text-slate-300" size={12} />
+                            <p className="text-[10px] font-bold uppercase truncate text-slate-700">Deutschland</p>
+                          </div>
+                          <FaAngleDown className="ml-auto text-slate-300" size={14} />
+                        </div>
 
-            <div className="flex items-center px-4 md:px-6 py-2 md:py-0">
-              <p className="text-[13px] whitespace-nowrap">Deutschland</p>
+              {/* Location Dropdown */}
+                {dropDownLoc && (
+              <div className="absolute top-full left-0 z-[70] mt-1 w-full md:w-max md:min-w-[250px] shadow-2xl rounded-xl md:rounded-2xl overflow-hidden animate-in fade-in slide-in-from-top-2 bg-white">
+                {/* Reusing your dropdown style or a specific location component */}
+                <div className="p-4">
+                   <input placeholder="Enter city or zip..." className="w-full p-2 bg-slate-50 rounded-lg text-xs outline-none border border-slate-100 mb-2" />
+                   <p className="text-[10px] font-bold text-slate-400 uppercase mb-2 px-1">Nearby Towns</p>
+                   <div className="space-y-1">
+                      <p className="text-xs p-2 hover:bg-slate-50 rounded-lg cursor-pointer">Berlin</p>
+                      <p className="text-xs p-2 hover:bg-slate-50 rounded-lg cursor-pointer">Munich</p>
+                      <p className="text-xs p-2 hover:bg-slate-50 rounded-lg cursor-pointer">Hamburg</p>
+                   </div>
+                </div>
+              </div>
+            )}
             </div>
 
-            <div className="hidden md:block h-6 w-px bg-slate-200 self-center"></div>
-
+            {/* 4. Find Button Section */}
             <div className="flex items-center justify-between px-4 md:pl-6 md:pr-1 py-2 md:py-0 gap-4">
-              <div className="flex items-center cursor-pointer">
+              <div className="flex items-center">
                 <p className="text-[13px] whitespace-nowrap">Entire town</p>
-                <FaAngleDown className="ml-2 text-slate-400" size={14} />
               </div>
               
-              <button className="bg-blue-600 text-white px-6 h-10 rounded-xl md:rounded-full text-[13px] font-bold hover:bg-blue-700 transition w-full md:w-auto">
+              <button className="bg-blue-600 text-white px-6 h-10 rounded-xl md:rounded-full text-[13px] font-bold hover:bg-blue-700 transition w-full md:w-auto shrink-0">
                 Find
               </button>
             </div>
           </div>
         </div>
 
+        {/* Action Icons */}
         <div className="flex gap-8 items-center shrink-0">
           <div className="flex flex-col items-center cursor-pointer group">
             <MdAddChart className="text-slate-700 group-hover:text-blue-600 transition" size={20} />

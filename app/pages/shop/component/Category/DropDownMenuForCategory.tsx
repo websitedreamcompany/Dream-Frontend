@@ -2,6 +2,7 @@ import { useCallback, useState } from "react";
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 const DropDownMenuForCategory = () => {
   const [hoverIndex, setHoverIndex] = useState(-1);
 
@@ -228,51 +229,64 @@ const DropDownMenuForCategory = () => {
   }, []);
 
   return (
-    <div className="absolute z-100 min-fh-400 bg-transparent w-full flex  ">
-      <div className="bg-white w-[25%] ms-[27%] h-200 rounded shadow-f-cardM overflow-y-scroll">
-        {sectionDewtails.map((data, index) => (
-          <div
-            key={index}
-            className="m-2 cursor-pointer hover:bg-[rgba(0,0,0,0.6)] flex  gap-[40%]"
-            onMouseOver={() => {
-              handleOverIndex(index);
-            }}
-          >
-            <p>{data.title}</p>
+        <div className="relative top-12 left-0 z-[100] w-full flex items-start pt-2 pointer-events-none">
+      <div className="max-w-7xl mx-auto w-full flex px-6 pointer-events-auto">
+        
+        {/* 1. PRIMARY LEVEL: Category Titles */}
+        <div className="bg-white w-72 h-[450px] rounded-2xl shadow-2xl border border-slate-100 overflow-y-auto scrollbar-hide py-4 relative">
+          {sectionDewtails.map((data, index) => (
+            <div
+              key={index}
+              className={`group flex items-center justify-between px-6 py-3 cursor-pointer transition-all ${
+                hoverIndex === index ? 'bg-[#391452] text-white' : 'text-slate-600 hover:bg-slate-50'
+              }`}
+              onMouseEnter={() => handleOverIndex(index)}
+            >
+              <div className="flex items-center gap-3">
+                {/* Optional: item.icon placeholder */}
+                <span className="text-sm font-bold tracking-tight">{data.title}</span>
+              </div>
 
-            <div className="relative fh-15 fw-5 place-self-center  ">
-              <Image
-                alt="right-icon"
-                fill
-                src={"/category_icons/right_icon.svg"}
-                className="absolute "
-              />
+              <div className="relative w-4 h-4 opacity-40 group-hover:opacity-100 transition-opacity">
+                <Image
+                  alt="right"
+                  fill
+                  src="/category_icons/right_icon.svg"
+                  className={hoverIndex === index ? "invert" : ""}
+                />
+              </div>
             </div>
-          </div>
-        ))}
-      </div>
-
-      {hoverIndex && hoverIndex >= 0 ? (
-        <motion.div
-          initial={{
-            translateY: "0%",
-          }}
-          animate={{
-            translateY:
-              hoverIndex === 0
-                ? `${(9 * 9000) / 100}%`
-                : `${(hoverIndex * 900) / 100}%`,
-          }}
-          className={`bg-white w-[18%]  h-full rounded shadow-f-cardM relative`}
-        >
-          {sectionDewtails[hoverIndex].items.map((item, index) => (
-            <p className="hover:underline cursor-pointer m-2" key={index}>
-              {item}
-            </p>
           ))}
-        </motion.div>
-      ) : null}
+        </div>
+
+        {/* 2. SECONDARY LEVEL: Sub-Items */}
+        {hoverIndex !== null && sectionDewtails[hoverIndex] && (
+          <motion.div
+            initial={{ opacity: 0, x: -10 }}
+            animate={{ opacity: 1, x: 0 }}
+            key={hoverIndex} // Triggers animation on index change
+            className="bg-white w-64 min-h-[200px] max-h-[450px] ml-2 rounded-2xl shadow-2xl border border-slate-100 overflow-y-auto p-6"
+          >
+            <p className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 mb-4">
+              Explore {sectionDewtails[hoverIndex].title}
+            </p>
+            <div className="grid grid-cols-1 gap-3">
+              {sectionDewtails[hoverIndex].items.map((item, index) => (
+                <Link
+                  href={`/pages/shop/productDisplay?title=${sectionDewtails[hoverIndex].title}&cat=${item}`}
+                  key={index}
+                  className="text-sm font-medium text-slate-600 hover:text-[#ff0000] hover:translate-x-1 transition-all flex items-center gap-2"
+                >
+                  <span className="w-1 h-1 rounded-full bg-slate-200" />
+                  {item}
+                </Link>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </div>
     </div>
+
   );
 };
 
