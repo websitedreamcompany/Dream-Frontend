@@ -66,132 +66,149 @@ const LandingPage = () => {
    <TopNavigationBar/>
 
       {/* Main content */}
-    <motion.main 
-    ref={containerRef}
-    className="min-h-screen bg-[#391452] text-white selection:bg-[#ff0000] selection:text-white">
+       <motion.main 
+      ref={containerRef}
+      className="h-screen overflow-y-scroll snap-y snap-mandatory bg-[#391452] text-white scroll-smooth"
+      style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+    >
       
-      {/* 1. LAYERED HERO */}
-      <section className="relative pt-32 pb-20 px-6 max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          
-          <div className="lg:col-span-7 space-y-6">
+      {/* SECTION 1: HERO */}
+      <section className="relative w-full h-screen snap-start flex items-center px-4 md:px-6 overflow-hidden shrink-0">
+        <div className="absolute top-0 right-0 w-[300px] md:w-[500px] h-[300px] md:h-[500px] bg-[#22026f] blur-[100px] md:blur-[120px] opacity-40 rounded-full -z-10" />
+        
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 items-center w-full">
+          <div className="lg:col-span-7 space-y-4 md:space-y-6 text-center lg:text-left">
             <motion.div 
               initial={{ opacity: 0, y: 20 }} 
               animate={{ opacity: 1, y: 0 }}
-              className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#2c0140] border border-[#7a4238] text-[10px] font-bold tracking-widest uppercase text-[#fc8570]"
+              className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#2c0140] border border-[#7a4238] text-[9px] md:text-[10px] font-bold tracking-widest uppercase text-[#fc8570] mx-auto lg:mx-0"
             >
-              <span className="w-2 h-2 rounded-full bg-[#ff0000] animate-pulse" />
+              <span className="w-1.5 h-1.5 rounded-full bg-[#ff0000] animate-pulse" />
               Multi-Sector Infrastructure
             </motion.div>
             
-            <h1 className={`${itim.className} text-6xl md:text-8xl font-black leading-[1.05] tracking-tight`}>
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-black leading-[1.1] tracking-tight">
               Design <span className="text-[#fc8570]">Bridges</span> <br /> 
               Build Apps.
             </h1>
             
-            <p className="text-[#ede9e9] text-lg max-w-lg opacity-80 leading-relaxed">
-              The first ecosystem merging heavy construction planning with high-performance application development and a global marketplace.
+            <p className="text-[#ede9e9] text-sm md:text-base lg:text-lg max-w-lg opacity-80 leading-relaxed mx-auto lg:mx-0">
+              The first ecosystem merging heavy construction planning with high-performance application development.
             </p>
             
-            <div className="flex gap-4 pt-4">
-              <button onClick={()=>{handleNavToProjects()}} className="bg-[#ff0000] hover:bg-[#fc8570] text-white px-8 py-4 rounded-2xl font-bold shadow-xl shadow-black/40 transition-all active:scale-95">
+            <div className="flex flex-wrap justify-center lg:justify-start gap-3 md:gap-4 pt-2">
+              <button onClick={handleNavToProjects} className="bg-[#ff0000] hover:bg-[#fc8570] text-white px-6 md:px-8 py-3 md:py-4 rounded-xl md:rounded-2xl font-bold text-xs md:text-sm transition-all active:scale-95 shadow-lg">
                 Explore Projects
               </button>
-              <button onClick={()=>{handleNavToShops()}} className="bg-[#2c0140] border border-[#7a4238] text-white px-8 py-4 rounded-2xl font-bold hover:bg-[#3e3d3e] transition-all">
+              <button onClick={handleNavToShops} className="bg-[#2c0140] border border-[#7a4238] text-white px-6 md:px-8 py-3 md:py-4 rounded-xl md:rounded-2xl font-bold text-xs md:text-sm transition-all">
                 Visit Shop
               </button>
             </div>
           </div>
 
-          {/* ASYMMETRIC ASSET */}
           <motion.div 
-            className="hidden lg:block lg:col-span-5 relative h-[500px]"
+            className="hidden lg:block lg:col-span-5 relative h-[400px] xl:h-[450px]"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
           >
-            <div className="absolute inset-0 bg-[#2c0140] rounded-[4rem] rotate-6 border border-[#7a4238]/30" />
-            <Image src="/landing_img_1.png" alt="Hero" fill className="object-contain relative z-10 drop-shadow-2xl" />
+            <Image src="/landing_img_1.png" alt="Hero" fill className="object-contain drop-shadow-2xl" priority />
           </motion.div>
         </div>
       </section>
 
-      {/* 2. THE BENTO ECOSYSTEM GRID */}
-      <section className="max-w-7xl mx-auto px-6 py-20">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 h-auto md:h-[600px]">
+      {/* SECTION 2: BENTO GRID (RESPONSIVE & MATCH SCREEN) */}
+    <section className="w-full h-screen snap-start flex flex-col items-center px-4 md:px-6 bg-transparent shrink-0 overflow-hidden">
+        <div className="max-w-7xl mx-auto w-full h-full flex flex-col justify-center py-4">
           
-          {/* Main Pillar: Construction (Large Card) */}
-          <motion.div 
-           onClick={()=>{
-            handleNavToProjects()
-           }}
-            whileHover={{ y: -10 }}
-            className="md:col-span-2 md:row-span-2 bg-[#2c0140] rounded-[3rem] p-10 border border-[#7a4238]/20 flex flex-col justify-between group overflow-hidden relative"
-          >
-            <div className="z-10">
-              <h3 className={`${itim.className} text-3xl font-bold mb-4`}>Construction & Engineering</h3>
-              <p className="text-sm text-[#ede9e9] opacity-60 max-w-xs">Precision planning for physical infrastructure and architectural builds.</p>
-            </div>
-            <div className="relative h-64 w-full mt-8 z-10 ">
-              <Image src="https://images.unsplash.com/photo-1694521787673-28cbd8830ea5?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Construction" fill className="object-contain group-hover:scale-110 rounded-2xl transition-transform duration-500 " />
-            </div>
-            {/* Background Radial Glow */}
-            <div className="absolute -bottom-20 -left-20 w-64 h-64 bg-[#ff0000] blur-[100px] opacity-10" />
-          </motion.div>
+          {/* Main Grid Container: Using Flex for Mobile, Grid for Desktop */}
+          <div className="flex flex-col md:grid md:grid-cols-4 md:grid-rows-2 gap-3 md:gap-8 h-[90%] md:h-[80%]">
+            
+            {/* 1. Construction - Fixed % height on mobile to save space */}
+            <motion.div 
+              onClick={handleNavToProjects}
+              whileHover={{ y: -5 }}
+              className="h-[45%] md:h-auto md:col-span-2 md:row-span-2 flex flex-col group cursor-pointer overflow-hidden"
+            >
+              <div className="mb-2 shrink-0">
+                <h3 className="text-xl md:text-4xl font-black leading-tight text-white uppercase tracking-tighter">Construction</h3>
+                <p className="hidden md:block text-xs text-[#ede9e9] opacity-60">Architectural builds & planning.</p>
+              </div>
+              {/* flex-1 makes the image fill the remaining space of the 45% container */}
+              <div className="flex-1 relative w-full overflow-hidden rounded-2xl md:rounded-[3rem] shadow-2xl shadow-black/50">
+                <Image 
+                  src="https://plus.unsplash.com/premium_photo-1681691912442-68c4179c530c?q=80&w=871&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
+                  alt="Build" 
+                  fill 
+                  className="object-cover group-hover:scale-110 transition-transform duration-700" 
+                />
+              </div>
+            </motion.div>
 
-          {/* App Center (Tall Card) */}
-          <motion.div 
-          onClick={()=>{handleNavToApplication()}}
-            whileHover={{ y: -10 }}
-            className="md:col-span-2 bg-[#22026f] rounded-[3rem] p-8 border border-[#7a4238]/20 flex items-center justify-between group overflow-hidden"
-          >
-            <div className="flex-1">
-              <h3 className={`${itim.className} text-2xl font-bold mb-2`}>App Center</h3>
-              <p className="text-xs text-[#ede9e9] opacity-60">Upload & Download Hub.</p>
-            </div>
-            <div className="relative w-32 h-32">
-              <Image src="https://plus.unsplash.com/premium_photo-1721920066980-136a3f61d827?q=80&w=435&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Apps" fill className="object-contain group-hover:rotate-12 transition-transform" />
-            </div>
-          </motion.div>
+            {/* 2. App Center - Half of the remaining space on mobile */}
+            <motion.div 
+              onClick={handleNavToApplication}
+              whileHover={{ y: -5 }}
+              className="h-[25%] md:h-auto md:col-span-2 flex flex-row md:flex-col items-center md:items-start gap-4 md:gap-0 group cursor-pointer overflow-hidden"
+            >
+              <div className="w-1/2 md:w-full mb-0 md:mb-2 shrink-0">
+                <h3 className="text-lg md:text-3xl font-black text-white uppercase tracking-tighter">App Center</h3>
+                <p className="hidden md:block text-[10px] text-[#ede9e9] opacity-60">Distribution hub.</p>
+              </div>
+              <div className="flex-1 relative w-full h-full md:h-48 overflow-hidden rounded-xl md:rounded-[2rem] shadow-xl shadow-black/40">
+                <Image 
+                  src="https://plus.unsplash.com/premium_photo-1726754632376-ccdcb83fe650?q=80&w=717&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
+                  alt="Apps" 
+                  fill 
+                  className="object-cover group-hover:scale-105 transition-transform duration-500" 
+                />
+              </div>
+            </motion.div>
 
-          {/* Global Marketplace (Square Card) */}
-          <motion.div 
-          onClick={()=>handleNavToShops()}
-            whileHover={{ y: -10 }}
-            className="md:col-span-2 bg-[#3e3d3e] rounded-[3rem] p-8 border border-[#7a4238]/20 flex items-center justify-between group"
-          >
-            <div className="flex-1">
-              <h3 className={`${itim.className} text-2xl font-bold mb-2`}>Marketplace</h3>
-              <p className="text-xs text-[#ede9e9] opacity-60">Shop all categories instantly.</p>
-            </div>
-            <div className="relative w-32 h-32">
-              <Image src="https://images.unsplash.com/photo-1674027392857-9aed6e8ecab9?q=80&w=1032&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Marketplace" fill className="object-contain group-hover:scale-110 transition-transform" />
-            </div>
-          </motion.div>
+            {/* 3. Marketplace - Remaining space on mobile */}
+            <motion.div 
+              onClick={handleNavToShops}
+              whileHover={{ y: -5 }}
+              className="h-[25%] md:h-auto md:col-span-2 flex flex-row md:flex-col items-center md:items-start gap-4 md:gap-0 group cursor-pointer overflow-hidden"
+            >
+              <div className="w-1/2 md:w-full mb-0 md:mb-2 shrink-0">
+                <h3 className="text-lg md:text-3xl font-black text-white uppercase tracking-tighter">Marketplace</h3>
+                <p className="hidden md:block text-[10px] text-[#ede9e9] opacity-60">Shop categories.</p>
+              </div>
+              <div className="flex-1 relative w-full h-full md:h-48 overflow-hidden rounded-xl md:rounded-[2rem] shadow-xl shadow-black/40">
+                <Image 
+                  src="https://images.unsplash.com/photo-1449247666642-264389f5f5b1?q=80&w=1738&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
+                  alt="Shop" 
+                  fill 
+                  className="object-cover group-hover:scale-105 transition-transform duration-500" 
+                />
+              </div>
+            </motion.div>
 
+          </div>
         </div>
       </section>
 
-      {/* 3. FEATURED BUILDS (Clean Minimal Row) */}
-      <section className="bg-[#efefef] py-32 rounded-t-[5rem]">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="flex items-end justify-between mb-16">
-            <h2 className={`${itim.className} text-4xl font-bold text-[#19002f]`}>Active Deployments</h2>
-            <button className="text-[#ff0000] font-bold text-sm hover:underline">View Portfolio</button>
+      {/* SECTION 3: FEATURED */}
+      <section className="w-full h-screen snap-start flex flex-col bg-[#efefef] overflow-hidden text-[#3a393b] shrink-0">
+        <div className="flex-1 flex flex-col justify-center max-w-7xl mx-auto w-full px-4 md:px-6">
+          <div className="flex items-end justify-between mb-6 md:mb-8">
+            <h2 className="text-2xl md:text-4xl font-bold text-[#19002f]">Active Deployments</h2>
+            <button className="text-[#ff0000] font-bold text-[10px] md:text-xs uppercase tracking-widest hover:underline">Portfolio</button>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
             {[1, 2, 3].map((i) => (
-              <div key={i} className="group cursor-pointer">
-                <div className="h-[400px] bg-white rounded-[2.5rem] p-8 shadow-xl border border-[#ede9e9] flex flex-col justify-between relative overflow-hidden">
+              <div key={i} className={`group cursor-pointer ${i === 3 ? 'hidden lg:block' : ''}`}>
+                <div className="h-[280px] md:h-[340px] bg-white rounded-2xl md:rounded-[2rem] p-4 md:p-6 shadow-xl border border-[#ede9e9] flex flex-col justify-between overflow-hidden">
                   <div>
-                    <h4 className="font-bold text-xl text-[#19002f]">Project Module 0{i}</h4>
-                    <p className="text-xs text-[#3e3d3e] opacity-60 mt-2">Validated Architecture</p>
+                    <h4 className="font-bold text-sm md:text-base text-[#19002f]">Project Module 0{i}</h4>
+                    <p className="text-[9px] text-[#3e3d3e] opacity-50 uppercase font-black tracking-widest">Structural</p>
                   </div>
-                  <div className="relative h-48 w-full">
-                    <Image src="/landing_feature_card_1_img.png" alt="Project" fill className="object-contain" />
+                  <div className="relative h-28 md:h-36 w-full rounded-xl overflow-hidden bg-slate-50">
+                    <Image src="/landing_feature_card_1_img.png" alt="Project" fill className="object-contain p-2" />
                   </div>
-                  <button className="w-full py-4 rounded-2xl bg-[#391452] text-white font-bold group-hover:bg-[#ff0000] transition-colors">
-                    View Details
+                  <button className="w-full py-2.5 md:py-3 rounded-lg md:rounded-xl bg-[#391452] text-white font-bold text-[10px] md:text-xs group-hover:bg-[#ff0000] transition-colors">
+                    Details
                   </button>
                 </div>
               </div>
@@ -201,7 +218,6 @@ const LandingPage = () => {
       </section>
 
     </motion.main>
-
     <Footer/>
     </div>
   );
