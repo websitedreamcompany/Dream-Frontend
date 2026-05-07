@@ -19,7 +19,7 @@ const P =  ()=>{
     {[1, 2].map((i) => (
       <div key={i} className="lg:col-span-3 bg-white rounded-[2.5rem] p-8 border border-slate-100 shadow-sm grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
         <div className="md:col-span-3 aspect-video relative rounded-3xl overflow-hidden bg-slate-100">
-           <Image height={200} width={200} alt="Project Image" src="/landing_feature_card_1_img.png" fill className="object-cover" />
+           <Image  alt="Project Image" src="/landing_feature_card_1_img.png" fill className="object-cover" />
         </div>
         <div className="md:col-span-5">
           <h3 className="text-xl font-bold text-slate-900 mb-1">Skyline Tower Phase {i}</h3>

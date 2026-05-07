@@ -13,6 +13,7 @@ import { PiBagBold, PiGraduationCapBold, PiPlugsDuotone, PiTShirtBold } from "re
 import { BsGift } from "react-icons/bs";
 import { GiShoppingCart, GiLightningSpanner, GiHerbsBundle } from "react-icons/gi";
 import { LiaHandsHelpingSolid } from "react-icons/lia";
+import Lightbox from "@/component/ui/ImageOverview";
 
 const itim = Itim({ subsets: ["latin"], weight: "400" });
 
@@ -45,6 +46,7 @@ const ForDeskTop = ({
   const [dropDownCat, setDropDownCat] = useState(false);
   const [dropDownLoc, setDropDownLoc] = useState(false);
   const [data,setData] = useState([])
+  const [lightboxImg, setLightboxImg] = useState(''); // Stores the URL or null
 
   const category = [
     {
@@ -254,51 +256,89 @@ const ForDeskTop = ({
           ))}
         </div>
       </div>
-
-      {/* 4. HORIZONTAL GALLERY */}
-      <div className="bg-white rounded-3xl p-6 mb-6 shadow-sm">
-        <div className="flex items-center justify-between mb-4">
-          <h2 className="text-lg font-bold text-[#391452]">Trending Gallery</h2>
-          <div className="h-0.5 w-12 bg-red-500 rounded-full" />
+<div className="bg-white rounded-3xl p-6 mb-6 shadow-sm">
+  <div className="flex items-center justify-between mb-4">
+    <h2 className="text-lg font-bold text-[#391452]">Trending Gallery</h2>
+    <div className="h-0.5 w-12 bg-red-500 rounded-full" />
+  </div>
+  <div className="flex gap-6 overflow-x-auto pb-4 scrollbar-hide snap-x">
+    {data.map((item:{urls?: {regular?: string}}, index) => (
+      <div key={index} className="snap-start min-w-[160px] md:min-w-[200px] bg-slate-50 rounded-2xl p-3 border border-slate-100 hover:shadow-xl transition-all group">
+        
+        {/* LIGHTBOX TRIGGER (Image Area) */}
+        <div 
+          className="relative aspect-square mb-4 rounded-xl overflow-hidden cursor-zoom-in"
+          onClick={() => setLightboxImg(item?.urls?.regular as string)}
+        >
+          <Image 
+            fill 
+            alt="img" 
+            src={item?.urls?.regular || "/"} 
+            className="object-cover group-hover:scale-110 transition-transform duration-500" 
+          />
         </div>
-        <div className="flex gap-6 overflow-x-auto pb-4 scrollbar-hide snap-x">
-          {data.map((item, index) => (
-            <div key={index} onClick={() => onItemSelected(index)} className="snap-start min-w-[160px] md:min-w-[200px] bg-slate-50 rounded-2xl p-3 border border-slate-100 hover:shadow-xl transition-all cursor-pointer group">
-              <div className="relative aspect-square mb-4 rounded-xl overflow-hidden">
-                <Image fill alt="img" src={(item as { urls?: { regular?: string } })?.urls?.regular || "/"} className="object-cover group-hover:scale-110 transition-transform duration-500" />
-              </div>
-              <div className="space-y-1">
-                <p className="text-xs font-bold text-slate-800 truncate">Solfar Premium Chair</p>
-                <p className="text-[10px] text-slate-400">Construction Grade</p>
-                <p className="text-sm font-black text-red-600">$926.00</p>
-              </div>
-            </div>
-          ))}
+
+        {/* NEXT SCREEN TRIGGER (Details Area) */}
+        <div 
+          className="space-y-1 cursor-pointer"
+          onClick={() => onItemSelected(index)}
+        >
+          <p className="text-xs font-bold text-slate-800 truncate">Solfar Premium Chair</p>
+          <p className="text-[10px] text-slate-400">Construction Grade</p>
+          <p className="text-sm font-black text-red-600 mt-1">$926.00</p>
         </div>
       </div>
+    ))}
+  </div>
+</div>
 
-      {/* 5. PRODUCT GRID - High Visibility */}
-      <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 mb-20">
-        {data.map((item, index) => (
-          <div key={index} onClick={() => onItemSelected(index)} className="bg-white rounded-2xl p-4 border border-slate-100 relative group cursor-pointer hover:shadow-2xl transition-all">
-            <button className="absolute top-4 right-4 z-10 p-2 bg-white/80 backdrop-blur rounded-full text-slate-400 hover:text-red-500 transition-colors">
-              <FaRegHeart size={14} />
-            </button>
-            <div className="relative aspect-square mb-4 rounded-xl overflow-hidden shadow-inner">
-              <Image fill alt="grid_img" src={(item as { urls?: { regular?: string } })?.urls?.regular || "/"} className="object-cover transition-transform group-hover:scale-105 duration-700" />
-            </div>
-            <div className="space-y-1 px-1">
-              <h4 className="text-[11px] font-bold text-slate-800 line-clamp-1">Solfar Construction Chair</h4>
-              <div className="flex justify-between items-center pt-2">
-                <p className="text-sm font-black text-[#391452]">$926</p>
-                <button className="bg-[#800020] text-white text-[9px] font-bold px-3 py-1.5 rounded-lg hover:brightness-110">
-                  Buy
-                </button>
-              </div>
-            </div>
-          </div>
-        ))}
+{/* --- 5. PRODUCT GRID --- */}
+<div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 mb-20">
+  {data.map((item:{urls?: {regular?: string}}, index) => (
+    <div key={index} className="bg-white rounded-2xl p-4 border border-slate-100 relative group shadow-sm hover:shadow-2xl transition-all">
+      <button className="absolute top-4 right-4 z-10 p-2 bg-white/80 backdrop-blur rounded-full text-slate-400 hover:text-red-500 transition-colors">
+        <FaRegHeart size={14} />
+      </button>
+
+      {/* LIGHTBOX TRIGGER (Image Area) */}
+      <div 
+        className="relative aspect-square mb-4 rounded-xl overflow-hidden shadow-inner cursor-zoom-in"
+        onClick={() => setLightboxImg(item?.urls?.regular as string)}
+      >
+        <Image 
+          fill 
+          alt="grid_img" 
+          src={item?.urls?.regular || "/"} 
+          className="object-cover transition-transform group-hover:scale-105 duration-700" 
+        />
       </div>
+
+      <div className="space-y-1 px-1">
+        {/* NEXT SCREEN TRIGGER (Title) */}
+        <h4 
+          className="text-[11px] font-bold text-slate-800 line-clamp-1 cursor-pointer hover:text-[#391452]"
+          onClick={() => onItemSelected(index)}
+        >
+          Solfar Construction Chair
+        </h4>
+        
+        <div className="flex justify-between items-center pt-2">
+          <p className="text-sm font-black text-[#391452]">$926</p>
+          
+          {/* NEXT SCREEN TRIGGER (Buy Button) */}
+          <button 
+            onClick={() => onItemSelected(index)}
+            className="bg-[#800020] text-white text-[9px] font-bold px-3 py-1.5 rounded-lg hover:brightness-110 active:scale-95 transition-all"
+          >
+            Buy
+          </button>
+        </div>
+      </div>
+    </div>
+  ))}
+</div>
+
+{  lightboxImg && <Lightbox src={lightboxImg} onClose={() => setLightboxImg('')} />}
     </section>
   );
 };

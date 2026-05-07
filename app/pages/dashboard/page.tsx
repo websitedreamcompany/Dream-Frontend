@@ -2,8 +2,16 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { FiPlus, FiGrid, FiPackage, FiHardDrive, FiSettings, FiBarChart2 } from 'react-icons/fi';
+import { useRouter } from 'next/navigation';
 
 const UnifiedDashboard = () => {
+ const router =  useRouter()
+
+   const handleNavToAppPortal = React.useCallback(()=>{
+
+    router.push('/pages/dashboard/app-portal')
+
+  },[router])
   return (
     <div className="flex h-screen bg-[#F8F9FA] overflow-hidden font-sans">
       
@@ -20,7 +28,11 @@ const UnifiedDashboard = () => {
             { label: 'App Portal', icon: <FiHardDrive /> },
             { label: 'Shop Manager', icon: <FiPackage /> },
           ].map((item, i) => (
-            <button key={i} className="flex items-center gap-4 w-full p-3 rounded-xl text-white/60 hover:bg-white/10 hover:text-white transition-all group">
+            <button key={i} onClick={()=>{
+              if(item.label === "App Portal"){
+                handleNavToAppPortal()
+              }
+            }} className="flex items-center gap-4 w-full p-3 rounded-xl text-white/60 hover:bg-white/10 hover:text-white transition-all group">
               <span className="text-xl group-hover:scale-110 transition-transform">{item.icon}</span>
               <span className="hidden lg:block text-sm font-medium">{item.label}</span>
             </button>
@@ -29,6 +41,8 @@ const UnifiedDashboard = () => {
 
         <button className="p-3 text-white/40 hover:text-white"><FiSettings size={24} /></button>
       </aside>
+
+
 
       {/* 2. MAIN CONTENT AREA */}
       <main className="flex-1 overflow-y-auto p-8 lg:p-12">
@@ -52,7 +66,7 @@ const UnifiedDashboard = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
           
           {/* Action: Post Project */}
-          <motion.div whileHover={{ y: -5 }} className="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-sm flex flex-col justify-between h-64 group cursor-pointer">
+          <motion.div whileHover={{ y: -5 }} className="bg-white hover:bg-blue-100 p-8 rounded-[2.5rem] border border-slate-100 shadow-sm flex flex-col justify-between h-64 group cursor-pointer">
             <div className="w-12 h-12 bg-emerald-50 text-emerald-600 rounded-2xl flex items-center justify-center group-hover:bg-emerald-600 group-hover:text-white transition-all">
               <FiPlus size={24} />
             </div>
@@ -63,18 +77,18 @@ const UnifiedDashboard = () => {
           </motion.div>
 
           {/* Action: Publish App */}
-          <motion.div whileHover={{ y: -5 }} className="bg-[#2c0140] p-8 rounded-[2.5rem] shadow-xl flex flex-col justify-between h-64 group cursor-pointer">
-            <div className="w-12 h-12 bg-white/10 text-white rounded-2xl flex items-center justify-center group-hover:bg-[#ff0000] transition-all">
+          <motion.div whileHover={{ y: -5 }} className="bg-white hover:bg-blue-100 p-8 rounded-[2.5rem] shadow-xl flex flex-col justify-between h-64 group cursor-pointer">
+            <div className="w-12 h-12 bg-white/10 text-black rounded-2xl flex items-center justify-center group-hover:bg-[#ff0000] transition-all">
               <FiPlus size={24} />
             </div>
-            <div className="text-white">
+            <div className="text-black">
               <h3 className="text-xl font-bold mb-2">Publish App</h3>
               <p className="text-sm text-white/50">Upload industry tools to the developer portal.</p>
             </div>
           </motion.div>
 
           {/* Action: Upload Product */}
-          <motion.div whileHover={{ y: -5 }} className="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-sm flex flex-col justify-between h-64 group cursor-pointer">
+          <motion.div whileHover={{ y: -5 }} className="bg-white hover:bg-blue-100 p-8 rounded-[2.5rem] border border-slate-100 shadow-sm flex flex-col justify-between h-64 group cursor-pointer">
             <div className="w-12 h-12 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-all">
               <FiPlus size={24} />
             </div>
@@ -115,7 +129,7 @@ const UnifiedDashboard = () => {
 
           {/* Quick Stats Column */}
           <div className="lg:col-span-4 space-y-6">
-             <div className="bg-[#ff0000] p-8 rounded-[2.5rem] text-white shadow-lg shadow-red-900/20">
+             <div className="bg-[#391452]/95 p-8 rounded-[2.5rem] text-white shadow-lg shadow-red-900/20">
                 <p className="text-xs font-bold uppercase tracking-widest opacity-60">Total Revenue</p>
                 <p className="text-3xl font-black mt-2">$42,900.00</p>
                 <div className="mt-4 h-1 bg-white/20 rounded-full">
